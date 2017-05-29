@@ -30,3 +30,4 @@ accounts-google
 google-config-ui
 facebook-config-ui
 arillo:flow-router-helpers
+gwendall:accounts-helpers

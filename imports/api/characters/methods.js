@@ -35,7 +35,7 @@ Meteor.methods({
 
 		if (Characters.findOne(characterId)) {
 			//First, unselect all other characters			
-			Characters.update({}, { $set: { isSelected: false } }, { multi: true });
+			Characters.update({userId: Meteor.userId()}, { $set: { isSelected: false } }, { multi: true });
 
 			//Then, mark provided as selected
 			Characters.update(characterId, { $set: { isSelected: true } });

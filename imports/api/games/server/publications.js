@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Games, CharactersInGames } from '../games.js';
+import { Logs } from '../../logs/logs.js';
 
 Meteor.publish('games.all', function () {
   return Games.find();
@@ -7,11 +8,10 @@ Meteor.publish('games.all', function () {
 
 Meteor.publish('characters_in_games.all', function () {
 
-  //When user leaves
-  this._session.socket.on("close", Meteor.bindEnvironment(function () {
-    CharactersInGames.remove({userdId:this.userdId});
+  //When user leaves  
+  this._session.socket.on("close", Meteor.bindEnvironment( () => {
+    return CharactersInGames.remove({userId:this.userId});
   }));
-
 
   return CharactersInGames.find();
 });

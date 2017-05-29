@@ -51,4 +51,11 @@ Template.games.events({
 			}			
 		 });
 	},
+	
+	'click .as-gm'(event, instance) {
+		event.preventDefault();
+				
+		const gameId = $(event.target).data('id');
+		FlowRouter.go('App.gm', {_id: gameId});
+	},
 });
