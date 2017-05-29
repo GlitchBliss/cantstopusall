@@ -1,0 +1,22 @@
+<template name="games">
+
+    {{#if currentUser}}
+    <h2>Games</h2>
+
+    <form class="add-game" name="add-game">
+        <input type="text" name="name" placeholder="What it's name ?" required />
+        <input type="submit" value="Create a new game" />
+    </form>
+
+    <ul>
+        {{#each games}}
+        <li>
+            <aside>
+                <a class="game-item" href="" data-id="{{_id}}">{{name}}</a>
+            </aside>
+        </li>
+        {{/each}}
+    </ul>
+    {{/if}}
+
+</template>

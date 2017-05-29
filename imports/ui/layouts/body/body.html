@@ -1,3 +1,14 @@
 <template name="App_body">
+
+  <ul>
+    <li>
+      <a href="/" tile="Welcome page">Welcome page</a>
+    </li>
+    <li>
+        {{> loginButtons}}
+    </li>
+  </ul>
+
+
   {{> Template.dynamic template=main}}
 </template>

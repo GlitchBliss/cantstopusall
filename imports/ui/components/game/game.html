@@ -1,0 +1,14 @@
+<template name="game">
+	{{#if gameReady}}
+	<h2>{{game.name}}</h2>
+
+	<ul>
+		{{#each characters}}
+		<li>
+			{{name}}
+		</li>
+		{{/each}}
+	</ul>
+
+	{{/if}}
+</template>

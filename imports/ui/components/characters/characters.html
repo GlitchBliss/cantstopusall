@@ -1,0 +1,16 @@
+<template name="characters">
+	{{#if currentUser}}
+		<h2>Characters</h2>
+
+		<form class="add-character">
+			<input type="text" name="name" placeholder="What it's name ?" required />
+			<input type="submit" value="Add a character" />
+		</form>
+
+		<select class="select-character">
+			{{#each characters}}
+			<option value="{{_id}}"  selected="{{isSelected}}">{{name}}</option>			
+			{{/each}}
+		</select>
+	{{/if}}
+</template>
