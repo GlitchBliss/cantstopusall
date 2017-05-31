@@ -6,7 +6,7 @@
 		<ul>
 			{{#each characters}}
 			<li>
-				{{name}}
+				<label>Agir sur {{name}}</label> <button name="send-notification" class="send-notification" data-id="{{ userId }}">Envoyer notification</button>
 			</li>
 			{{/each}}
 		</ul>	

@@ -3,7 +3,7 @@ import { check } from 'meteor/check';
 import { Notifications } from './notifications.js';
 
 Meteor.methods({
-	'notifications.insert'(text, type='basic', isGlobal = false, userId="") {
+	'notification.send'(text, type='basic', isGlobal = false, userId="") {
         check(text,String);
         check(isGlobal,Boolean);
         check(userId,String);

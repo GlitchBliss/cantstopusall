@@ -1,11 +1,9 @@
 <template name="notification">
-
     <ul>
+        {{#each notifications}}
         <li>
-            {{#each notifications}}
-                <span class="{{type}}">{{text}}</span>
-            {{/each}}
+            <span class="{{type}}">{{text}}</span>
         </li>
+        {{/each}}
     </ul>
-
 </template>
