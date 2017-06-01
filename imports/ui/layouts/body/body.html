@@ -1,16 +1,10 @@
 <template name="App_body">
-  <header>
-    {{ > notification }}
-  </header>
-  <ul>
-    <li>
-      <a href="/" tile="Welcome page">Welcome page</a>
-    </li>
-    <li>
-        {{> loginButtons}}
-    </li>
-  </ul>
+  <section class="container">
+    <header class="row">
+      {{ > notification }} {{> loginButtons}}
+    </header>
 
+    {{> Template.dynamic template=main}}
 
-  {{> Template.dynamic template=main}}
+  </section>
 </template>

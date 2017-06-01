@@ -8,9 +8,16 @@
 		</form>
 
 		<select class="select-character">
-			{{#each characters}}
-			<option value="{{_id}}"  selected="{{isSelected}}">{{name}}</option>			
-			{{/each}}
-		</select>
-	{{/if}}
+				{{#each characters}}
+				<option value="{{_id}}"  selected="{{isSelected}}">{{name}}</option>			
+				{{/each}}
+		</select> 
+		
+		
+		{{#each characters}}
+			<a class="btn btn-raised btn-info" data-id="{{_id}}">{{name}}</a> 
+		{{/each}}	
+		
+	
+	 {{/if}}
 </template>

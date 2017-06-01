@@ -7,8 +7,7 @@ Template.notification.onCreated(function () {
 });
 
 Template.notification.helpers({
-	notifications() {		
-		console.log(Meteor.userId());		
+	notifications() {				
 		return Notifications.find({ $or: [{userId:Meteor.userId()},{isGlobal:true}] } );
 	},
 });
