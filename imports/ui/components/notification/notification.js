@@ -3,12 +3,20 @@ import { Meteor } from 'meteor/meteor';
 import './notification.html';
 
 Template.notification.onCreated(function () {
-	Meteor.subscribe('notifications.all');
+    Meteor.subscribe('notifications.all');
 });
 
 Template.notification.helpers({
-	notifications() {				
-		return Notifications.find({ $or: [{userId:Meteor.userId()},{isGlobal:true}] } );
-	},
+    notifications() {        
+        const cursor = Notifications.find({$or: [{userId: Meteor.userId()}, {isGlobal: true}]})
+        const handle = cursor.observeChanges({
+            added(id) {
+                navigator.vibrate(10000);
+                console.log('New notification');
+            },
+        });
+
+        return cursor;
+    },
 });
 
