@@ -1,10 +1,23 @@
 <template name="App_body">
-  <section class="container">
-    <header class="row">
-      {{ > notification }} {{> loginButtons}}
-    </header>
+    <section class="container">
 
-    {{> Template.dynamic template=main}}
+        <nav>
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo right">1337</a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li>{{> loginButtons}}</li>
+                    <li><a href="/">Accueil</a></li>                    
+                </ul>
+            </div>
+        </nav>        
 
-  </section>
+        <header >
+            {{ > notification }} 
+        </header>
+
+
+
+        {{> Template.dynamic template=main}}
+
+    </section>
 </template>

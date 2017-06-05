@@ -1,0 +1,117 @@
+<template name="game_form">       
+    <div class="row">
+        <form class="col s12 game_editor" name="game_editor">
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">comment</i>
+                    <input id="title" name="title"  type="text" class="validate" required>                                        
+                    <label for="title">Nom de la partie *</label>
+                </div>                             
+                <div class="col s6">
+                    <div class="card">                        
+                        <div class="card-content">
+                            <p>Explications</p>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+
+                    <i class="material-icons prefix">settings</i>
+                    <div class="row choices_list">
+                        <p class="col s4">
+                            <input name="times" type="radio" id="contemporary" value="" />
+                            <label for="contemporary">Contemportaine</label>
+                        </p>
+                        <p class="col s4">
+                            <input name="times" type="radio" id="contemporary_anticipated" checked value="contemporary_anticipated" />
+                            <label for="contemporary_anticipated">Contemportaine anticipée</label>
+                        </p>
+                        <p class="col s4">
+                            <input name="times" type="radio" id="futuristic" value="futuristic" />
+                            <label for="futuristic">Futuriste</label>
+                        </p>
+                    </div>                    
+                    <label>Epoque</label>
+                </div>
+                <div class="col s6">
+                    <div class="card">                        
+                        <div class="card-content">
+                            <p>Explications</p>
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">settings</i>
+                    <div class="row choices_list">
+                        <p class="col s4">
+                            <input name="fantasy_level" type="radio" id="realist" value="realist" />
+                            <label for="realist">Réaliste</label>
+                        </p>
+                        <p class="col s4">
+                            <input name="fantasy_level" type="radio" id="occult" value="occult" checked />
+                            <label for="occult">Occulte</label>
+                        </p>
+                        <p class="col s4">
+                            <input name="fantasy_level" type="radio" id="fantastic" value="fantastic" />
+                            <label for="fantastic">Fantastique</label>
+                        </p>
+                    </div>                    
+                    <label>Degré de fantastique</label>                    
+                </div>
+                <div class="col s6">
+                    <div class="card">                        
+                        <div class="card-content">
+                            <p>Explications</p>
+                        </div>
+                    </div>
+                </div>                    
+            </div>            
+
+            <div class="row">
+                <div class="input-field col s6">
+
+                    <i class="material-icons prefix">settings</i>
+                    <div class="row choices_list">
+                        <p class="col s6">
+                            <input name="social_contract" type="radio" id="nobody_gets_hurt" value="nobody_gets_hurt" checked />
+                            <label for="nobody_gets_hurt">Personne ne sera blessé</label>
+                        </p>
+                        <p class="col s6">
+                            <input name="social_contract" type="radio" id="wont_abandon_you" value="wont_abandon_you"/>
+                            <label for="wont_abandon_you">Je ne vous abandonnerai pa</label>
+                        </p>
+                    </div>                    
+                    <label>Contrat social</label>                                            
+                </div>
+                <div class="col s6">
+                    <div class="card">                        
+                        <div class="card-content">
+                            <p>Explications</p>
+                        </div>
+                    </div>
+                </div>                    
+            </div>    
+
+            <div class="row">
+                <div class="input-field col s6">                    
+                    <i class="material-icons prefix">info_outline</i>                    
+                    <textarea id="textarea1" class="materialize-textarea"></textarea>                                        
+                    <label for="textarea1">Détails</label>
+                </div>
+                <div class="col s6">
+                    <div class="card">                        
+                        <div class="card-content">
+                            <p>Explications</p>
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+        </form>
+    </div>
+</template>

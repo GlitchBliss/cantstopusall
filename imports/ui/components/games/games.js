@@ -16,25 +16,27 @@ Template.games.onCreated(function () {
 
 Template.games.helpers({
 	games() {
-		return Games.find({});
+		return Games.find({userId : Meteor.userId()});
 	},
 
 });
 
 Template.games.events({
-	'submit .add-game'(event) {		
+	'click .add-game'(event) {		
 		event.preventDefault();		
 
-		const form = event.target;
-		const name = form.name;	
+//		const form = event.target;
+//		const name = form.name;	
+//
+//		Meteor.call('games.insert', name.value, (error) => {
+//			if (error) {
+//				console.log(error);				
+//			} else {
+//				name.value = '';		
+//			}
+//		});		
 
-		Meteor.call('games.insert', name.value, (error) => {
-			if (error) {
-				console.log(error);				
-			} else {
-				name.value = '';		
-			}
-		});		
+            FlowRouter.go('App.game.create');
 	},
 
 	'click .game-item'(event, instance) {

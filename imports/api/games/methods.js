@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Games, CharactersInGames } from './games.js';
+import { Games, GameObject, CharactersInGames } from './games.js';
 
 Meteor.methods({
 	'games.insert'(name) {
@@ -8,9 +8,14 @@ Meteor.methods({
 
 		return Games.insert({
 			name,
+                        userId: Meteor.userId(),
 			createdAt: new Date()
 		});
 	},
+
+        'games.upsert'(gameObject){
+            check(gameOject, GameObject);            
+        },
 
 	'games.join'(gameId, characterId) {
 		check(gameId, String);
