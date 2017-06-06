@@ -17,12 +17,7 @@ Template.App_game_create.helpers({
 
 
 Template.App_game_create.events({
-    'click .record_game'(event, template) {
-        const gameForm = $('.game_form');
-        gameForm.serializeArray().forEach( (formElement) => {
-            console.log(formElement);
-        });
-    }
+
 });
 
 
