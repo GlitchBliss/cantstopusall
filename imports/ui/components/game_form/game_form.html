@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="input-field col s6">
                     <i class="material-icons prefix">comment</i>
-                    <input id="title" name="title"  type="text" class="validate" required>                                        
+                    <input id="title" name="title"  type="text" class="validate" value="{{game.title}}" required>                                        
                     <label for="title">Nom de la partie *</label>
                 </div>                             
                 <div class="col s6">
@@ -27,7 +27,7 @@
                         </p>
                         <p class="col s4">
                             <input name="times" type="radio" id="contemporary_anticipated" checked value="contemporary_anticipated" />
-                            <label for="contemporary_anticipated">Contemportaine anticipée</label>
+                            <label for="contemporary_anticipated">Contemportaine anticip&eacute;e</label>
                         </p>
                         <p class="col s4">
                             <input name="times" type="radio" id="futuristic" value="futuristic" />
@@ -51,7 +51,7 @@
                     <div class="row choices_list">
                         <p class="col s4">
                             <input name="fantasy_level" type="radio" id="realist" value="realist" />
-                            <label for="realist">Réaliste</label>
+                            <label for="realist">R&eacute;aliste</label>
                         </p>
                         <p class="col s4">
                             <input name="fantasy_level" type="radio" id="occult" value="occult" checked />
@@ -62,7 +62,7 @@
                             <label for="fantastic">Fantastique</label>
                         </p>
                     </div>                    
-                    <label>Degré de fantastique</label>                    
+                    <label>Degr&eacute; de fantastique</label>                    
                 </div>
                 <div class="col s6">
                     <div class="card">                        
@@ -80,7 +80,7 @@
                     <div class="row choices_list">
                         <p class="col s6">
                             <input name="social_contract" type="radio" id="nobody_gets_hurt" value="nobody_gets_hurt" checked />
-                            <label for="nobody_gets_hurt">Personne ne sera blessé</label>
+                            <label for="nobody_gets_hurt">Personne ne sera bless&eacute;</label>
                         </p>
                         <p class="col s6">
                             <input name="social_contract" type="radio" id="wont_abandon_you" value="wont_abandon_you"/>
@@ -102,7 +102,7 @@
                 <div class="input-field col s6">                    
                     <i class="material-icons prefix">info_outline</i>                    
                     <textarea id="textarea1" name="description" class="materialize-textarea"></textarea>                                        
-                    <label for="textarea1">Détails</label>
+                    <label for="textarea1">D&eacute;tails</label>
                 </div>
                 <div class="col s6">
                     <div class="card">                        
@@ -113,9 +113,11 @@
                 </div>                    
             </div>
 
-            <button class="btn waves-effect waves-light record_game" type="submit">Enregistrer
-                <i class="material-icons right">send</i>
-            </button>                
+            <div class="row center-align">
+                <button class="btn waves-effect waves-light record_game" type="submit">Enregistrer
+                    <i class="material-icons right">send</i>
+                </button>                
+            </div>
         </form>
     </div>
 </template>

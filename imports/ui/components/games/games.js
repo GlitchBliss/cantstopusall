@@ -5,59 +5,47 @@ import './games.html';
 
 
 Template.games.onCreated(function () {
-	Meteor.subscribe('games.all');
-	Meteor.subscribe('characters.all');
+    Meteor.subscribe('games.all');
+    Meteor.subscribe('characters.all');
 
-	this.getSelectedCharacter = () => {
-		let selectedCharacter = Characters.findOne({isSelected:true, userId:Meteor.userId()});
-		return selectedCharacter;
-	}
+    this.getSelectedCharacter = () => {
+        let selectedCharacter = Characters.findOne({isSelected: true, userId: Meteor.userId()});
+        return selectedCharacter;
+    }
 });
 
 Template.games.helpers({
-	games() {
-		return Games.find({userId : Meteor.userId()});
-	},
+    games() {
+        return Games.find({userId: Meteor.userId()});
+    },
 
 });
 
 Template.games.events({
-	'click .add-game'(event) {		
-		event.preventDefault();		
+    'click .add-game'(event) {
+        event.preventDefault();
+        FlowRouter.go('App.game.create');
+    },
 
-//		const form = event.target;
-//		const name = form.name;	
-//
-//		Meteor.call('games.insert', name.value, (error) => {
-//			if (error) {
-//				console.log(error);				
-//			} else {
-//				name.value = '';		
-//			}
-//		});		
+    'click .game-item'(event, instance) {
+        event.preventDefault();
 
-            FlowRouter.go('App.game.create');
-	},
+        const characterId = instance.getSelectedCharacter()._id;
+        const gameId = $(event.target).data('id');
 
-	'click .game-item'(event, instance) {
-		event.preventDefault();
-		
-		const characterId = instance.getSelectedCharacter()._id;		
-		const gameId = $(event.target).data('id');
-		
-		 Meteor.call('games.join', gameId, characterId, (error) => {
-			if (error) {
-				console.log(error);				
-			} else {				
-				FlowRouter.go('App.game', {_id: gameId});		
-			}			
-		 });
-	},
-	
-	'click .as-gm'(event, instance) {
-		event.preventDefault();
-				
-		const gameId = $(event.target).data('id');
-		FlowRouter.go('App.gm', {_id: gameId});
-	},
+        Meteor.call('games.join', gameId, characterId, (error) => {
+            if (error) {
+                console.log(error);
+            } else {
+                FlowRouter.go('App.game', {_id: gameId});
+            }
+        });
+    },
+
+    'click .open_game'(event, instance) {
+        event.preventDefault();
+
+        const gameId = $(event.target).data('id');
+        FlowRouter.go('App.game_open', {_id: gameId});
+    }
 });
