@@ -6,6 +6,7 @@ import '../../ui/layouts/body/body.js';
 import '../../ui/pages/home/home.js';
 import '../../ui/pages/game/game.js';
 import '../../ui/pages/game_create/game_create.js';
+import '../../ui/pages/game_open/game_open.js';
 import '../../ui/pages/gm/gm.js';
 import '../../ui/pages/not-found/not-found.js';
 
@@ -23,6 +24,15 @@ FlowRouter.route('/game/create', {
 		BlazeLayout.render('App_body', { main: 'App_game_create' });
 	},
 });
+
+
+FlowRouter.route('/game/open/:_id', {
+	name: 'App.game.open',
+	action(params, queryParams) {		
+		BlazeLayout.render('App_body', { main: 'App_game_open' });
+	},
+});
+
 
 
 FlowRouter.route('/game/:_id', {

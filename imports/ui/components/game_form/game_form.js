@@ -4,16 +4,17 @@ import './game_form.html';
 
 Template.game_form.onCreated(function () {
     Meteor.subscribe('games.all');
-    this.gameId = new ReactiveVar("");
+    this.gameId = () => FlowRouter.getParam('_id');
+    //TODO create session variable to keep id when refreshing !! 
 });
 
 Template.game_form.helpers({
-    setGame(gameId) {
-        Template.instance().gameId.set(gameId);
-    },
-    
-    game() {
-        return Games.find(Template.instance().gameId.get());
+    game() {                
+        $('select').material_select();
+        Materialize.updateTextFields();
+//        console.log(Template.instance());
+//        console.log(Template.instance().gameId());
+        return Games.findOne(Template.instance().gameId());
     }
 });
 
@@ -28,14 +29,14 @@ Template.game_form.events({
         gameObj.description = gameForm.description ? gameForm.description.value : '';
         gameObj.socialContract = gameForm.social_contract ? gameForm.social_contract.value : '';
         gameObj.fantasyLevel = gameForm.fantasy_level ? gameForm.fantasy_level.value : '';
-        gameObj.times = gameForm.times ? gameForm.times.value : '';       
-        
+        gameObj.times = gameForm.times ? gameForm.times.value : '';
+
         Meteor.call('games.upsert', gameObj,
                 (error) => {
-                    console.log(error.error);
+            console.log(error.error);
         },
-                (success) => {                    
-                    FlowRouter.go('App.home');
+                (success) => {
+            FlowRouter.go('App.home');
         }
         );
     }

@@ -44,8 +44,9 @@ Template.games.events({
 
     'click .open_game'(event, instance) {
         event.preventDefault();
+        event.stopPropagation();
 
-        const gameId = $(event.target).data('id');
-        FlowRouter.go('App.game_open', {_id: gameId});
+        const gameId = $(event.currentTarget).data('id');        
+        FlowRouter.go('App.game.open', {_id: gameId});
     }
 });
