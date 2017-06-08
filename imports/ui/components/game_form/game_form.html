@@ -1,6 +1,9 @@
-<template name="game_form">       
+<template name="game_form">           
     <div class="row">
         <form class="col s12 game_editor" name="game_editor">
+
+            <input type='hidden' name="id" value="{{ game._id }}" />
+            
             <div class="row">
                 <div class="input-field col s6">
                     <i class="material-icons prefix">comment</i>
@@ -9,7 +12,7 @@
                 </div>                             
                 <div class="col s6">
                     <div class="card">                        
-                        <div class="card-content">
+                        <div class="card-content grey lighten-2 explications">
                             <p>Le nom de votre session de jeu. Voyez grand, soyez fous, faites Rêver.</p>
                         </div>
                     </div>
@@ -22,28 +25,35 @@
                     <i class="material-icons prefix">settings</i>
                     <div class="row choices_list">
                         <p class="col s4">
-                            <input name="times" type="radio" id="contemporary" value="" />
-                            <label for="contemporary">Contemportaine</label>
+                            <input name="times" type="radio" id="contemporary" value="contemporary" {{ isChecked 'contemporary' game.times}}/>
+                                   <label for="contemporary">Contemportaine</label>
                         </p>
                         <p class="col s4">
-                            <input name="times" type="radio" id="contemporary_anticipated" checked value="contemporary_anticipated" />
-                            <label for="contemporary_anticipated">Contemportaine anticip&eacute;e</label>
+                            <input name="times" type="radio" id="contemporary_anticipated" value="contemporary_anticipated" {{isChecked 'contemporary_anticipated' game.times}} />
+                                   <label for="contemporary_anticipated">Contemportaine anticip&eacute;e</label>
                         </p>
                         <p class="col s4">
-                            <input name="times" type="radio" id="futuristic" value="futuristic" />
-                            <label for="futuristic">Futuriste</label>
+                            <input name="times" type="radio" id="futuristic" value="futuristic" {{isChecked 'futuristic' game.times}}  />
+                                   <label for="futuristic">Futuriste</label>
                         </p>
                     </div>                    
                     <label>Epoque</label>
                 </div>
                 <div class="col s6">
                     <div class="card">                        
-                        <div class="card-content explications">
-                            <p>
-                                <br/> <b>Contemportaine :</b> Aujourd'hui, avec le niveau technologique que l'on connait.
-                                <br/> <b>Contemportaine anticip&eacute;e :</b> Aujourd'hui, mais la technologie est celle des promesses marketing. Tout est connecté, tout es informatisé, tout est piratable.
-                                <br/> <b>Futuriste :</b> La société est devenue une dystopie/utopie lointaine. Les tours sont immenses, le ciel sombre, les rues un théâtre de courreurs d'ombres.                            
-                            </p>
+                        <div class="card-content grey lighten-2 explications">
+                            <dl>
+                                <dt><dfn>Contemportaine</dfn></dt>
+                                <dd>Aujourd'hui, avec le niveau technologique que l'on connait.</dd>
+                            </dl>
+                            <dl>
+                                <dt><dfn>Contemportaine anticip&eacute;e </dfn></dt>
+                                <dd>Aujourd'hui, mais la technologie est celle des promesses marketing. Tout est connecté, tout es informatisé, tout est piratable.</dd>
+                            </dl>
+                            <dl>
+                                <dt><dfn>Futuriste</dfn></dt>
+                                <dd>La société est devenue une dystopie/utopie lointaine. Les tours sont immenses, le ciel sombre, les rues un théâtre de courreurs d'ombres.                            </dd>
+                            </dl>
                         </div>
                     </div>
                 </div>                    
@@ -54,24 +64,35 @@
                     <i class="material-icons prefix">settings</i>
                     <div class="row choices_list">
                         <p class="col s4">
-                            <input name="fantasy_level" type="radio" id="realist" value="realist" />
-                            <label for="realist">R&eacute;aliste</label>
+                            <input name="fantasy_level" type="radio" id="realist" value="realist" {{ isChecked 'realist' game.fantasyLevel}} />
+                                   <label for="realist">R&eacute;aliste</label>
                         </p>
                         <p class="col s4">
-                            <input name="fantasy_level" type="radio" id="occult" value="occult" checked />
-                            <label for="occult">Occulte</label>
+                            <input name="fantasy_level" type="radio" id="occult" value="occult" {{ isChecked 'occult' game.fantasyLevel}} />
+                                   <label for="occult">Occulte</label>
                         </p>
                         <p class="col s4">
-                            <input name="fantasy_level" type="radio" id="fantastic" value="fantastic" />
-                            <label for="fantastic">Fantastique</label>
+                            <input name="fantasy_level" type="radio" id="fantastic" value="fantastic" {{ isChecked 'fantastic' game.fantasyLevel}} />
+                                   <label for="fantastic">Fantastique</label>
                         </p>
                     </div>                    
                     <label>Degr&eacute; de fantastique</label>                    
                 </div>
                 <div class="col s6">
                     <div class="card">                        
-                        <div class="card-content">
-                            <p>Explications</p>
+                        <div class="card-content grey lighten-2 explications">
+                            <dl>
+                                <dt><dfn>R&eacute;aliste</dfn></dt>
+                                <dd>Le monde répond exactement aux mêmes lois que celles qu'on imagine connaître aujourd'hui. Une réalité dure pour des parties qui forgent le caractère.</dd>
+                            </dl>
+                            <dl>
+                                <dt><dfn>Occulte</dfn></dt>
+                                <dd>La réalité est la même que la nôtre. A moins que... Toutes ces rumeurs sur ce qui rode le soir... Et ces sociétés secrètes ? Qu'est-ce qui fait remuer ce voile ?</dd>
+                            </dl>   
+                            <dl>
+                                <dt><dfn>Fantastique</dfn></dt>
+                                <dd>La magie est courante, le ciel voit passer des phoenixs, d'autres races partagent même peut-être le quotidien des humains.</dd>
+                            </dl>   
                         </div>
                     </div>
                 </div>                    
@@ -83,20 +104,28 @@
                     <i class="material-icons prefix">settings</i>
                     <div class="row choices_list">
                         <p class="col s6">
-                            <input name="social_contract" type="radio" id="nobody_gets_hurt" value="nobody_gets_hurt" checked />
-                            <label for="nobody_gets_hurt">Personne ne sera bless&eacute;</label>
+                            <input name="social_contract" type="radio" id="nobody_gets_hurt" value="nobody_gets_hurt" {{ isChecked 'nobody_gets_hurt' game.socialContract}}  />
+                                   <label for="nobody_gets_hurt">Personne ne sera bless&eacute;</label>
                         </p>
                         <p class="col s6">
-                            <input name="social_contract" type="radio" id="wont_abandon_you" value="wont_abandon_you"/>
-                            <label for="wont_abandon_you">Je ne vous abandonnerai pa</label>
+                            <input name="social_contract" type="radio" id="wont_abandon_you" value="wont_abandon_you" {{ isChecked 'wont_abandon_you' game.socialContract}} />
+                                   <label for="wont_abandon_you">Je ne vous abandonnerai pas</label>
                         </p>
                     </div>                    
                     <label>Contrat social</label>                                            
                 </div>
                 <div class="col s6">
                     <div class="card">                        
-                        <div class="card-content">
-                            <p>Explications</p>
+                        <div class="card-content grey lighten-2 explications">
+                            <p>Votre contrat social ; les limites données à la partie.<br/><a href="http://www.limbicsystemsjdr.com/un-contrat-social-sain/" title="Contrat social" target="_blank">Explication détaillée de <b>Frédéric Sintes</b></a></p>
+                            <dl>
+                                <dt><dfn>Personne ne sera bless&eacute;</dfn></dt>
+                                <dd>Pas de thèmes choquants, sensibles ou difficiles : on évite le malaise ! </dd>
+                            </dl>
+                            <dl>
+                                <dt><dfn>Je ne vous abandonnerai pas</dfn></dt>
+                                <dd>Des thèmes sensibles peuvent être abordés, des moments difficiles mis en scènes, sans ignorer les sensibilités individuelles pour autant.</dd>
+                            </dl>                         
                         </div>
                     </div>
                 </div>                    
@@ -105,13 +134,13 @@
             <div class="row">
                 <div class="input-field col s6">                    
                     <i class="material-icons prefix">info_outline</i>                    
-                    <textarea id="textarea1" name="description" class="materialize-textarea"></textarea>                                        
+                    <textarea id="textarea1" name="description" class="materialize-textarea">{{game.description}}</textarea>                                        
                     <label for="textarea1">D&eacute;tails</label>
                 </div>
                 <div class="col s6">
                     <div class="card">                        
-                        <div class="card-content">
-                            <p>Explications</p>
+                        <div class="card-content grey lighten-2 explications">
+                            <p>Détaillez la partie que vous proposez. Pitch de scénario, éléments d'univers, gimmick du décors, soyez fulgurants et intenses comme une attaque DDoS.</p>
                         </div>
                     </div>
                 </div>                    
@@ -122,6 +151,7 @@
                     <i class="material-icons right">send</i>
                 </button>                
             </div>
+
         </form>
     </div>
 </template>
