@@ -24,6 +24,7 @@ Template.games.helpers({
 Template.games.events({
     'click .add-game'(event) {
         event.preventDefault();
+
         FlowRouter.go('App.game.create');
     },
 
@@ -45,8 +46,7 @@ Template.games.events({
     'click .open_game'(event, instance) {
         event.preventDefault();
         event.stopPropagation();
-
-        const gameId = $(event.currentTarget).data('id');        
+        const gameId = $(event.currentTarget).data('id');
         FlowRouter.go('App.game.open', {_id: gameId});
     }
 });

@@ -20,8 +20,6 @@ Template.App_game_create.events({
 
 });
 
-
-
 Template.App_game_create.rendered = function () {
     $('select').material_select();
     Materialize.updateTextFields();

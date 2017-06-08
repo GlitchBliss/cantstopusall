@@ -23,6 +23,5 @@ Template.App_game_open.events({
 
 
 Template.App_game_open.rendered = function () {
-    $('select').material_select();
-    Materialize.updateTextFields();
+
 };
