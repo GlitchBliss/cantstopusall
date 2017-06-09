@@ -1,13 +1,66 @@
-<template name="game_form">           
+<template name="character_form">           
     <div class="row">
-        <form class="col s12 game_editor" name="game_editor">
+        <form class="col s12 character_editor" name="character_editor">
 
-            <input type='hidden' name="id" value="{{ game._id }}" />
+            <input type='hidden' name="id" value="{{ character._id }}" />
+
+            <h2>Hacking</h2>
+                
+            {{> characteristic name='Informatique' gameValue=character.informatic}}
+
+            <div class="row">
+                <div class="input-field col s6">
+
+                    <i class="material-icons prefix">settings</i>
+                    <div class="row choices_list">
+                        <p class="col s4">
+                            <input name="hackging" type="radio" id="contemporary" value="informatic" {{ isChecked 'contemporary' character.times}}/>
+                                   <label for="contemporary">Informatique</label>
+                        </p>
+                        <p class="col s4">
+                            <input name="hackging" type="radio" id="contemporary_anticipated" value="mechatronic" {{isChecked 'contemporary_anticipated' character.times}} />
+                                   <label for="contemporary_anticipated">Mechatronique</label>
+                        </p>
+                        <p class="col s4">
+                            <input name="hackging" type="radio" id="futuristic" value="administrative" {{isChecked 'futuristic' character.times}}  />
+                                   <label for="futuristic">Administratif</label>
+                        </p>
+                        <p class="col s4">
+                            <input name="hackging" type="radio" id="futuristic" value="diy" {{isChecked 'futuristic' character.times}}  />
+                                   <label for="futuristic">Bricolage</label>
+                        </p>
+                        <p>
+                            <input name="hackging" type="radio" id="futuristic" value="biohacking" {{isChecked 'futuristic' character.times}}  />
+                                   <label for="futuristic">Biohacking</label>
+                        </p>
+                    </div>                    
+                    <label>Informatic</label>
+                </div>
+                <div class="col s6">
+                    <div class="card">                        
+                        <div class="card-content grey lighten-2 explications">
+                            <dl>
+                                <dt><dfn>Contemportaine</dfn></dt>
+                                <dd>Aujourd'hui, avec le niveau technologique que l'on connait.</dd>
+                            </dl>
+                            <dl>
+                                <dt><dfn>Contemportaine anticip&eacute;e </dfn></dt>
+                                <dd>Aujourd'hui, mais la technologie est celle des promesses marketing. Tout est connecté, tout es informatisé, tout est piratable.</dd>
+                            </dl>
+                            <dl>
+                                <dt><dfn>Futuriste</dfn></dt>
+                                <dd>La société est devenue une dystopie/utopie lointaine. Les tours sont immenses, le ciel sombre, les rues un théâtre de courreurs d'ombres.                            </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+
 
             <div class="row">
                 <div class="input-field col s6">
                     <i class="material-icons prefix">comment</i>
-                    <input id="title" name="title"  type="text" class="validate" value="{{game.title}}" required>                                        
+                    <input id="title" name="title"  type="text" class="validate" value="{{character.title}}" required>                                        
                     <label for="title">Nom de la partie *</label>
                 </div>                             
                 <div class="col s6">
@@ -25,15 +78,15 @@
                     <i class="material-icons prefix">settings</i>
                     <div class="row choices_list">
                         <p class="col s4">
-                            <input name="times" type="radio" id="contemporary" value="contemporary" {{ isChecked 'contemporary' game.times}}/>
+                            <input name="times" type="radio" id="contemporary" value="contemporary" {{ isChecked 'contemporary' character.times}}/>
                                    <label for="contemporary">Contemportaine</label>
                         </p>
                         <p class="col s4">
-                            <input name="times" type="radio" id="contemporary_anticipated" value="contemporary_anticipated" {{isChecked 'contemporary_anticipated' game.times}} />
+                            <input name="times" type="radio" id="contemporary_anticipated" value="contemporary_anticipated" {{isChecked 'contemporary_anticipated' character.times}} />
                                    <label for="contemporary_anticipated">Contemportaine anticip&eacute;e</label>
                         </p>
                         <p class="col s4">
-                            <input name="times" type="radio" id="futuristic" value="futuristic" {{isChecked 'futuristic' game.times}}  />
+                            <input name="times" type="radio" id="futuristic" value="futuristic" {{isChecked 'futuristic' character.times}}  />
                                    <label for="futuristic">Futuriste</label>
                         </p>
                     </div>                    
@@ -64,15 +117,15 @@
                     <i class="material-icons prefix">settings</i>
                     <div class="row choices_list">
                         <p class="col s4">
-                            <input name="fantasy_level" type="radio" id="realist" value="realist" {{ isChecked 'realist' game.fantasyLevel}} />
+                            <input name="fantasy_level" type="radio" id="realist" value="realist" {{ isChecked 'realist' character.fantasyLevel}} />
                                    <label for="realist">R&eacute;aliste</label>
                         </p>
                         <p class="col s4">
-                            <input name="fantasy_level" type="radio" id="occult" value="occult" {{ isChecked 'occult' game.fantasyLevel}} />
+                            <input name="fantasy_level" type="radio" id="occult" value="occult" {{ isChecked 'occult' character.fantasyLevel}} />
                                    <label for="occult">Occulte</label>
                         </p>
                         <p class="col s4">
-                            <input name="fantasy_level" type="radio" id="fantastic" value="fantastic" {{ isChecked 'fantastic' game.fantasyLevel}} />
+                            <input name="fantasy_level" type="radio" id="fantastic" value="fantastic" {{ isChecked 'fantastic' character.fantasyLevel}} />
                                    <label for="fantastic">Fantastique</label>
                         </p>
                     </div>                    
@@ -104,11 +157,11 @@
                     <i class="material-icons prefix">settings</i>
                     <div class="row choices_list">
                         <p class="col s6">
-                            <input name="social_contract" type="radio" id="nobody_gets_hurt" value="nobody_gets_hurt" {{ isChecked 'nobody_gets_hurt' game.socialContract}}  />
+                            <input name="social_contract" type="radio" id="nobody_gets_hurt" value="nobody_gets_hurt" {{ isChecked 'nobody_gets_hurt' character.socialContract}}  />
                                    <label for="nobody_gets_hurt">Personne ne sera bless&eacute;</label>
                         </p>
                         <p class="col s6">
-                            <input name="social_contract" type="radio" id="wont_abandon_you" value="wont_abandon_you" {{ isChecked 'wont_abandon_you' game.socialContract}} />
+                            <input name="social_contract" type="radio" id="wont_abandon_you" value="wont_abandon_you" {{ isChecked 'wont_abandon_you' character.socialContract}} />
                                    <label for="wont_abandon_you">Je ne vous abandonnerai pas</label>
                         </p>
                     </div>                    
@@ -134,7 +187,7 @@
             <div class="row">
                 <div class="input-field col s6">                    
                     <i class="material-icons prefix">info_outline</i>                    
-                    <textarea id="textarea1" name="description" class="materialize-textarea">{{game.description}}</textarea>                                        
+                    <textarea id="textarea1" name="description" class="materialize-textarea">{{character.description}}</textarea>                                        
                     <label for="textarea1">D&eacute;tails</label>
                 </div>
                 <div class="col s6">
@@ -147,7 +200,7 @@
             </div>
 
             <div class="row center-align">
-                <button class="btn waves-effect waves-light record_game" type="submit">Enregistrer
+                <button class="btn waves-effect waves-light record_character" type="submit">Enregistrer
                     <i class="material-icons right">send</i>
                 </button>                
             </div>

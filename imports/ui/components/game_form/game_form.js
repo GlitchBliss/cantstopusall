@@ -22,7 +22,7 @@ Template.game_form.helpers({
         return Games.findOne(Template.instance().gameId);
     },
 
-    isChecked(inputName, gameValue) {               
+    isChecked(inputName, gameValue) {
         return inputName == gameValue ? 'checked' : '';
     },
 
@@ -58,4 +58,5 @@ Template.game_form.onRendered(function () {
 
     Materialize.updateTextFields();
     $('select').material_select();
+
 });

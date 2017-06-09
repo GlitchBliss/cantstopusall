@@ -7,6 +7,7 @@ import '../../ui/pages/home/home.js';
 import '../../ui/pages/game/game.js';
 import '../../ui/pages/game_create/game_create.js';
 import '../../ui/pages/game_open/game_open.js';
+import '../../ui/pages/character_edit/character_edit.js';
 import '../../ui/pages/gm/gm.js';
 import '../../ui/pages/not-found/not-found.js';
 
@@ -33,6 +34,22 @@ FlowRouter.route('/game/open/:_id', {
 	},
 });
 
+
+
+FlowRouter.route('/character/edit/:_id', {
+	name: 'App.character.edit',
+	action(params, queryParams) {		
+		BlazeLayout.render('App_body', { main: 'App_character_edit' });
+	},
+});
+
+
+FlowRouter.route('/character/edit', {
+	name: 'App.character.create',
+	action() {		
+		BlazeLayout.render('App_body', { main: 'App_character_edit' });
+	},
+});
 
 
 FlowRouter.route('/game/:_id', {
