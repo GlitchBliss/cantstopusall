@@ -9,6 +9,14 @@
     line-height:3em;
 }
 
+h4{
+    font-weight: bold;
+    font-variant: small-caps;
+    
+    span {
+        font-size:1.9rem!important;
+    }
+}
 
 @mixin radio-color($border-color, $background-color: $border-color, $border-color-checked: $border-color) {
     [type="radio"].with-gap {

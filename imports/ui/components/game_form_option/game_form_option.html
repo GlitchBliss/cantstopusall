@@ -1,0 +1,15 @@
+<template name="game_form_option">   
+
+    <div id="id_{{ value }}" class="{{ name }} option-button col s12  waves-effect waves-light">
+        <input type="radio" name="{{ name }}" value="{{ value }}"  {{ isChecked value gameValue }} />
+
+        <div class="pink darken-4 border-color"></div>
+        <div class="bag-o-text">
+            <p class="title"> {{ label }}</p>
+            <p class="help flow-text"> {{help }}</p>
+        </div>
+
+        <img src=" {{image }} "/>
+    </div>    
+
+</template>

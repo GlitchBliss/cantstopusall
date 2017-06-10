@@ -69,3 +69,7 @@ Template.registerHelper('formatDate', function (date) {
     moment.updateLocale('fr');
     return moment(date).format('DD-MM-YYYY hh:mm:ss') + '  ' + moment(date).startOf('day').fromNow();
 });
+
+Template.registerHelper( 'isChecked', ( inputName, gameValue ) => {
+  return inputName == gameValue ? 'checked' : '';
+});

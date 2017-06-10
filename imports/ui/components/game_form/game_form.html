@@ -1,112 +1,52 @@
-<template name="game_form">           
+<template name="game_form">   
+
+    {{#with game}}
     <div class="row">
         <form class="col s12 game_editor" name="game_editor">
 
             <input type='hidden' name="id" value="{{ game._id }}" />
 
             <div class="row">
-                <h4>Epoque</h4>
-                <a class="col s12 m4 btn-large toast_help waves-effect waves-light btn" data-help-id="times-contemporary-help"><i class="material-icons right">schedule</i>Contemporaine</a>
-                <div id="times-contemporary-help" class="hidden-help">Aujourd'hui, avec le niveau technologique que l'on connait.</div>
-                <a class="col s12 m4 btn-large toast_help waves-effect waves-light btn" data-help-id="times-contempanticipated-help"><i class="material-icons right">schedule</i>Contemportaine anticipée</a>
-                <div id="times-contempanticipated-help" class="hidden-help">Aujourd'hui, mais la technologie est celle des promesses marketing. Tout est connecté, tout es informatisé, tout est piratable.</div>
-                <a class="col s12 m4 btn-large toast_help waves-effect waves-light btn" data-help-id="times-futuristic-help"><i class="material-icons right">schedule</i>Futuriste</a>
-                <div id="times-futuristic-help" class="hidden-help">La société est devenue une dystopie/utopie lointaine. Les tours sont immenses, le ciel sombre, les rues un théâtre de coureurs d'ombres.</div>
-            </div>
 
-            <div class="row">
+                <h4><span>#1</span> Nom</h4>
+
                 <div class="input-field col s12 m6">
-                    <i class="material-icons prefix toast_help" data-help-id="name-help">help</i>
-                    <div id="name-help" class="hidden-help">Le nom de votre session de jeu. Voyez grand, soyez fous, faites Rêver.</div>
                     <input id="title" name="title"  type="text" class="validate" value="{{game.title}}" required>                                        
                     <label for="title">Nom de la partie *</label>
-                </div>                             
-            </div>
-
-
-            <div class="row">
-                <div class="input-field col s12">
-
-                    <i class="material-icons prefix">settings</i>
-                    <div class="row choices_list">
-                        <p class="col s4">
-                            <input name="times" type="radio" id="contemporary" value="contemporary">
-                            <label for="contemporary">Contemporaine</label>
-                        </p>
-                        <p class="col s4">
-                            <input name="times" type="radio" id="contemporary_anticipated" value="contemporary_anticipated">
-                            <label for="contemporary_anticipated">Contemportaine anticipée</label>
-                        </p>
-                        <p class="col s4">
-                            <input name="times" type="radio" id="futuristic" value="futuristic">
-                            <label for="futuristic">Futuriste</label>
-                        </p>
-                    </div>                    
-                    <label>Epoque</label>
-                </div>
-                <div class="col s12">
-                    <div class="card">                        
-                        <div class="card-content grey lighten-2 explications">
-                            <dl>
-                                <dt><dfn>Contemportaine</dfn></dt>
-                                <dd>Aujourd'hui, avec le niveau technologique que l'on connait.</dd>
-                            </dl>
-                            <dl>
-                                <dt><dfn>Contemportaine anticipée </dfn></dt>
-                                <dd>Aujourd'hui, mais la technologie est celle des promesses marketing. Tout est connecté, tout es informatisé, tout est piratable.</dd>
-                            </dl>
-                            <dl>
-                                <dt><dfn>Futuriste</dfn></dt>
-                                <dd>La société est devenue une dystopie/utopie lointaine. Les tours sont immenses, le ciel sombre, les rues un théâtre de courreurs d'ombres.                            </dd>
-                            </dl>
-                        </div>
-                    </div>
-                </div>                    
-            </div>
-
-
-            <!-- Tap Target Structure -->
-
-
-            <div class="row">
-                <div class="input-field col s12 m6">
-                    <i class="material-icons prefix">settings</i>
-                    <div class="row choices_list">
-                        <p class="col s4">
-                            <input name="fantasy_level" type="radio" id="realist" value="realist" {{ isChecked 'realist' game.fantasyLevel}} />
-                                   <label for="realist">R&eacute;aliste</label>
-                        </p>
-                        <p class="col s4">
-                            <input name="fantasy_level" type="radio" id="occult" value="occult" {{ isChecked 'occult' game.fantasyLevel}} />
-                                   <label for="occult">Occulte</label>
-                        </p>
-                        <p class="col s4">
-                            <input name="fantasy_level" type="radio" id="fantastic" value="fantastic" {{ isChecked 'fantastic' game.fantasyLevel}} />
-                                   <label for="fantastic">Fantastique</label>
-                        </p>
-                    </div>                    
-                    <label>Degr&eacute; de fantastique</label>                    
-                </div>
-                <div class="col s12 m6">
-                    <div class="card">                        
-                        <div class="card-content grey lighten-2 explications">
-                            <dl>
-                                <dt><dfn>R&eacute;aliste</dfn></dt>
-                                <dd>Le monde répond exactement aux mêmes lois que celles qu'on imagine connaître aujourd'hui. Une réalité dure pour des parties qui forgent le caractère.</dd>
-                            </dl>
-                            <dl>
-                                <dt><dfn>Occulte</dfn></dt>
-                                <dd>La réalité est la même que la nôtre. A moins que... Toutes ces rumeurs sur ce qui rode le soir... Et ces sociétés secrètes ? Qu'est-ce qui fait remuer ce voile ?</dd>
-                            </dl>   
-                            <dl>
-                                <dt><dfn>Fantastique</dfn></dt>
-                                <dd>La magie est courante, le ciel voit passer des phoenixs, d'autres races partagent même peut-être le quotidien des humains.</dd>
-                            </dl>   
-                        </div>
-                    </div>
-                </div>                    
+                </div>   
             </div>            
 
+            <div class="row">
+
+                <h4><span>#2</span> Époque</h4>
+
+                <div class="col s12 m6">
+                    {{> game_form_option name="times" value="contemporary" gameValue=game.times label="Contemporaine" help="Aujourd'hui, avec le niveau technologique que l'on connait." image="/img/clockwork.svg"}} 
+                </div>
+                <div class="col s12 m6">
+                    {{> game_form_option name="times" value="anticipated" gameValue=game.times label="Anticipée" help="Aujoud'hui, mais les objets connectés sont partout, et tout est piratable." image="/img/circuitry.svg"}} 
+                </div>
+                <div class="col s12 m6">
+                    {{> game_form_option name="times" value="futuristic" gameValue=game.times label="Futuriste" help="La société est devenue une dystopie/utopie lointaine. Les rues sont un théâtre de coureurs d'ombres." image="/img/techno-heart.svg"}} 
+                </div>
+            </div>
+
+            
+            <div class="row">
+                <h4><span>#3</span> Degr&eacute; de fantastique</h4>
+
+                <div class="col s12 m6">
+                    {{> game_form_option name="fantasy_level" value="realist" gameValue=game.fantasyLevel label="Réaliste" help="Le monde répond exactement aux mêmes lois que celles qu'on imagine connaître aujourd'hui." image="/img/pipes.svg"}} 
+                </div>
+                <div class="col s12 m6">
+                    {{> game_form_option name="fantasy_level" value="occult" gameValue=game.fantasyLevel label="Occulte" help="La réalité est la même que la nôtre. A moins que... Et toutes ces rumeurs au sujet de ce qui rode le soir ?" image="/img/fangs.svg"}} 
+                </div>
+                <div class="col s12 m6">
+                    {{> game_form_option name="fantasy_level" value="fantastic" gameValue=game.fantasyLevel label="Fantastique" help="La magie est courante, d'autres races partagent même peut-être le quotidien des humains." image="/img/fireflake.svg"}} 
+                </div>
+            </div>
+            
+            
             <div class="row">
                 <div class="input-field col s12 m6">
 
@@ -163,4 +103,5 @@
 
         </form>
     </div>
+    {{/with}}
 </template>
