@@ -29,11 +29,15 @@ Template.notification.events({
 
         if (notifId) {
             Meteor.call('notification.remove', notifId, (error) => {
-                if(error) {
+                if (error) {
                     console.log(error.error);
                 }
             });
         }
     }
 
+});
+
+Template.notification.onRendered(function () {
+    $('.collapsible').collapsible();
 });

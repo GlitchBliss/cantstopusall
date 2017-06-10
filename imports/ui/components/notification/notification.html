@@ -1,17 +1,19 @@
 <template name="notification">    
 
-    <ul class="notifications collapsible" data-collapsible="accordion">
+    <ul class="col s12 notifications collapsible popout" data-collapsible="accordion">
 
         {{#each notifications}}
         <li>
-            <div class="collapsible-header"><span class="badge new" data-badge-caption="">{{ formatDate createdAt }}</span>
-                
-                <!-- TODO : Make a switch depending on notif type 
-                <i class="material-icons">new_releases</i>-->
-                <i class="material-icons">announcement</i>                
-                
-                
-                {{ title }}</div>
+            <div class="collapsible-header">
+
+                <!-- TODO : Make a switch depending on notif type -->                
+                <i class="material-icons">announcement</i>
+
+                <div class="chip">
+                    {{ formatDate createdAt }}
+                </div>
+                {{ title }}                
+            </div>
             <div class="collapsible-body">
                 <p class="col s11">{{text}} </p>                
                 <i class="close material-icons remove-notification" data-id="{{_id}}">close</i>                

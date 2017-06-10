@@ -1,1 +1,17 @@
 @import "{}/imports/ui/stylesheets/not-found.less";
+
+.radio-color(@border-color, @background-color: @border-color, @border-color-checked: @border-color) {
+	[type="radio"].with-gap {
+		&+label:before,
+		&+label:after {
+			border: 2px solid @border-color !important;
+		}
+		&:checked+label:before,
+		&:checked+label:after {
+			border: 2px solid @border-color-checked !important;
+		}
+		&:checked+label:after {
+			background-color: @background-color !important;
+		}
+	}
+}

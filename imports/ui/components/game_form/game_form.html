@@ -5,41 +5,46 @@
             <input type='hidden' name="id" value="{{ game._id }}" />
 
             <div class="row">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">comment</i>
-                    <input id="title" name="title"  type="text" class="validate" value="{{game.title}}" required>                                        
-                    <label for="title">Nom de la partie *</label>
-                </div>                             
-                <div class="col s6">
-                    <div class="card">                        
-                        <div class="card-content grey lighten-2 explications">
-                            <p>Le nom de votre session de jeu. Voyez grand, soyez fous, faites Rêver.</p>
-                        </div>
-                    </div>
-                </div>                
+                <h4>Epoque</h4>
+                <a class="col s12 m4 btn-large toast_help waves-effect waves-light btn" data-help-id="times-contemporary-help"><i class="material-icons right">schedule</i>Contemporaine</a>
+                <div id="times-contemporary-help" class="hidden-help">Aujourd'hui, avec le niveau technologique que l'on connait.</div>
+                <a class="col s12 m4 btn-large toast_help waves-effect waves-light btn" data-help-id="times-contempanticipated-help"><i class="material-icons right">schedule</i>Contemportaine anticipée</a>
+                <div id="times-contempanticipated-help" class="hidden-help">Aujourd'hui, mais la technologie est celle des promesses marketing. Tout est connecté, tout es informatisé, tout est piratable.</div>
+                <a class="col s12 m4 btn-large toast_help waves-effect waves-light btn" data-help-id="times-futuristic-help"><i class="material-icons right">schedule</i>Futuriste</a>
+                <div id="times-futuristic-help" class="hidden-help">La société est devenue une dystopie/utopie lointaine. Les tours sont immenses, le ciel sombre, les rues un théâtre de coureurs d'ombres.</div>
             </div>
 
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 m6">
+                    <i class="material-icons prefix toast_help" data-help-id="name-help">help</i>
+                    <div id="name-help" class="hidden-help">Le nom de votre session de jeu. Voyez grand, soyez fous, faites Rêver.</div>
+                    <input id="title" name="title"  type="text" class="validate" value="{{game.title}}" required>                                        
+                    <label for="title">Nom de la partie *</label>
+                </div>                             
+            </div>
+
+
+            <div class="row">
+                <div class="input-field col s12">
 
                     <i class="material-icons prefix">settings</i>
                     <div class="row choices_list">
                         <p class="col s4">
-                            <input name="times" type="radio" id="contemporary" value="contemporary" {{ isChecked 'contemporary' game.times}}/>
-                                   <label for="contemporary">Contemportaine</label>
+                            <input name="times" type="radio" id="contemporary" value="contemporary">
+                            <label for="contemporary">Contemporaine</label>
                         </p>
                         <p class="col s4">
-                            <input name="times" type="radio" id="contemporary_anticipated" value="contemporary_anticipated" {{isChecked 'contemporary_anticipated' game.times}} />
-                                   <label for="contemporary_anticipated">Contemportaine anticip&eacute;e</label>
+                            <input name="times" type="radio" id="contemporary_anticipated" value="contemporary_anticipated">
+                            <label for="contemporary_anticipated">Contemportaine anticipée</label>
                         </p>
                         <p class="col s4">
-                            <input name="times" type="radio" id="futuristic" value="futuristic" {{isChecked 'futuristic' game.times}}  />
-                                   <label for="futuristic">Futuriste</label>
+                            <input name="times" type="radio" id="futuristic" value="futuristic">
+                            <label for="futuristic">Futuriste</label>
                         </p>
                     </div>                    
                     <label>Epoque</label>
                 </div>
-                <div class="col s6">
+                <div class="col s12">
                     <div class="card">                        
                         <div class="card-content grey lighten-2 explications">
                             <dl>
@@ -47,7 +52,7 @@
                                 <dd>Aujourd'hui, avec le niveau technologique que l'on connait.</dd>
                             </dl>
                             <dl>
-                                <dt><dfn>Contemportaine anticip&eacute;e </dfn></dt>
+                                <dt><dfn>Contemportaine anticipée </dfn></dt>
                                 <dd>Aujourd'hui, mais la technologie est celle des promesses marketing. Tout est connecté, tout es informatisé, tout est piratable.</dd>
                             </dl>
                             <dl>
@@ -59,8 +64,12 @@
                 </div>                    
             </div>
 
+
+            <!-- Tap Target Structure -->
+
+
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 m6">
                     <i class="material-icons prefix">settings</i>
                     <div class="row choices_list">
                         <p class="col s4">
@@ -78,7 +87,7 @@
                     </div>                    
                     <label>Degr&eacute; de fantastique</label>                    
                 </div>
-                <div class="col s6">
+                <div class="col s12 m6">
                     <div class="card">                        
                         <div class="card-content grey lighten-2 explications">
                             <dl>
@@ -99,7 +108,7 @@
             </div>            
 
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 m6">
 
                     <i class="material-icons prefix">settings</i>
                     <div class="row choices_list">
@@ -114,7 +123,7 @@
                     </div>                    
                     <label>Contrat social</label>                                            
                 </div>
-                <div class="col s6">
+                <div class="col s12 m6">
                     <div class="card">                        
                         <div class="card-content grey lighten-2 explications">
                             <p>Votre contrat social ; les limites données à la partie.<br/><a href="http://www.limbicsystemsjdr.com/un-contrat-social-sain/" title="Contrat social" target="_blank">Explication détaillée de <b>Frédéric Sintes</b></a></p>
@@ -132,12 +141,12 @@
             </div>    
 
             <div class="row">
-                <div class="input-field col s6">                    
+                <div class="input-field col s12 m6">                    
                     <i class="material-icons prefix">info_outline</i>                    
                     <textarea id="textarea1" name="description" class="materialize-textarea">{{game.description}}</textarea>                                        
                     <label for="textarea1">D&eacute;tails</label>
                 </div>
-                <div class="col s6">
+                <div class="col s12 m6">
                     <div class="card">                        
                         <div class="card-content grey lighten-2 explications">
                             <p>Détaillez la partie que vous proposez. Pitch de scénario, éléments d'univers, gimmick du décors, soyez fulgurants et intenses comme une attaque DDoS.</p>
