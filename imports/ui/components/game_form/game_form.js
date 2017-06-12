@@ -28,14 +28,13 @@ Template.game_form.helpers({
 
 Template.game_form.events({
 
-    'click .toast_help'(event, template) {        
+    'click .toast_help'(event, template) {
         const helpId = $(event.target).data('help-id');
-        const helpHTML = $('#' + helpId).html();        
-        Materialize.toast(helpHTML, 4000);                               
+        const helpHTML = $('#' + helpId).html();
+        Materialize.toast(helpHTML, 4000);
     },
 
-
-    'click .discovery'(event, template){
+    'click .discovery'(event, template) {
 //        const tapId = $(event.target).data('tap-id');        
 //        $("#"+tapId).tapTarget('open');
     },
@@ -64,9 +63,6 @@ Template.game_form.events({
 });
 
 
-Template.game_form.onRendered(function () {      
-//    $('.tooltipped').tooltip({delay: 5});
-//    Materialize.updateTextFields();
+Template.game_form.onRendered(function () {
     $('select').material_select();
-
 });
