@@ -1,17 +1,23 @@
 <template name="characteristic">
-    
-    <div id="id_{{ name }}" class="{{ name }} characteristic_choice col s12  waves-effect waves-light">
+
+    <!--<div id="id_{{ name }}" class="{{ name }} characteristic_choice col s12  waves-effect waves-light">
         <input type="text" name="{{ name }}" value="{{ value }}" />
 
         <div class="pink darken-4 border-color"></div>
         <div class="bag-o-text">
             <p class="title"> {{ label }}</p>
-            <p class="help flow-text"> {{help }}</p>            
+            <p class="help flow-text"> {{help }}</p>
         </div>
         <div class="range">
             <div id="skipstep_{{ name }}"></div>
         </div>
 
         <img src=" {{image }} " />
+    </div>-->
+
+    <div class="round_characteristic">                
+        <img src="/img/computing.svg" />
+        <img class="plus action-icon" src="/img/heart-plus.svg" />
+        <img class="minus action-icon" src="/img/heart-minus.svg" />
     </div>
 </template>

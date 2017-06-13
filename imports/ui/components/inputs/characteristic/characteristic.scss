@@ -1,9 +1,31 @@
 
+.round_characteristic {
+    $border-color:#880e4f;
+
+    position: relative;
+    height: 6em;
+    width: 6em;
+    img{
+        background: black;
+        border-radius: 165px;
+        border-color:$border-color;
+        height: 100%;        
+        border-width: 6px;
+        border-style: solid;
+
+        &.plus {
+            width: 2em;
+            height: 2em;
+            border: solid 1px black;
+            position: absolute;
+            right: 20px;
+        }
+    }    
+}
 
 .characteristic_choice input {
     display:none;
 }
-
 
 .characteristic_choice {        
     $size : 5em;    

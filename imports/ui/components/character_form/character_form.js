@@ -55,7 +55,5 @@ Template.character_form.events({
 
 
 Template.character_form.onRendered(function () {  
-
-    Materialize.updateTextFields();
     $('select').material_select();
 });
