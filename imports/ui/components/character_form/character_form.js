@@ -24,11 +24,7 @@ Template.character_form.helpers({
         }
 
         return null;
-    },
-
-    isChecked(inputName, characterValue) {
-        return inputName == characterValue ? 'checked' : '';
-    },
+    }
 
 });
 
@@ -58,34 +54,7 @@ Template.character_form.events({
 });
 
 
-Template.character_form.onRendered(function () {
-
-    var skipSlider = document.getElementById('skipstep');
-
-    noUiSlider.create(skipSlider, {
-        range: {
-            'min': 0,
-            '12.5%': 1,
-            '25%': 2,
-            '37.5%': 3,
-            '50%': 5,
-            '62.5%': 8,
-            '80%': 13,
-            'max': 21
-        },
-        snap: true,
-        start: [0]
-    });
-
-    var skipValues = [
-        document.getElementById('skip-value-lower'),
-        document.getElementById('skip-value-upper')
-    ];
-
-    skipSlider.noUiSlider.on('update', function (values, handle) {
-        skipValues[handle].innerHTML = values[handle];
-    });
-
+Template.character_form.onRendered(function () {  
 
     Materialize.updateTextFields();
     $('select').material_select();

@@ -1,35 +1,17 @@
-<template name="characteristic">               
-    <div class="row">
-        <div class="input-field col s12">
+<template name="characteristic">
+    
+    <div id="id_{{ name }}" class="{{ name }} characteristic_choice col s12  waves-effect waves-light">
+        <input type="text" name="{{ name }}" value="{{ value }}" />
 
-            <i class="material-icons prefix">settings</i>
-            <div class="row choices_list">
-                <p class="col s2">
-                    <input name="{{toLowerCase name}}" type="radio" id="{{toLowerCase name}}0" value="0" {{ isChecked 0 gameValue}}/>
-                           <label for="{{toLowerCase name}}0">Incapable</label>
-                </p>       
-                <p class="col s2">
-                    <input name="{{toLowerCase name}}" type="radio" id="{{toLowerCase name}}3" value="3" {{ isChecked 3 gameValue}}/>
-                           <label for="{{toLowerCase name}}3">Mauvais</label>
-                </p>
-                <p class="col s2">
-                    <input name="{{toLowerCase name}}" type="radio" id="{{toLowerCase name}}5" value="5" {{ isChecked 5 gameValue}}/>
-                           <label for="{{toLowerCase name}}5">Moyen</label>
-                </p>
-                <p class="col s2">
-                    <input name="{{toLowerCase name}}" type="radio" id="{{toLowerCase name}}8" value="8" {{ isChecked 8 gameValue}}/>
-                           <label for="{{toLowerCase name}}8">Bon</label>
-                </p>
-                <p class="col s2">
-                    <input name="{{toLowerCase name}}" type="radio" id="{{toLowerCase name}}13" value="13" {{ isChecked 13 gameValue}}/>
-                           <label for="{{toLowerCase name}}13">Extraordinaire</label>
-                </p>
-                <p class="col s2">
-                    <input name="{{toLowerCase name}}" type="radio" id="{{toLowerCase name}}21" value="21" {{ isChecked 21 gameValue}}/>
-                           <label for="{{toLowerCase name}}21">Parangonique</label>
-                </p>
-            </div>                    
-            <label>{{name}}</label>
-        </div>                  
+        <div class="pink darken-4 border-color"></div>
+        <div class="bag-o-text">
+            <p class="title"> {{ label }}</p>
+            <p class="help flow-text"> {{help }}</p>            
+        </div>
+        <div class="range">
+            <div id="skipstep_{{ name }}"></div>
+        </div>
+
+        <img src=" {{image }} " />
     </div>
 </template>

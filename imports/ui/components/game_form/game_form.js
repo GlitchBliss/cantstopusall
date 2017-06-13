@@ -2,7 +2,7 @@ import { Games, GameObject } from '/imports/api/games/games.js';
 import { Meteor } from 'meteor/meteor';
 import './game_form.html';
 import './game_form.scss';
-import '../game_form_option/game_form_option.js';
+import '../inputs/game_form_option/game_form_option.js';
 
 Template.game_form.onCreated(function () {
     Meteor.subscribe('games.all');

@@ -1,0 +1,111 @@
+
+
+.characteristic_choice input {
+    display:none;
+}
+
+
+.characteristic_choice {        
+    $size : 5em;    
+    $text-color: #fff;
+    $border-color:#880e4f;
+    $border-size:10px;
+    $background-color:#00838f;
+
+    position:relative;    
+    min-height:$size;
+    line-height:$size;                    
+    color: $text-color;    
+    letter-spacing: .5px;    
+    cursor: pointer;  
+    margin: 0;
+    text-align: left;
+    padding:0 !important;
+    margin: 2px 0;
+    background-color:$background-color; 
+    
+    transition: .1s ease-out !important;
+    transition: all .2s ease-out !important;
+
+    .border-color {
+        float:left;
+        min-height:$size;
+        height:100%;
+        width:$border-size;
+        background-color: $border-color !important;
+    }
+
+    .bag-o-text {
+        float:left;
+        min-height: $size;
+        margin:0;        
+        line-height: $size;        
+        letter-spacing: .5px;  
+        padding: 6px 0px 0px 5px;
+        width: 70%;
+
+        p {
+            margin: 0;            
+            line-height: 1em;
+
+            &.title {
+                padding:3px 0;
+                text-transform: uppercase;
+            }
+
+            &.help {
+                color: darken($text-color, 15);
+                font-size:.9em;
+                padding-top:2px;
+            }
+        }
+    }
+
+    .range {
+        margin: 10px 0;
+        width:100%;        
+    }
+
+    .left-option-zone {      
+        height: 100%;
+        float: left;
+    }
+
+    .buffer-option-zone {
+        height: $size;
+        line-height: $size;
+        width: $border-size;        
+        float: right;
+    }
+
+    img {              
+        float: right;
+        height: $size;
+        //width: $size;
+    }  
+
+    &:hover, &.active {      
+
+        background-color: lighten($background-color, 10) !important;
+
+        -webkit-transition: background-color 500ms linear;
+        -ms-transition: background-color 500ms linear;
+        transition: background-color 500ms linear;
+        
+        .border-color {            
+            background-color: lighten($border-color, 15) !important;
+
+            -webkit-transition: background-color 500ms linear;
+            -ms-transition: background-color 500ms linear;
+            transition: background-color 500ms linear;
+        }
+    }
+
+
+    .noUi-target.noUi-horizontal .noUi-tooltip {
+        background-color: $border-color;
+        height: 112px;
+        border-radius: 0;
+        transform: scale(1) rotate(0);
+    }    
+}
