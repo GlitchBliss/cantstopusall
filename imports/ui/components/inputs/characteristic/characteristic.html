@@ -1,19 +1,32 @@
 <template name="characteristic">
 
-    <div id="id_{{ name }}" class="{{ name }} characteristic_choice col s12">
-        <input type="text" name="{{ name }}" value="{{ value }}" />
+    <article id="id_{{ name }}" class="{{ name }} characteristic_choice col s12">
+        <div class="col s11 left-wrapper">
+            <div class="left-block">
+                <p class="title"> {{ label }}</p>
+                <p class="help flow-text"> {{help }}</p>
 
-        <div class="pink darken-4 border-color"></div>
-        <div class="bag-o-text">
-            <p class="title"> {{ label }}</p>
-            <p class="help flow-text"> {{help }}</p>
+                <div class="action-wrapper col s12">
+                    <img class="plus action-icon" src="/img/battery-plus-ghost.svg" />
+                    <em class="level-label">Inapte</em>
+                    <img class="minus action-icon" src="/img/battery-minus-ghost.svg" />
+                </div>
+            </div>
         </div>
-        <img src=" /img/battery-0.svg" />
-        <img src=" {{image }} " />
-        <img class="plus action-icon" src="/img/battery-plus-ghost.svg" />
-        <em class="level_label">Inapte</em>
-        <img class="minus action-icon" src="/img/battery-minus-ghost.svg" />
-    </div>
+
+        <div class="col s1 right-wrapper">
+            <aside class="right-block">
+                <img class="battery-level" src="/img/battery-0.svg" />
+                <img src=" {{image }} " />
+            </aside>
+        </div>
+
+        <input type="text" name="{{ name }}" value="{{ value }}" />
+    </article>
+
+
+
+    <!--
 
     <div id="id_{{ name }}" class="{{ name }} characteristic_choice col s12">
         <input type="text" name="{{ name }}" value="{{ value }}" />
@@ -28,7 +41,7 @@
         <img class="plus action-icon" src="/img/battery-plus-ghost.svg" />
         <em class="level_label">Mediocre</em>
         <img class="minus action-icon" src="/img/battery-minus-ghost.svg" />
-    </div>    
+    </div>
 
     <div id="id_{{ name }}" class="{{ name }} characteristic_choice col s12">
         <input type="text" name="{{ name }}" value="{{ value }}" />
@@ -43,7 +56,7 @@
         <img class="plus action-icon" src="/img/battery-plus-ghost.svg" />
         <em class="level_label">Moyen</em>
         <img class="minus action-icon" src="/img/battery-minus-ghost.svg" />
-    </div>  
+    </div>
 
     <div id="id_{{ name }}" class="{{ name }} characteristic_choice col s12">
         <input type="text" name="{{ name }}" value="{{ value }}" />
@@ -58,7 +71,7 @@
         <img class="plus action-icon" src="/img/battery-plus-ghost.svg" />
         <em class="level_label">Bon</em>
         <img class="minus action-icon" src="/img/battery-minus-ghost.svg" />
-    </div>    
+    </div>
 
     <div id="id_{{ name }}" class="{{ name }} characteristic_choice col s12">
         <input type="text" name="{{ name }}" value="{{ value }}" />
@@ -97,5 +110,5 @@
             <img class="plus action-icon" src="/img/battery-plus.svg" />
             <img class="minus action-icon" src="/img/battery-minus.svg" />
         </div>
-    </div>
+    </div>-->
 </template>

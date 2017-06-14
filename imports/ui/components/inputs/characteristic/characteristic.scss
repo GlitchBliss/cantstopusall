@@ -52,13 +52,9 @@
     $border-size:10px;
     $background-color:#00838f;
 
-    position:relative;    
-    min-height:$size;
-    line-height:$size;                    
+    position:relative;   
     color: $text-color;    
-    letter-spacing: .5px;    
-    cursor: pointer;  
-    margin: 0;
+    letter-spacing: .5px;        
     text-align: left;
     padding:0 !important;
     margin: 2px 0;
@@ -67,30 +63,24 @@
     transition: .1s ease-out !important;
     transition: all .2s ease-out !important;
 
-    .border-color {
-        float:left;
-        min-height:$size * 2;
-        height:100%;
-        width:$border-size;
-        background-color: $border-color !important;
-        z-index: 100;
+    .left-wrapper {
+        margin: 0;
+        padding: 0;
     }
 
-    .bag-o-text {
-        float:left;
-        min-height: $size;
-        margin:0;        
+    .left-block {    
+        border-left: solid 10px #880e4f;
+        height: 10em;
         line-height: $size;        
-        letter-spacing: .5px;  
-        padding: 6px 0px 0px 5px;
-        width: 70%;
+        letter-spacing: .5px;
+        position: relative;
 
         p {
-            margin: 0;            
+            margin: 0;        
+            padding: 10px;    
             line-height: 1em;
 
-            &.title {
-                padding:3px 0;
+            &.title {                
                 text-transform: uppercase;
             }
 
@@ -99,28 +89,29 @@
                 font-size:.9em;
                 padding-top:2px;
             }
-        }
+        }          
     }
 
-    .range {
-        margin: 10px 0;
-        width:100%;        
+    .right-wrapper {
+        margin: 0;
+        padding: 0;
     }
 
-    .left-option-zone {      
-        height: 100%;
-        float: left;
+    .right-block {        
+        width: $size;
+        height: $size*2;
     }
 
-    .buffer-option-zone {
-        height: $size;
-        line-height: $size;
-        width: $border-size;        
-        float: right;
-    }
+    .action-wrapper {
+        padding:0;
+        margin: 0;        
+    }   
 
-    em {
-        width: 82%;
+    em.level-label {
+        padding: 0;
+        margin: 0;
+        display: block;
+        width:100%;
         position: absolute;
         bottom: 0;
         left: 0;
@@ -134,52 +125,35 @@
     }
 
     img {         
-            z-index: 100;
-            float: right;
-            height: 5em;
-            position: relative;
+        z-index: 100;
+        display: block;
+
 
         &.action-icon {
+            cursor: pointer;
             position: absolute;
             padding: 2px;
             width: 3em;
             height: 3em;
             background: #ffffff;
-            border: solid 3px black;
+            border: solid 3px $border-color;
                         
             transition: all .1s ease-out !important;
 
             &:hover{
-                transform: scale(1.2);
+                box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             }
 
             &.plus {
                 bottom:0;
-                right: 5em;
+                right: 0;
             }
 
             &.minus {
                 bottom: 0;
-                left:$border-size;
+                left:0;
             }
         }
-    }  
-
-    &:hover, &.active {      
-
-        // background-color: lighten($background-color, 10) !important;
-
-        // -webkit-transition: background-color 500ms linear;
-        // -ms-transition: background-color 500ms linear;
-        // transition: background-color 500ms linear;
-        
-        // .border-color {            
-        //     background-color: lighten($border-color, 15) !important;
-
-        //     -webkit-transition: background-color 500ms linear;
-        //     -ms-transition: background-color 500ms linear;
-        //     transition: background-color 500ms linear;
-        // }
-    }
+    }      
 
 }
