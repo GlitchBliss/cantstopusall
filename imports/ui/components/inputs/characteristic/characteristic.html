@@ -1,6 +1,6 @@
 <template name="characteristic">
 
-    <!--<div id="id_{{ name }}" class="{{ name }} characteristic_choice col s12  waves-effect waves-light">
+    <div id="id_{{ name }}" class="{{ name }} characteristic_choice col s12">
         <input type="text" name="{{ name }}" value="{{ value }}" />
 
         <div class="pink darken-4 border-color"></div>
@@ -8,16 +8,94 @@
             <p class="title"> {{ label }}</p>
             <p class="help flow-text"> {{help }}</p>
         </div>
-        <div class="range">
-            <div id="skipstep_{{ name }}"></div>
-        </div>
-
+        <img src=" /img/battery-0.svg" />
         <img src=" {{image }} " />
-    </div>-->
+        <img class="plus action-icon" src="/img/battery-plus-ghost.svg" />
+        <em class="level_label">Inapte</em>
+        <img class="minus action-icon" src="/img/battery-minus-ghost.svg" />
+    </div>
 
-    <div class="round_characteristic">                
-        <img src="/img/computing.svg" />
-        <img class="plus action-icon" src="/img/heart-plus.svg" />
-        <img class="minus action-icon" src="/img/heart-minus.svg" />
+    <div id="id_{{ name }}" class="{{ name }} characteristic_choice col s12">
+        <input type="text" name="{{ name }}" value="{{ value }}" />
+
+        <div class="pink darken-4 border-color"></div>
+        <div class="bag-o-text">
+            <p class="title"> {{ label }}</p>
+            <p class="help flow-text"> {{help }}</p>
+        </div>
+        <img src=" /img/battery-25.svg" />
+        <img src=" {{image }} " />
+        <img class="plus action-icon" src="/img/battery-plus-ghost.svg" />
+        <em class="level_label">Mediocre</em>
+        <img class="minus action-icon" src="/img/battery-minus-ghost.svg" />
+    </div>    
+
+    <div id="id_{{ name }}" class="{{ name }} characteristic_choice col s12">
+        <input type="text" name="{{ name }}" value="{{ value }}" />
+
+        <div class="pink darken-4 border-color"></div>
+        <div class="bag-o-text">
+            <p class="title"> {{ label }}</p>
+            <p class="help flow-text"> {{help }}</p>
+        </div>
+        <img src=" /img/battery-50.svg" />
+        <img src=" {{image }} " />
+        <img class="plus action-icon" src="/img/battery-plus-ghost.svg" />
+        <em class="level_label">Moyen</em>
+        <img class="minus action-icon" src="/img/battery-minus-ghost.svg" />
+    </div>  
+
+    <div id="id_{{ name }}" class="{{ name }} characteristic_choice col s12">
+        <input type="text" name="{{ name }}" value="{{ value }}" />
+
+        <div class="pink darken-4 border-color"></div>
+        <div class="bag-o-text">
+            <p class="title"> {{ label }}</p>
+            <p class="help flow-text"> {{help }}</p>
+        </div>
+        <img src=" /img/battery-75.svg" />
+        <img src=" {{image }} " />
+        <img class="plus action-icon" src="/img/battery-plus-ghost.svg" />
+        <em class="level_label">Bon</em>
+        <img class="minus action-icon" src="/img/battery-minus-ghost.svg" />
+    </div>    
+
+    <div id="id_{{ name }}" class="{{ name }} characteristic_choice col s12">
+        <input type="text" name="{{ name }}" value="{{ value }}" />
+
+        <div class="pink darken-4 border-color"></div>
+        <div class="bag-o-text">
+            <p class="title"> {{ label }}</p>
+            <p class="help flow-text"> {{help }}</p>
+        </div>
+        <img src=" /img/battery-100.svg" />
+        <img src=" {{image }} " />
+        <img class="plus action-icon" src="/img/battery-plus-ghost.svg" />
+        <em class="level_label">Excellent</em>
+        <img class="minus action-icon" src="/img/battery-minus-ghost.svg" />
+    </div>
+
+    <div id="id_{{ name }}" class="{{ name }} characteristic_choice col s12">
+        <input type="text" name="{{ name }}" value="{{ value }}" />
+
+        <div class="pink darken-4 border-color"></div>
+        <div class="bag-o-text">
+            <p class="title"> {{ label }}</p>
+            <p class="help flow-text"> {{help }}</p>
+        </div>
+        <img src=" /img/energise.svg" />
+        <img src=" {{image }} " />
+        <img class="plus action-icon" src="/img/battery-plus-ghost.svg" />
+        <em class="level_label">Extraordinaire</em>
+        <img class="minus action-icon" src="/img/battery-minus-ghost.svg" />
+    </div>
+
+
+    <div class="col s12">
+        <div class="round_characteristic">
+            <img class="main" src="/img/computing.svg" />
+            <img class="plus action-icon" src="/img/battery-plus.svg" />
+            <img class="minus action-icon" src="/img/battery-minus.svg" />
+        </div>
     </div>
 </template>

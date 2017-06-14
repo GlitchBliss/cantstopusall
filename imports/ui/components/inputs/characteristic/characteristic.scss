@@ -1,25 +1,43 @@
 
 .round_characteristic {
     $border-color:#880e4f;
+    $buttons-border-color: white;
 
     position: relative;
     height: 6em;
     width: 6em;
     img{
-        background: black;
-        border-radius: 165px;
+        background: black;        
         border-color:$border-color;
         height: 100%;        
         border-width: 6px;
         border-style: solid;
 
-        &.plus {
-            width: 2em;
-            height: 2em;
-            border: solid 1px black;
-            position: absolute;
-            right: 20px;
+        &.main {
+            border-radius: 165px;  
         }
+
+        &.plus {
+            border-radius: 165px;
+            width: 3em;
+            height: 3em;
+            border: solid 3px white;
+            position: absolute;
+            right: -25px;
+            top: 1.5em;            
+            padding: 5px;
+        }
+
+        &.minus {
+            border-radius: 165px;
+            width: 3em;
+            height: 3em;
+            border: solid 3px white;
+            position: absolute;
+            left: -25px;
+            top: 1.5em;            
+            padding: 5px;
+        }        
     }    
 }
 
@@ -51,10 +69,11 @@
 
     .border-color {
         float:left;
-        min-height:$size;
+        min-height:$size * 2;
         height:100%;
         width:$border-size;
         background-color: $border-color !important;
+        z-index: 100;
     }
 
     .bag-o-text {
@@ -100,34 +119,67 @@
         float: right;
     }
 
-    img {              
-        float: right;
-        height: $size;
-        //width: $size;
+    em {
+        width: 82%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: $border-color;
+        height: 3em;
+        line-height: 3em;
+        z-index: 2;        
+        text-align: center;
+        font-style: normal;
+        text-transform: uppercase;
+    }
+
+    img {         
+            z-index: 100;
+            float: right;
+            height: 5em;
+            position: relative;
+
+        &.action-icon {
+            position: absolute;
+            padding: 2px;
+            width: 3em;
+            height: 3em;
+            background: #ffffff;
+            border: solid 3px black;
+                        
+            transition: all .1s ease-out !important;
+
+            &:hover{
+                transform: scale(1.2);
+            }
+
+            &.plus {
+                bottom:0;
+                right: 5em;
+            }
+
+            &.minus {
+                bottom: 0;
+                left:$border-size;
+            }
+        }
     }  
 
     &:hover, &.active {      
 
-        background-color: lighten($background-color, 10) !important;
+        // background-color: lighten($background-color, 10) !important;
 
-        -webkit-transition: background-color 500ms linear;
-        -ms-transition: background-color 500ms linear;
-        transition: background-color 500ms linear;
+        // -webkit-transition: background-color 500ms linear;
+        // -ms-transition: background-color 500ms linear;
+        // transition: background-color 500ms linear;
         
-        .border-color {            
-            background-color: lighten($border-color, 15) !important;
+        // .border-color {            
+        //     background-color: lighten($border-color, 15) !important;
 
-            -webkit-transition: background-color 500ms linear;
-            -ms-transition: background-color 500ms linear;
-            transition: background-color 500ms linear;
-        }
+        //     -webkit-transition: background-color 500ms linear;
+        //     -ms-transition: background-color 500ms linear;
+        //     transition: background-color 500ms linear;
+        // }
     }
 
-
-    .noUi-target.noUi-horizontal .noUi-tooltip {
-        background-color: $border-color;
-        height: 112px;
-        border-radius: 0;
-        transform: scale(1) rotate(0);
-    }    
 }
