@@ -53,10 +53,18 @@ Template.characteristic.events({
         const currentValue = $('input', element).val();
         const nextValue = template.fibonacciObjects[currentValue].next;
 
+        element.removeClass('shake');
+        $('em',element).removeClass('parangon');
+
         $('.battery-level').removeClass('battery-visible');
-        $('.'+template.fibonacciObjects[nextValue].image).addClass('battery-visible');
-        $('input', element).val(nextValue);        
+        $('.' + template.fibonacciObjects[nextValue].image).addClass('battery-visible');
+        $('input', element).val(nextValue);
         $('.level-label', element).html(template.fibonacciObjects[nextValue].label);
+
+        if (nextValue == 21) {
+            $('em',element).addClass('parangon');
+            element.addClass('shake');
+        }
     },
 
     'click .minus'(event, template) {
@@ -70,10 +78,19 @@ Template.characteristic.events({
             }
         }
 
+
+        element.removeClass('shake');
+        $('em',element).removeClass('parangon');
+
         $('.battery-level').removeClass('battery-visible');
-        $('.'+template.fibonacciObjects[prevValue].image).addClass('battery-visible');
-        $('input', element).val(prevValue);        
+        $('.' + template.fibonacciObjects[prevValue].image).addClass('battery-visible');
+        $('input', element).val(prevValue);
         $('.level-label', element).html(template.fibonacciObjects[prevValue].label);
+
+        if (prevValue == 21) {
+            $('em',element).addClass('parangon');
+            element.addClass('shake');
+        }
 
     }
 
@@ -87,6 +104,6 @@ Template.characteristic.onRendered(function () {
     $('input', element).val(currentValue);
 
     const currentObject = Template.instance().fibonacciObjects[currentValue];
-    $('.'+currentObject.image).addClass('battery-visible');
+    $('.' + currentObject.image).addClass('battery-visible');
 
 });
