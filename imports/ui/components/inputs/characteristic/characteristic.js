@@ -56,8 +56,8 @@ Template.characteristic.events({
         element.removeClass('shake');
         $('em',element).removeClass('parangon');
 
-        $('.battery-level').removeClass('battery-visible');
-        $('.' + template.fibonacciObjects[nextValue].image).addClass('battery-visible');
+        $('.battery-level', element).removeClass('battery-visible');
+        $('.' + template.fibonacciObjects[nextValue].image, element).addClass('battery-visible');
         $('input', element).val(nextValue);
         $('.level-label', element).html(template.fibonacciObjects[nextValue].label);
 
@@ -82,8 +82,8 @@ Template.characteristic.events({
         element.removeClass('shake');
         $('em',element).removeClass('parangon');
 
-        $('.battery-level').removeClass('battery-visible');
-        $('.' + template.fibonacciObjects[prevValue].image).addClass('battery-visible');
+        $('.battery-level', element).removeClass('battery-visible');
+        $('.' + template.fibonacciObjects[prevValue].image, element).addClass('battery-visible');
         $('input', element).val(prevValue);
         $('.level-label', element).html(template.fibonacciObjects[prevValue].label);
 
@@ -96,14 +96,16 @@ Template.characteristic.events({
 
 });
 
-
 Template.characteristic.onRendered(function () {
+
+    console.log('rendered');
+
     const element = $("#id_" + Template.instance().data['name']);
     const currentValue = Template.instance().data['value'] ? Template.instance().data['value'] : 0;
 
     $('input', element).val(currentValue);
 
     const currentObject = Template.instance().fibonacciObjects[currentValue];
-    $('.' + currentObject.image).addClass('battery-visible');
+    $('.' + currentObject.image, element).addClass('battery-visible');
 
 });

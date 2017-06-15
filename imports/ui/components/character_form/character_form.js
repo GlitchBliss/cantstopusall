@@ -42,18 +42,24 @@ Template.character_form.events({
         characterObj.fantasyLevel = characterForm.fantasy_level ? characterForm.fantasy_level.value : '';
         characterObj.times = characterForm.times ? characterForm.times.value : '';
         Meteor.call('characters.upsert', characterObj,
-                (error) => {
-            console.log(error.error);
-        },
-                (success) => {
-            FlowRouter.go('App.home');
-        }
+            (error) => {
+                console.log(error.error);
+            },
+            (success) => {
+                FlowRouter.go('App.home');
+            }
         );
     }
 
 });
 
 
-Template.character_form.onRendered(function () {  
+Template.character_form.onRendered(function () {    
+    $(".tabs").tabs({
+        onShow: function () {
+            console.log("here");
+        },
+        swipeable: true
+    });
     $('select').material_select();
 });
