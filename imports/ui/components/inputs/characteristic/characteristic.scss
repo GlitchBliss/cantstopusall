@@ -41,7 +41,7 @@
     }    
 }
 
-.characteristic_choice input {
+.characteristic_choice input  {
     display:none;
 }
 
@@ -62,6 +62,14 @@
     
     transition: .1s ease-out !important;
     transition: all .2s ease-out !important;
+
+    .battery-level {
+        display: none;
+    }
+
+    .battery-visible {
+        display: block;
+    }
 
     .left-wrapper {
         margin: 0;

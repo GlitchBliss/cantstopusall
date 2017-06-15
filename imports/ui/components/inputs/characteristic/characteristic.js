@@ -9,32 +9,32 @@ Template.characteristic.onCreated(function () {
     this.fibonacciObjects = {
         '0': {
             'label': 'Inapte',
-            'image': '/img/battery-0.svg',
+            'image': 'battery-0',
             'next': '3'
         },
         '3': {
             'label': 'Mauvais',
-            'image': '/img/battery-25.svg',
+            'image': 'battery-25',
             'next': '5'
         },
         '5': {
             'label': 'Moyen',
-            'image': '/img/battery-50.svg',
+            'image': 'battery-50',
             'next': '8'
         },
         '8': {
             'label': 'Bon',
-            'image': '/img/battery-75.svg',
+            'image': 'battery-75',
             'next': '13'
         },
         '13': {
             'label': 'Exceptionnel',
-            'image': '/img/battery-100.svg',
+            'image': 'battery-100',
             'next': '21'
         },
         '21': {
             'label': 'Parangonique',
-            'image': '/img/energise.svg',
+            'image': 'energise',
             'next': '0'
         },
     }
@@ -53,8 +53,9 @@ Template.characteristic.events({
         const currentValue = $('input', element).val();
         const nextValue = template.fibonacciObjects[currentValue].next;
 
-        $('input', element).val(nextValue);
-        $('.battery-level', element).prop('src', template.fibonacciObjects[nextValue].image);
+        $('.battery-level').removeClass('battery-visible');
+        $('.'+template.fibonacciObjects[nextValue].image).addClass('battery-visible');
+        $('input', element).val(nextValue);        
         $('.level-label', element).html(template.fibonacciObjects[nextValue].label);
     },
 
@@ -65,12 +66,13 @@ Template.characteristic.events({
 
         for (var indexValue in template.fibonacciObjects) {
             if (template.fibonacciObjects[indexValue].next == currentValue) {
-                prevValue = indexValue;                
+                prevValue = indexValue;
             }
-        }        
+        }
 
-        $('input', element).val(prevValue);
-        $('.battery-level', element).prop('src', template.fibonacciObjects[prevValue].image);
+        $('.battery-level').removeClass('battery-visible');
+        $('.'+template.fibonacciObjects[prevValue].image).addClass('battery-visible');
+        $('input', element).val(prevValue);        
         $('.level-label', element).html(template.fibonacciObjects[prevValue].label);
 
     }
@@ -80,9 +82,11 @@ Template.characteristic.events({
 
 Template.characteristic.onRendered(function () {
     const element = $("#id_" + Template.instance().data['name']);
+    const currentValue = Template.instance().data['value'] ? Template.instance().data['value'] : 0;
 
-    if (!Template.instance().data['value']) {
-        $('input', element).val(0);
-    }
+    $('input', element).val(currentValue);
+
+    const currentObject = Template.instance().fibonacciObjects[currentValue];
+    $('.'+currentObject.image).addClass('battery-visible');
 
 });
