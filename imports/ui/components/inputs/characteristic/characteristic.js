@@ -51,7 +51,7 @@ Template.characteristic.events({
     'click .plus'(event, template) {
         const element = $("#id_" + template.data['name']);
         const currentValue = $('input', element).val();
-        const nextValue = template.fibonacciObjects[currentValue].next;
+        const nextValue = template.fibonacciObjects[currentValue].next != 0 ? template.fibonacciObjects[currentValue].next : 21;
 
         element.removeClass('shake');
         $('em',element).removeClass('parangon');
@@ -64,6 +64,7 @@ Template.characteristic.events({
         if (nextValue == 21) {
             $('em',element).addClass('parangon');
             element.addClass('shake');
+            window.navigator.vibrate(200);
         }
     },
 
@@ -78,6 +79,7 @@ Template.characteristic.events({
             }
         }
 
+        prevValue = prevValue == 21 ? 0 : prevValue;
 
         element.removeClass('shake');
         $('em',element).removeClass('parangon');
@@ -86,19 +88,11 @@ Template.characteristic.events({
         $('.' + template.fibonacciObjects[prevValue].image, element).addClass('battery-visible');
         $('input', element).val(prevValue);
         $('.level-label', element).html(template.fibonacciObjects[prevValue].label);
-
-        if (prevValue == 21) {
-            $('em',element).addClass('parangon');
-            element.addClass('shake');
-        }
-
     }
 
 });
 
 Template.characteristic.onRendered(function () {
-
-    console.log('rendered');
 
     const element = $("#id_" + Template.instance().data['name']);
     const currentValue = Template.instance().data['value'] ? Template.instance().data['value'] : 0;

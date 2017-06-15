@@ -2,6 +2,7 @@ import { characters, CharacterObject } from '/imports/api/characters/characters.
 import { Meteor } from 'meteor/meteor';
 import '/imports/ui/components/inputs/characteristic/characteristic.js';
 import './character_form.html';
+import './character_form.scss';
 
 Template.character_form.onCreated(function () {
     Meteor.subscribe('characters.all');
@@ -54,12 +55,16 @@ Template.character_form.events({
 });
 
 
-Template.character_form.onRendered(function () {    
-    $(".tabs").tabs({
-        onShow: function () {
-            console.log("here");
-        },
-        swipeable: true
+Template.character_form.onRendered(function () {
+
+    $(document).ready(function () {
+        $('ul.tabs').tabs({
+            onShow: function () {
+                console.log("SHOW ME YOUR DEV");
+            }
+        });
     });
+
+
     $('select').material_select();
 });

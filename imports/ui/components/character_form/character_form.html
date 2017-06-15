@@ -1,122 +1,156 @@
-<template name="character_form">
+    <template name="character_form">
     <div class="row">
         <form class="col s12 character_editor" name="character_editor">
 
-            <input type='hidden' name="id" value="{{ character._id }}" />
+            <input type='hidden' name="id" value="{{ character._id }}" />            
 
+            <h2>#1 Nom</h2>
+            <div class="input-field col s12">
+                <input id="title" name="title"  type="text" class="validate" value="{{character.name}}" required>                                        
+                <label for="title">Nom du personnage *</label>
+            </div>   
 
-
-            <div class="row">
-                <div class="col s12">
-                    <ul class="tabs">
-                        <li class="tab col s2"><a class="active" href="#hacking">Hacking</a></li>
-                        <li class="tab col s2"><a href="#creativity">Créativité</a></li>
-                        <li class="tab col s2"><a href="#physic">Physique</a></li>
-                        <li class="tab col s2"><a href="#knowledge">Savoir</a></li>
-                        <li class="tab col s2"><a href="#social">Social</a></li>
-                        <li class="tab col s2"><a href="#summary">Resumé</a></li>
-                    </ul>
-                </div>
-                <div id="hacking" class="col s12">
-                    <h4>> Hacking</h4>
-
-                    <div class="col m5 s11">
-                        {{> characteristic name="informatic" label="Informatique" help="Capacité à exploiter les machines dans leurs retranchements." image="/img/computing.svg"}}
-                    </div>
-
-                    <div class="col m5 push-m1 s11">
-                        {{> characteristic name="mechatronic" label="Mécatronique" help="Savoir-faire en mécanique et électronique. La robotique moins l\'informatique, en somme." image="/img/processor.svg"}}
-                    </div>
-
-                    <div class="col m5 s11">
-                        {{> characteristic name="administratif" label="Administratif" help="Savoir exploiter une loi, refuter des charges, identifier la tête pensante d'une holding, falsifier des fiches de payes... Avec le sourire." image="/img/book-pile.svg"}}
-                    </div>
-
-                    <div class="col m5 push-m1 s11">
-                        {{> characteristic name="diy" label="Bricolage" help="Comme Mc Giver ? Comme Mc Giver." image="/img/screwdriver.svg"}}
-                    </div>
-
-                    <div class="col m5 s11">
-                        {{> characteristic name="biohack" label="Biohack" help="Physique, chimie, bio. Et donc poisons, explosifs, adhesifs. Pour commencer." image="/img/molecule.svg"}}
-                    </div>
-                </div>
-                <div id="creativity" class="col s12">
-                    
-                    <h4>> Créativité</h4>
-
-                    <div class="col m5 s11">
-                        {{> characteristic name="illustration" label="Illustration" help="Dessiner, peindre, réaliser des images en deux dimensions." image="/img/palette.svg"}}
-                    </div>
-
-                    <div class="col m5 push-m1 s11">
-                        {{> characteristic name="audio" label="Audio" help="Musicien, dj ou ingénieur du son, savoir faire danser les ondes." image="/img/music-spell.svg"}}
-                    </div>
-
-                    <div class="col m5 s11">
-                        {{> characteristic name="vidéo" label="Vidéo" help="Savoir créer, diffuser et éditer des vidéos, effets spéciaux compris." image="/img/video-camera.svg"}}
-                    </div>
-
-                    <div class="col m5 push-m1 s11">
-                        {{> characteristic name="3darts" label="3D" help="L'art de modeliser, texturer et animer des images en 3 dimensions." image="/img/cube.svg"}}
-                    </div>
-                </div>
-                <div id="physic" class="col s12">
-                    <h4>> Physique</h4>
-
-                    <div class="col m5 s11">
-                        {{> characteristic name="observation" label="Repérage" help="Avoir le sens de l'observation et du détail." image="/img/sherlock-holmes.svg"}}
-                    </div>
-
-                    <div class="col m5 push-m1 s11">
-                        {{> characteristic name="furtivity" label="Furtivité" help="Parfois, il vaut mieux passer inaperçu. Souvent en fait." image="/img/cloak-dagger.svg"}}
-                    </div>
-
-                    <div class="col m5 s11">
-                        {{> characteristic name="resistance" label="Résistance" help="Endurer ; qui endure construit sa force." image="/img/fire-silhouette.svg"}}
-                    </div>
-
-                    <div class="col m5 push-m1 s11">
-                        {{> characteristic name="martial-arts" label="Arts Martiaux" help="Le délicat art ancestral de réduire vos adversaires en bouillie. Avec élégance." image="/img/ninja-heroic-stance.svg"}}
-                    </div>
-
-                    <div class="col m5 s11">
-                        {{> characteristic name="parkour" label="Parkour" help="Mélange d'athlétisme, d'acrobatie et de gymnastique avec ce petit côté urbain chic." image="/img/acrobatic.svg"}}
-                    </div>
-                </div>
-                <div id="knowledge" class="col s12">
-                    <h4>> Savoir</h4>
-
-                    <div class="col m5 s11">
-                        {{> characteristic name="letters" label="Lettres" help="Les Lettres sont belles a qui sait les cultiver. " image="/img/spell-book.svg"}}
-                    </div>
-
-                    <div class="col m5 push-m1 s11">
-                        {{> characteristic name="economy" label="Économie" help="Science des actions, des fusion, des démons." image="/img/gold-stack.svg"}}
-                    </div>
-
-                    <div class="col m5 s11">
-                        {{> characteristic name="astronomy" label="Astronomie" help="De tout temps les hommes... (bla bla bla) ...les étoiles. Leur poésie subtile en fait d'éternelles amies." image="/img/dust-cloud.svg"}}
-                    </div>
-
-                    <div class="col m5 push-m1 s11">
-                        {{> characteristic name="sociology" label="Sociologie" help="La science des foules, les secrets de l'Homme, l'amour des statistiques." image="/img/minions.svg"}}
-                    </div>
-
-                    <div class="col m5 s11">
-                        {{> characteristic name="taming" label="Dressage" help="Faut il faire le mort ou se tenir sur un pied face à un ours ? Cette compétence vous permet de le savoir." image="/img/griffin-symbol.svg"}}
-                    </div>
-
-                    <div class="col m5 push-m1 s11">
-                        {{> characteristic name="histogeo" label="Histoire Géo" help="Je vois. Vous êtes un homme de culture vous aussi." image="/img/atlas.svg"}}
-                    </div>
-
-                    <div class="col m5 s11">
-                        {{> characteristic name="healing" label="Médecine" help="Etre capable d'exercer un diagnostic différentiel pour démasquer une sarcoïdose galopante ou un lupus. Ou retirer une balle." image="/img/love-injection.svg"}}
-                    </div>
-                </div>
-                <div id="social" class="col s12">Test 4</div>
-                <div id="summary" class="col s12">Test 4</div>
+            <h2>#2 Signes particuliers</h2>
+            <div class="col s12">
+                <p class="col s4">
+                    <input name="signs['cosplayer']" type="checkbox" id="cosplayer"  />
+                    <label for="cosplayer">Cosplayer</label>
+                </p>
+                <p class="col s4">
+                    <input name="signs['otaku']" type="checkbox" id="otaku"  />
+                    <label for="otaku">Otaku</label>
+                </p>
+                <p class="col s4">
+                    <input name="signs['gifted']" type="checkbox" id="gifted" />
+                    <label for="gifted">Surdoué</label>
+                </p>
+                <p class="col s4">
+                    <input name="signs['marvel_fan']" type="checkbox" id="marvel_fan"  />
+                    <label for="marvel_fan">Fan de Marvel</label>
+                </p>
+                <p class="col s4">
+                    <input name="signs['dc_fan']" type="checkbox" id="dc_fan"  />
+                    <label for="dc_fan">Fan de DC</label>
+                </p>
+                <p class="col s4">
+                    <input name="signs['progamer']" type="checkbox" id="progamer"  />
+                    <label for="progamer">Pro-gamer</label>
+                </p>
+                <p class="col s4">
+                    <input name="signs['drugaddict']" type="checkbox" id="drugaddict"  />
+                    <label for="drugaddict">Drogué</label>
+                </p>
+                <p class="col s4">
+                    <input name="signs['cultist']" type="checkbox" id="cultist"  />
+                    <label for="cultist">Cultiste</label>
+                </p>
             </div>
+
+            <h2>#3 White or Black Hat ?</h2>
+
+            <h2>#4 Caractéristiques</h2>
+            <ul class="collapsible row" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header"><span class="badge">0</span><h4>> Hacking</h4></div>
+                    <div class="collapsible-body">                    
+                        <div class="col m5 s11">
+                            {{> characteristic name="informatic" label="Informatique" help="Capacité à exploiter les machines dans leurs retranchements." image="/img/computing.svg"}}
+                        </div>
+
+                        <div class="col m5 push-m1 s11">
+                            {{> characteristic name="mechatronic" label="Mécatronique" help="Savoir-faire en mécanique et électronique. La robotique moins l\'informatique, en somme." image="/img/processor.svg"}}
+                        </div>
+
+                        <div class="col m5 s11">
+                            {{> characteristic name="administratif" label="Administratif" help="Savoir exploiter une loi, refuter des charges, identifier la tête pensante d'une holding, falsifier des fiches de payes... Avec le sourire." image="/img/book-pile.svg"}}
+                        </div>
+
+                        <div class="col m5 push-m1 s11">
+                            {{> characteristic name="diy" label="Bricolage" help="Comme Mc Giver ? Comme Mc Giver." image="/img/screwdriver.svg"}}
+                        </div>
+
+                        <div class="col m5 s11">
+                            {{> characteristic name="biohack" label="Biohack" help="Physique, chimie, bio. Et donc poisons, explosifs, adhesifs. Pour commencer." image="/img/molecule.svg"}}
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><span class="badge">0</span><h4>> Créativité</h4></div>
+                    <div class="collapsible-body">                        
+                        <div class="col m5 s11">
+                            {{> characteristic name="illustration" label="Illustration" help="Dessiner, peindre, réaliser des images en deux dimensions." image="/img/palette.svg"}}
+                        </div>
+
+                        <div class="col m5 push-m1 s11">
+                            {{> characteristic name="audio" label="Audio" help="Musicien, dj ou ingénieur du son, savoir faire danser les ondes." image="/img/music-spell.svg"}}
+                        </div>
+
+                        <div class="col m5 s11">
+                            {{> characteristic name="vidéo" label="Vidéo" help="Savoir créer, diffuser et éditer des vidéos, effets spéciaux compris." image="/img/video-camera.svg"}}
+                        </div>
+
+                        <div class="col m5 push-m1 s11">
+                            {{> characteristic name="3darts" label="3D" help="L'art de modeliser, texturer et animer des images en 3 dimensions." image="/img/cube.svg"}}
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><span class="badge">0</span><h4>> Physique</h4></div>
+                    <div class="collapsible-body">                        
+                        <div class="col m5 s11">
+                            {{> characteristic name="observation" label="Repérage" help="Avoir le sens de l'observation et du détail." image="/img/sherlock-holmes.svg"}}
+                        </div>
+
+                        <div class="col m5 push-m1 s11">
+                            {{> characteristic name="furtivity" label="Furtivité" help="Parfois, il vaut mieux passer inaperçu. Souvent en fait." image="/img/cloak-dagger.svg"}}
+                        </div>
+
+                        <div class="col m5 s11">
+                            {{> characteristic name="resistance" label="Résistance" help="Endurer ; qui endure construit sa force." image="/img/fire-silhouette.svg"}}
+                        </div>
+
+                        <div class="col m5 push-m1 s11">
+                            {{> characteristic name="martial-arts" label="Arts Martiaux" help="Le délicat art ancestral de réduire vos adversaires en bouillie. Avec élégance." image="/img/ninja-heroic-stance.svg"}}
+                        </div>
+
+                        <div class="col m5 s11">
+                            {{> characteristic name="parkour" label="Parkour" help="Mélange d'athlétisme, d'acrobatie et de gymnastique avec ce petit côté urbain chic." image="/img/acrobatic.svg"}}
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><span class="badge">0</span><h4>> Savoir</h4></div>
+                    <div class="collapsible-body">                        
+                        <div class="col m5 s11">
+                            {{> characteristic name="letters" label="Lettres" help="Les Lettres sont belles a qui sait les cultiver. " image="/img/spell-book.svg"}}
+                        </div>
+
+                        <div class="col m5 push-m1 s11">
+                            {{> characteristic name="economy" label="Économie" help="Science des actions, des fusion, des démons." image="/img/gold-stack.svg"}}
+                        </div>
+
+                        <div class="col m5 s11">
+                            {{> characteristic name="astronomy" label="Astronomie" help="De tout temps les hommes... (bla bla bla) ...les étoiles. Leur poésie subtile en fait d'éternelles amies." image="/img/dust-cloud.svg"}}
+                        </div>
+
+                        <div class="col m5 push-m1 s11">
+                            {{> characteristic name="sociology" label="Sociologie" help="La science des foules, les secrets de l'Homme, l'amour des statistiques." image="/img/minions.svg"}}
+                        </div>
+
+                        <div class="col m5 s11">
+                            {{> characteristic name="taming" label="Dressage" help="Faut il faire le mort ou se tenir sur un pied face à un ours ? Cette compétence vous permet de le savoir." image="/img/griffin-symbol.svg"}}
+                        </div>
+
+                        <div class="col m5 push-m1 s11">
+                            {{> characteristic name="histogeo" label="Histoire Géo" help="Je vois. Vous êtes un homme de culture vous aussi." image="/img/atlas.svg"}}
+                        </div>
+
+                        <div class="col m5 s11">
+                            {{> characteristic name="healing" label="Médecine" help="Etre capable d'exercer un diagnostic différentiel pour démasquer une sarcoïdose galopante ou un lupus. Ou retirer une balle." image="/img/love-injection.svg"}}
+                        </div>                        
+                    </div>
+                </li>
+            </ul>
 
         </form>
     </div>
@@ -124,6 +158,6 @@
     <div class="col s12 center-align">
         <button class="btn waves-effect waves-light record_character" type="submit">Enregistrer
             <i class="material-icons right">send</i>
-        </button>
-    </div>
+                        </button>
+                    </div>
 </template>
