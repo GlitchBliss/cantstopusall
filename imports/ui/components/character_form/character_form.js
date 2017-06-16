@@ -63,7 +63,9 @@ Template.character_form.onRendered(function () {
         nextButton: '.swiper-button-next',
         prevButton: '.swiper-button-prev',
         spaceBetween: 30,
-        autoHeight: true
+        autoHeight: true,
+        preventClicks:false,
+        preventClicksPropagation:false
     });
 
     $('select').material_select();
