@@ -52,7 +52,15 @@
     $border-size:8px;
     $background-color:#00838f;
 
-    position:relative;   
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+
     color: $text-color;    
     letter-spacing: .5px;        
     text-align: left;
@@ -75,7 +83,8 @@
 
     .left-wrapper {
         margin: 0;
-        padding: 0;
+        padding: 0;    
+        flex-grow:1;  
     }
 
     .left-block {    

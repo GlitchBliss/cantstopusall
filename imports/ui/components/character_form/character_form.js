@@ -57,14 +57,14 @@ Template.character_form.events({
 
 Template.character_form.onRendered(function () {
 
-    $(document).ready(function () {
-        $('ul.tabs').tabs({
-            onShow: function () {
-                console.log("SHOW ME YOUR DEV");
-            }
-        });
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 30,
+        autoHeight: true
     });
-
 
     $('select').material_select();
 });
