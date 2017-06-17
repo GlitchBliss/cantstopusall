@@ -1,4 +1,5 @@
 import './body.html';
+import './layout.scss';
 import '../../components/notification/notification.js';
 
 //Global helpers
@@ -65,11 +66,36 @@ Template.registerHelper('formatDate', function (date) {
             doy: 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
-    
+
     moment.updateLocale('fr');
     return moment(date).format('DD-MM-YYYY hh:mm:ss') + '  ' + moment(date).startOf('day').fromNow();
 });
 
-Template.registerHelper( 'isChecked', ( inputName, gameValue ) => {
-  return inputName == gameValue ? 'checked' : '';
+Template.registerHelper('isChecked', (inputName, gameValue) => {
+    return inputName == gameValue ? 'checked' : '';
+});
+
+$(document).ready(function () {
+
+    //Fonts Handling
+    $(".personnafied, .personnafied-h2").each(function (title) {
+        var characters = $(this).text().split("");
+        var frontText = $("<div class='front'></div>");        
+        var backText = $("<div class='back'></div>");        
+        
+        $(this).empty();                
+
+        $.each(characters, (index, character) => {
+            var embeddedLetter = $("<span data-letter ='"+character+"'>" + character + "</span>");            
+            var variantNumber = Math.floor((Math.random() * 20) + 1);
+            if (character != ' ') {                
+                embeddedLetter.addClass("letter-"+variantNumber);
+            }else {                
+                embeddedLetter.addClass("spacer");
+            }
+
+            $(this).append(embeddedLetter);                        
+        });         
+    });
+
 });
