@@ -95,6 +95,10 @@ nav .brand-logo.right {
     transition: all .2s ease-out !important;    
     line-height:1.1;        
 
+    @media(max-width:450px){
+        font-size: 2.3rem;
+    }
+
     span {        
         box-shadow: 5px 4px 0 black;
         color: black;
