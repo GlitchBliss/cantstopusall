@@ -1,6 +1,46 @@
 
 $bg-color:#880e4f;
 
+.btn-floating.btn-large i {
+    background: #ea49ea;
+    color: black;
+    text-shadow: 1px 1px 0 white;
+}
+
+.morality_input {
+
+    p {
+        font-weight: bold;
+        font-size: 1.5em;
+        margin: 0;
+        font-variant: small-caps;
+
+        &.white {
+            float: right;
+        }
+    }    
+
+    $range-color: #ea49ea;
+
+    input[type=range]::-webkit-slider-thumb {
+        background-color:$range-color;
+    }
+    input[type=range]::-moz-range-thumb {
+        background-color: $range-color;
+    }
+    input[type=range]::-ms-thumb {
+        background-color: $range-color;
+    }
+
+    /***** These are to edit the thumb and the text inside the thumb *****/
+    input[type=range] + .thumb {
+        background-color: #dedede;
+    }
+    input[type=range] + .thumb.active .value {
+        color: $range-color;
+    }    
+}
+
 
 .swiper-container {
     width: 100%;
@@ -10,8 +50,6 @@ $bg-color:#880e4f;
 .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #fff;
-    /* Center slide text vertically */
 }
 
 .swiper-button-prev, .swiper-button-next {

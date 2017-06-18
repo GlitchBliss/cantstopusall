@@ -4,6 +4,14 @@ body {
     background : $bodyBackground;
 }
 
+nav {
+    background: black;
+}
+
+.collapsible-header {
+    background: #9bf84e;
+}
+
 nav .brand-logo.right {
     right: -0.5rem;
     padding: 0;

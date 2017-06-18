@@ -31,17 +31,29 @@ Template.character_form.helpers({
 
 
 Template.character_form.events({
-    'submit .character_editor'(event, template) {
+
+    'submit .character_editor'(event, template) {        
 
         event.preventDefault();
         const characterForm = event.target;
+        console.log(characterForm);
+
+
         let characterObj = new CharacterObject();
         characterObj.id = characterForm.id ? characterForm.id.value : '';
         characterObj.title = characterForm.title ? characterForm.title.value : '';
-        characterObj.description = characterForm.description ? characterForm.description.value : '';
-        characterObj.socialContract = characterForm.social_contract ? characterForm.social_contract.value : '';
-        characterObj.fantasyLevel = characterForm.fantasy_level ? characterForm.fantasy_level.value : '';
-        characterObj.times = characterForm.times ? characterForm.times.value : '';
+
+        //Signes values
+        $('input[name^="signs"]').each(function() {
+            if($(this).is(':checked')){
+                console.log($(this).val());
+            }            
+        });
+
+        $('input[name^="characteristics"]').each(function() {            
+            console.log($(this));                        
+        });
+        
         Meteor.call('characters.upsert', characterObj,
             (error) => {
                 console.log(error.error);
@@ -57,6 +69,29 @@ Template.character_form.events({
 
 Template.character_form.onRendered(function () {
 
+    //From svg images to svg inline
+    $('img[src$=".svg"]', '.false').each(function () {
+        var $img = jQuery(this);
+        var imgURL = $img.attr('src');
+        var attributes = $img.prop("attributes");
+
+        $.get(imgURL, function (data) {
+            // Get the SVG tag, ignore the rest
+            var $svg = jQuery(data).find('svg');
+
+            // Remove any invalid XML tags
+            $svg = $svg.removeAttr('xmlns:a');
+
+            // Loop through IMG attributes and apply on SVG
+            $.each(attributes, function () {
+                $svg.attr(this.name, this.value);
+            });
+
+            // Replace IMG with SVG
+            $img.replaceWith($svg);
+        }, 'xml');
+    });
+
     //Titles    
     setTitles();
 
@@ -68,8 +103,8 @@ Template.character_form.onRendered(function () {
         prevButton: '.swiper-button-prev',
         spaceBetween: 30,
         autoHeight: true,
-        preventClicks:false,
-        preventClicksPropagation:false
+        preventClicks: false,
+        preventClicksPropagation: false
     });
 
     $('select').material_select();

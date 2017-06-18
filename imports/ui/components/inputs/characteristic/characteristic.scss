@@ -48,9 +48,10 @@
 .characteristic_choice {        
     $size : 5em;    
     $text-color: #fff;
-    $border-color:#880e4f;
+    $border-color:#ea49ea;
+    $sub-backcolor:darken($border-color, 30);
     $border-size:8px;
-    $background-color:#00838f;
+    $background-color:black;
 
     display: -webkit-box;
     display: -ms-flexbox;
@@ -88,7 +89,7 @@
     }
 
     .left-block {    
-        border-left: solid 10px #880e4f;
+        border-left: solid 10px $border-color;
         height: 10em;
         line-height: $size;        
         letter-spacing: .5px;
@@ -135,7 +136,7 @@
         position: absolute;
         bottom: 0;
         left: 0;
-        background: $border-color;
+        background: $sub-backcolor;
         height: 3em;
         line-height: 3em;
         z-index: 2;        
@@ -159,8 +160,9 @@
             padding: 2px;
             width: 3em;
             height: 3em;
-            background: #ffffff;
-            border: solid 3px $border-color;
+
+            // background: #ffffff;
+            // border: solid 3px $border-color;
                         
             transition: all .1s ease-out !important;
 

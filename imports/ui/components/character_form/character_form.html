@@ -13,80 +13,86 @@
             <h2 class="personnafied-h2">#2 Ethos</h2>
             <div class="row">
                 <p class="col m4 s6">
-                    <input name="signs['cosplayer']" type="checkbox" id="cosplayer"  />
+                    <input name="signs['cosplayer']" type="checkbox" id="cosplayer" value="cosplayer" />
                     <label for="cosplayer">Cosplayer</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['otaku']" type="checkbox" id="otaku"  />
+                    <input name="signs['otaku']" type="checkbox" id="otaku" value="otaku" />
                     <label for="otaku">Otaku</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['gifted']" type="checkbox" id="gifted" />
+                    <input name="signs['gifted']" type="checkbox" id="gifted" value="gifted"/>
                     <label for="gifted">Surdoué</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['marvel_fan']" type="checkbox" id="marvel_fan"  />
+                    <input name="signs['marvel_fan']" type="checkbox" id="marvel_fan" value="marvel_fan"/>
                     <label for="marvel_fan">Fan de Marvel</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['dc_fan']" type="checkbox" id="dc_fan"  />
+                    <input name="signs['dc_fan']" type="checkbox" id="dc_fan" value="dc_fan"  />
                     <label for="dc_fan">Fan de DC</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['progamer']" type="checkbox" id="progamer"  />
+                    <input name="signs['progamer']" type="checkbox" id="progamer" value="progamer" />
                     <label for="progamer">Pro-gamer</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['drugaddict']" type="checkbox" id="drugaddict"  />
+                    <input name="signs['drugaddict']" type="checkbox" id="drugaddict" value="drugaddict" />
                     <label for="drugaddict">Drogué</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['cultist']" type="checkbox" id="cultist"  />
+                    <input name="signs['cultist']" type="checkbox" id="cultist" value="cultist" />
                     <label for="cultist">Cultiste</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['spicy']" type="checkbox" id="spicy"  />
+                    <input name="signs['spicy']" type="checkbox" id="spicy" value="spicy" />
                     <label for="spicy">Mange épicé</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['oneeyed']" type="checkbox" id="oneeyed"  />
+                    <input name="signs['oneeyed']" type="checkbox" id="oneeyed" value="oneeyed" />
                     <label for="oneeyed">Borgne</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['armless']" type="checkbox" id="armless"  />
+                    <input name="signs['armless']" type="checkbox" id="armless" value="armless" />
                     <label for="armless">Manchot</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['onelegged']" type="checkbox" id="onelegged"  />
+                    <input name="signs['onelegged']" type="checkbox" id="onelegged" value="onelegged" />
                     <label for="onelegged">Unijambiste</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['paraplegic']" type="checkbox" id="paraplegic"  />
+                    <input name="signs['paraplegic']" type="checkbox" id="paraplegic" value="paraplegic" />
                     <label for="paraplegic">Paraplégique</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['albinos']" type="checkbox" id="albinos"  />
+                    <input name="signs['albinos']" type="checkbox" id="albinos" value="albinos" />
                     <label for="albinos">Albinos</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['badtastemusic']" type="checkbox" id="badtastemusic"  />
+                    <input name="signs['badtastemusic']" type="checkbox" id="badtastemusic" value="badtastemusic"  />
                     <label for="badtastemusic">Mauvais goûts musicaux</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['goodperfume']" type="checkbox" id="goodperfume"  />
+                    <input name="signs['goodperfume']" type="checkbox" id="goodperfume" value="goodperfume" />
                     <label for="goodperfume">Sent bon</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['ddrmaster']" type="checkbox" id="ddrmaster"  />
+                    <input name="signs['ddrmaster']" type="checkbox" id="ddrmaster" value="ddrmaster" />
                     <label for="ddrmaster">Maîtrise DDR</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['blindtestwarior']" type="checkbox" id="blindtestwarior"  />
+                    <input name="signs['blindtestwarior']" type="checkbox" id="blindtestwarior" value="blindtestwarior" />
                     <label for="blindtestwarior">Roi du blind-test</label>
                 </p>
             </div>
 
             <h2 class="personnafied-h2">#3 Moralité</h2>
+
+                <div class="morality_input col s12">
+                    <input name="morality" type="range" id="morality" min="0" max="100" />
+                    <p class="white">White Hat</p>
+                    <p>Black Hat</p>
+                </div>                
 
             <h2 class="personnafied-h2">#4 SkillZ</h2>
             <!-- Swiper -->
@@ -101,7 +107,7 @@
                     <div class="swiper-slide">  
                         <h4>>Hacking</h4>                      
                         <div class="col m6 s12">
-                            {{> characteristic name="informatic" label="Informatique" help="Capacité à exploiter les machines dans leurs retranchements." image="/img/computing.svg"}}
+                            {{> characteristic name="informatic" label="Informatique" help="Capacité à pousser les machines dans leurs retranchements." image="/img/computing.svg"}}
                         </div>
 
                         <div class="col m6 s12">
@@ -189,16 +195,34 @@
                         <div class="col m6 s12">
                             {{> characteristic name="healing" label="Médecine" help="Etre capable d'exercer un diagnostic différentiel pour démasquer une sarcoïdose galopante ou un lupus. Ou retirer une balle." image="/img/love-injection.svg"}}
                         </div> 
+                    </div>
+                    <div class="swiper-slide">
+                        <h4>>Relations sociales</h4>
+                        <div class="col m6 s12">
+                            {{> characteristic name="network" label="Réseau" help="L'art de savoir à qui demander service." image="/img/telepathy.svg"}}
+                        </div>
 
+                        <div class="col m6 s12">
+                            {{> characteristic name="seduction" label="Séduction" help="Plaire aux autres humains offre parfois des perspectives intéressantes." image="/img/shining-heart.svg"}}
+                        </div>
+
+                        <div class="col m6 s12">
+                            {{> characteristic name="body_language" label="Language gestuel" help="Savoir décrypter les émotions et les pensées dans les gestes." image="/img/anatomy.svg"}}
+                        </div>
+
+                        <div class="col m6 s12">
+                            {{> characteristic name="intimidation" label="Intimidation" help="Effrayer pour se faire obéir. Ou pour se donner un genre." image="/img/octoman.svg"}}
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="col s12 center-align">
+                <button class="btn waves-effect waves-light record_character" type="submit">Enregistrer
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>            
         </form>
     </div>
 
-    <div class="col s12 center-align">
-        <button class="btn waves-effect waves-light record_character" type="submit">Enregistrer
-            <i class="material-icons right">send</i>
-        </button>
-    </div>
+
 </template>
