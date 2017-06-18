@@ -75,27 +75,28 @@ Template.registerHelper('isChecked', (inputName, gameValue) => {
     return inputName == gameValue ? 'checked' : '';
 });
 
-$(document).ready(function () {
+setTitles = function() {
 
     //Fonts Handling
     $(".personnafied, .personnafied-h2").each(function (title) {
         var characters = $(this).text().split("");
-        var frontText = $("<div class='front'></div>");        
-        var backText = $("<div class='back'></div>");        
-        
-        $(this).empty();                
+        var frontText = $("<div class='front'></div>");
+        var backText = $("<div class='back'></div>");
+
+        $(this).empty();
 
         $.each(characters, (index, character) => {
-            var embeddedLetter = $("<span data-letter ='"+character+"'>" + character + "</span>");            
+            var embeddedLetter = $("<span data-letter ='" + character + "'>" + character + "</span>");
             var variantNumber = Math.floor((Math.random() * 20) + 1);
-            if (character != ' ') {                
-                embeddedLetter.addClass("letter-"+variantNumber);
-            }else {                
+            if (character != ' ') {
+                embeddedLetter.addClass("letter-" + variantNumber);
+            } else {
                 embeddedLetter.addClass("spacer");
             }
 
-            $(this).append(embeddedLetter);                        
-        });         
+            $(this).append(embeddedLetter);
+        });
     });
 
-});
+};
+
