@@ -2,6 +2,7 @@ import { Games } from '/imports/api/games/games.js';
 import { Characters } from '/imports/api/characters/characters.js';
 import { Meteor } from 'meteor/meteor';
 import './games.html';
+import './games.scss';
 
 
 Template.games.onCreated(function () {
@@ -22,6 +23,22 @@ Template.games.helpers({
 });
 
 Template.games.events({
+
+    'click .game-element'(event,template){
+        event.preventDefault();
+        event.stopPropagation();
+
+        const gameId = $(event.currentTarget).data('id');
+
+        Meteor.call('games.join', gameId, Meteor.userId(), (error) => {
+            if (error) {
+                console.log(error);
+            } else {                
+                FlowRouter.go('App.game.live', {_id: gameId});
+            }
+        });        
+    },
+
     'click .add-game'(event) {
         event.preventDefault();
 

@@ -100,3 +100,9 @@ setTitles = function() {
 
 };
 
+
+
+Template.App_body.onRendered(function () {
+    //Titles    
+    setTitles();
+});   

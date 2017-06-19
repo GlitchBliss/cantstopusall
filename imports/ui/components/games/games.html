@@ -8,7 +8,7 @@
 
             <ul class="collection">
                 {{#each games}}
-                <li class="collection-item avatar white">
+                <li class="game-element collection-item avatar white" data-id="{{_id}}">
                     {{#if image }}
                     <img class="circle responsive-img" src="/img/{{image}}" alt="" >
                     {{else}}
@@ -16,9 +16,8 @@
                     {{/if}}
 
                     <span class="title">{{title}}</span>
-                    <p>{{description}}
-                    </p>
-                    <a href="" class="secondary-content open_game" data-id="{{_id}}"><i class="material-icons">input</i></a>
+                    <p>{{description}}</p>                    
+                    <a href="" class="secondary-content open_game" data-id="{{_id}}"><i class="material-icons">settings</i></a>
                 </li>
                 {{/each}}
             </ul>

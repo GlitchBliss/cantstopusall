@@ -1,23 +1,5 @@
 <template name="characters">
     {{#if currentUser}}
-    <!--    <h2>Characters</h2>
-    
-        <form class="add-character">
-            <input type="text" name="name" placeholder="What it's name ?" required />
-            <input type="submit" value="Add a character" />
-        </form>
-    
-        <select class="select-character">
-            {{#each characters}}
-            <option value="{{_id}}"  selected="{{isSelected}}">{{name}}</option>			
-            {{/each}}
-        </select> 
-    
-    
-        {{#each characters}}
-        <a class="waves-effect waves-light btn" data-id="{{_id}}">{{name}}</a> 
-        {{/each}}	-->
-
 
     <div class="card blue-grey darken-1">
         <div class="card-content">
@@ -26,16 +8,18 @@
             <ul class="collection">
                 {{#each characters}}
                 <li class="collection-item avatar white">
-                    {{#if image }}
-                        <img class="circle responsive-img" src="/img/{{image}}" alt="" >
+                    {{#if avatar }}
+                        <img class="circle responsive-img" src="{{avatar}}" alt="" >
                     {{else}}
                         <img class="circle responsive-img" src="/img/base_avatar.png" alt="" >
                     {{/if}}
                     
                     <span class="title">{{name}}</span>
-                    <p>First Line <br>
-                        Second Line
-                    </p>
+                    {{#if ethos }}
+                        {{#each ethos}}
+                            <p class="ethos_value">{{value}}</p>
+                        {{/each}}
+                    {{/if }}     
                     <a href="#!" class="secondary-content"><i class="material-icons">input</i></a>
                 </li>
                 {{/each}}

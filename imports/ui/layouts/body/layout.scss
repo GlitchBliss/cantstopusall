@@ -37,7 +37,8 @@ nav .brand-logo.right {
 .personnafied {
     $background: #ea49ea;    
     transition: all .2s ease-out !important;    
-    line-height:1.1;        
+    line-height:1.1;      
+    z-index: 1000;  
 
     span {        
         color: black;

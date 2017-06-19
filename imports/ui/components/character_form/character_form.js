@@ -48,18 +48,17 @@ Template.character_form.events({
 
         //Signes values
         $('input[name^="ethos"]').each(function() {
-            if($(this).is(':checked')){
-                characterObj.ethos[$(this).attr('name')] = $(this).val();                        
+            if($(this).is(':checked')){                                
+                characterObj.ethos.push({'name' : $(this).attr('name'), 'value': $(this).val() });
             }            
         });
 
         $('input[name^="characteristics"]').each(function() {            
             if($(this).val()>0){                
-                characterObj.characteristics[$(this).attr('name')] = $(this).val();
+                characterObj.characteristics.push({'name' : $(this).attr('name'), 'value': $(this).val() });
             }                        
         });
-        
-        console.log(characterObj);
+                
         Meteor.call('characters.upsert', characterObj,
             (error) => {
                 console.log(error.error);

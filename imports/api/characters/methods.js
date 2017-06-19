@@ -3,6 +3,24 @@ import { check } from 'meteor/check';
 import { Characters } from './characters.js';
 
 Meteor.methods({
+	    'characters.upsert'(characterObject) {
+
+        check(characterObject.name, String);
+
+        return Characters.upsert(
+                {_id: characterObject.id},
+                {
+                    $set: {
+                        name: characterObject.name,
+                        avatar: characterObject.image_url,
+						morality: characterObject.morality,
+                        ethos: characterObject.ethos,
+                        characteristics: characterObject.characteristics,                        
+                        userId: Meteor.userId(),
+                        createdAt: new Date()
+                    }
+                });
+    },
 	'characters.insert'(name) {
 		check(name, String);
 
