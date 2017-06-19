@@ -5,9 +5,8 @@ export const Characters = new Mongo.Collection('characters');
 
 export class CharacterObject {
     'id';
-    'title';
-    'description';
-    'socialContract';
-    'fantasyLevel';
-    'times';
+    'name' = '';
+    'image_url' = '';
+    'ethos' = new Array();
+    'characteristics' = new Array();    
 }

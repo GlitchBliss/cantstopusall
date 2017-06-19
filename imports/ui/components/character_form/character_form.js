@@ -32,28 +32,34 @@ Template.character_form.helpers({
 
 Template.character_form.events({
 
+    'change #avatar'(event,template){                
+        const value = $(event.currentTarget).val();
+        $('.avatar_image').attr('src', value);        
+    },
     'submit .character_editor'(event, template) {        
 
         event.preventDefault();
         const characterForm = event.target;
-        console.log(characterForm);
-
 
         let characterObj = new CharacterObject();
         characterObj.id = characterForm.id ? characterForm.id.value : '';
-        characterObj.title = characterForm.title ? characterForm.title.value : '';
+        characterObj.name = characterForm.name ? characterForm.name.value : '';
+        characterObj.image_url = characterForm.avatar ? characterForm.avatar.value : '';
 
         //Signes values
-        $('input[name^="signs"]').each(function() {
+        $('input[name^="ethos"]').each(function() {
             if($(this).is(':checked')){
-                console.log($(this).val());
+                characterObj.ethos[$(this).attr('name')] = $(this).val();                        
             }            
         });
 
         $('input[name^="characteristics"]').each(function() {            
-            console.log($(this));                        
+            if($(this).val()>0){                
+                characterObj.characteristics[$(this).attr('name')] = $(this).val();
+            }                        
         });
         
+        console.log(characterObj);
         Meteor.call('characters.upsert', characterObj,
             (error) => {
                 console.log(error.error);

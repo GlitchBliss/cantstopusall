@@ -6,87 +6,98 @@
 
             <h2 class="personnafied-h2">#1 Nom</h2>
             <div class="input-field col s12">
-                <input id="title" name="title"  type="text" class="validate" value="{{character.name}}" required>                                        
-                <label for="title">Nom du personnage *</label>
+                <input id="name" name="name"  type="text" class="validate" value="{{character.name}}" required>                                        
+                <label for="name">Nom du personnage *</label>
             </div>   
 
-            <h2 class="personnafied-h2">#2 Ethos</h2>
+            <h2 class="personnafied-h2">#2 Avatar URL</h2>
+            <div class="row">
+                <div class="input-field col s8">
+                    <input id="avatar" name="avatar"  type="text" class="validate" value="{{character.image_url}}" >                                        
+                    <label for="avatar">Adresse Web de l'image d'avatar</label>
+                </div>  
+                <div class="input-field col s4">
+                    <img class="avatar_image" src="" alt="Avatar Image"/>
+                </div> 
+            </div>
+
+            <h2 class="personnafied-h2">#3 Ethos</h2>
             <div class="row">
                 <p class="col m4 s6">
-                    <input name="signs['cosplayer']" type="checkbox" id="cosplayer" value="cosplayer" />
+                    <input name="ethos['cosplayer']" type="checkbox" id="cosplayer" value="cosplayer" />
                     <label for="cosplayer">Cosplayer</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['otaku']" type="checkbox" id="otaku" value="otaku" />
+                    <input name="ethos['otaku']" type="checkbox" id="otaku" value="otaku" />
                     <label for="otaku">Otaku</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['gifted']" type="checkbox" id="gifted" value="gifted"/>
+                    <input name="ethos['gifted']" type="checkbox" id="gifted" value="gifted"/>
                     <label for="gifted">Surdoué</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['marvel_fan']" type="checkbox" id="marvel_fan" value="marvel_fan"/>
+                    <input name="ethos['marvel_fan']" type="checkbox" id="marvel_fan" value="marvel_fan"/>
                     <label for="marvel_fan">Fan de Marvel</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['dc_fan']" type="checkbox" id="dc_fan" value="dc_fan"  />
+                    <input name="ethos['dc_fan']" type="checkbox" id="dc_fan" value="dc_fan"  />
                     <label for="dc_fan">Fan de DC</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['progamer']" type="checkbox" id="progamer" value="progamer" />
+                    <input name="ethos['progamer']" type="checkbox" id="progamer" value="progamer" />
                     <label for="progamer">Pro-gamer</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['drugaddict']" type="checkbox" id="drugaddict" value="drugaddict" />
+                    <input name="ethos['drugaddict']" type="checkbox" id="drugaddict" value="drugaddict" />
                     <label for="drugaddict">Drogué</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['cultist']" type="checkbox" id="cultist" value="cultist" />
+                    <input name="ethos['cultist']" type="checkbox" id="cultist" value="cultist" />
                     <label for="cultist">Cultiste</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['spicy']" type="checkbox" id="spicy" value="spicy" />
+                    <input name="ethos['spicy']" type="checkbox" id="spicy" value="spicy" />
                     <label for="spicy">Mange épicé</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['oneeyed']" type="checkbox" id="oneeyed" value="oneeyed" />
+                    <input name="ethos['oneeyed']" type="checkbox" id="oneeyed" value="oneeyed" />
                     <label for="oneeyed">Borgne</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['armless']" type="checkbox" id="armless" value="armless" />
+                    <input name="ethos['armless']" type="checkbox" id="armless" value="armless" />
                     <label for="armless">Manchot</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['onelegged']" type="checkbox" id="onelegged" value="onelegged" />
+                    <input name="ethos['onelegged']" type="checkbox" id="onelegged" value="onelegged" />
                     <label for="onelegged">Unijambiste</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['paraplegic']" type="checkbox" id="paraplegic" value="paraplegic" />
+                    <input name="ethos['paraplegic']" type="checkbox" id="paraplegic" value="paraplegic" />
                     <label for="paraplegic">Paraplégique</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['albinos']" type="checkbox" id="albinos" value="albinos" />
+                    <input name="ethos['albinos']" type="checkbox" id="albinos" value="albinos" />
                     <label for="albinos">Albinos</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['badtastemusic']" type="checkbox" id="badtastemusic" value="badtastemusic"  />
+                    <input name="ethos['badtastemusic']" type="checkbox" id="badtastemusic" value="badtastemusic"  />
                     <label for="badtastemusic">Mauvais goûts musicaux</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['goodperfume']" type="checkbox" id="goodperfume" value="goodperfume" />
+                    <input name="ethos['goodperfume']" type="checkbox" id="goodperfume" value="goodperfume" />
                     <label for="goodperfume">Sent bon</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['ddrmaster']" type="checkbox" id="ddrmaster" value="ddrmaster" />
+                    <input name="ethos['ddrmaster']" type="checkbox" id="ddrmaster" value="ddrmaster" />
                     <label for="ddrmaster">Maîtrise DDR</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="signs['blindtestwarior']" type="checkbox" id="blindtestwarior" value="blindtestwarior" />
+                    <input name="ethos['blindtestwarior']" type="checkbox" id="blindtestwarior" value="blindtestwarior" />
                     <label for="blindtestwarior">Roi du blind-test</label>
                 </p>
             </div>
 
-            <h2 class="personnafied-h2">#3 Moralité</h2>
+            <h2 class="personnafied-h2">#4 Moralité</h2>
 
                 <div class="morality_input col s12">
                     <input name="morality" type="range" id="morality" min="0" max="100" />
@@ -94,7 +105,7 @@
                     <p>Black Hat</p>
                 </div>                
 
-            <h2 class="personnafied-h2">#4 SkillZ</h2>
+            <h2 class="personnafied-h2">#5 SkillZ</h2>
             <!-- Swiper -->
             <div class="swiper-container">
                 <!-- Add Pagination -->
