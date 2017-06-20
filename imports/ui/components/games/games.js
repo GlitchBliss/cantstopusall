@@ -24,11 +24,9 @@ Template.games.helpers({
 
 Template.games.events({
 
-    'click .game-element'(event,template){
-        event.preventDefault();
-        event.stopPropagation();
-
-        const gameId = $(event.currentTarget).data('id');
+    'click .game-element'(event){
+        
+        const gameId = $(event.target).data('id');
 
         Meteor.call('games.join', gameId, Meteor.userId(), (error) => {
             if (error) {

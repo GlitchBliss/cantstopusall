@@ -28,7 +28,7 @@ FlowRouter.route('/game/create', {
 	},
 });
 
-FlowRouter.route('/game/live/:id', {
+FlowRouter.route('/game/live/:_id', {
 	name: 'App.game.live',
 	action(params, queryParams) {	
 		BlazeLayout.render('App_body', { main: 'App_game_live' });

@@ -7,7 +7,7 @@
 
             <div class="row">
 
-                <h4><span>#1</span> Nom</h4>
+                <h2 class="personnafied-h2">#1 Nom</h2>
 
                 <div class="input-field col s12">
                     <input id="title" name="title"  type="text" class="validate" value="{{game.title}}" required>                                        
@@ -17,7 +17,7 @@
 
             <div class="row">
 
-                <h4><span>#2</span> Époque</h4>
+                <h2 class="personnafied-h2">#2 Époque</h2>
 
                 <div class="col s12 m6">
                     {{> game_form_option name="times" value="contemporary" gameValue=game.times label="Contemporaine" help="Aujourd'hui, avec le niveau technologique que l'on connait." image="/img/clockwork.svg"}} 
@@ -32,7 +32,7 @@
 
 
             <div class="row">
-                <h4><span>#3</span> Degr&eacute; de fantastique</h4>
+                <h2 class="personnafied-h2">#3 Degré de fantastique</h2>
 
                 <div class="col s12 m6">
                     {{> game_form_option name="fantasy_level" value="realist" gameValue=game.fantasyLevel label="Réaliste" help="Le monde répond exactement aux mêmes lois que celles qu'on imagine connaître aujourd'hui." image="/img/pipes.svg"}} 
@@ -47,7 +47,7 @@
 
             
             <div class="row">
-                <h4><span>#4</span> Contrat social</h4>
+                <h2 class="personnafied-h2">#4 Contrat social</h2>
 
                 <div class="col s12 m6">
                     {{> game_form_option name="social_contract" value="nobody_gets_hurt" gameValue=game.socialContract label="Personne ne sera blessé" help="Pas de thèmes choquants, sensibles ou difficiles : on évite le malaise ! " image="/img/sensuousness.svg"}} 
@@ -59,7 +59,7 @@
 
             
             <div class="row">
-                <h4><span>#5</span> Description</h4>
+                <h2 class="personnafied-h2">#5 Description</h2>
                 <div class="input-field col s12">                    
                     <i class="material-icons prefix">info_outline</i>                    
                     <textarea id="textarea1" name="description" class="materialize-textarea">{{game.description}}</textarea>                                        
