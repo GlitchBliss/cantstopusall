@@ -1,11 +1,9 @@
 import { Characters } from '/imports/api/characters/characters.js';
-import { Users } from '/imports/api/users/users.js';
 import { Meteor } from 'meteor/meteor';
 import './characters.html';
 
 Template.characters.onCreated(function () {
-    Meteor.subscribe('characters.all');
-    this.handle = Meteor.subscribe('users.all');
+    Meteor.subscribe('characters.all');    
     this.characterSelectedId = new ReactiveVar();
 });
 
@@ -48,23 +46,6 @@ Template.characters.events({
 
 
 Template.characters.onRendered(function () {
-    Tracker.autorun(() => {
-        if (Template.instance().handle.ready()) {
-            console.log(Users.find().fetch());
-        }
-        console.log(Characters);
-    });
 
-    //Game list on autocomplete for MJ name
-    $('input.autocomplete').autocomplete({
-            data: {
-
-            },
-            limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-            onAutocomplete: function (val) {
-                // Callback function when value is autcompleted.
-            },
-            minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-        });
 
 });
