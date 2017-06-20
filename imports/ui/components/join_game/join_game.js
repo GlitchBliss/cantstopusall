@@ -18,7 +18,10 @@ Template.join_game.helpers({
 
 
 Template.join_game.events({
-
+    'change .gm-name'(event, instance){
+        console.log("Not even a little ?");
+        console.log($(event.target).val());
+    }
 
 
 });
@@ -27,22 +30,38 @@ Template.join_game.onRendered(function () {
 
     this.autorun(function () {
         if (Template.instance().subscriptionsReady()) {
-            const users = Meteor.users.find({}, {fields: {'username':1}}).fetch();
-            console.log(users);
 
+            //TODO : MJs ONLY, NOT ALL USERS ! 
+            const users = Meteor.users.find({}, { fields: { 'username': 1 } }).fetch();
+
+            const dataUsers = new Array();
+            users.forEach((user) => {
+                let name = user.username;
+                dataUsers.push({ "name": user.username });
+            });
 
             //Game list on autocomplete for MJ name    
-            $('input.autocomplete').autocomplete({
-                data: {
-                    "Apple": null,
-                    "Microsoft": null,
-                    "Google": null
-                },
-                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-                onAutocomplete: function (val) {
-                    // Callback function when value is autcompleted.
-                },
-                minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+            $('input.autocomplete').easyAutocomplete({
+                data: dataUsers,
+                placeholder: "Nom du MJ",
+                getValue: "name",
+                theme: "dark",
+                list: {
+                    match: {
+                        enabled: true
+                    },
+                    showAnimation: {
+                        type: "fade", //normal|slide|fade
+                        time: 400,
+                        callback: function () { }
+                    },
+
+                    hideAnimation: {
+                        type: "slide", //normal|slide|fade
+                        time: 400,
+                        callback: function () { }
+                    }
+                }
             });
         }
     });
