@@ -9,6 +9,13 @@ import './join_game.scss';
 Template.join_game.onCreated(function () {
     this.subscribe('characters.all');
     this.subscribe('users.all');
+
+    this.userName = new ReactiveVar('SuperTest');    
+
+    Tracker.autorun(() => {
+        this.subscribe('games_from_name.all', this.userName.get());
+    });
+
 });
 
 
@@ -18,12 +25,9 @@ Template.join_game.helpers({
 
 
 Template.join_game.events({
-    'change .gm-name'(event, instance){
-        console.log("Not even a little ?");
+    'change .gm-name'(event, instance) {        
         console.log($(event.target).val());
     }
-
-
 });
 
 Template.join_game.onRendered(function () {
@@ -36,8 +40,10 @@ Template.join_game.onRendered(function () {
 
             const dataUsers = new Array();
             users.forEach((user) => {
-                let name = user.username;
-                dataUsers.push({ "name": user.username });
+                if (user.username) {
+                    let name = user.username;
+                    dataUsers.push({ "name": user.username });
+                }
             });
 
             //Game list on autocomplete for MJ name    
