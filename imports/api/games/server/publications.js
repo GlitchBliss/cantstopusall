@@ -15,12 +15,3 @@ Meteor.publish('characters_in_games.all', function () {
 
     return CharactersInGames.find();
 });
-
-Meteor.publish('games_from_name.all', function (userName) {
-
-	check(userName, String);
-
-    const user = Meteor.users.findOne({name:userName}, {fields:{_id:1}});
-    console.log(user);
-    
-});

@@ -10,23 +10,20 @@ Template.join_game.onCreated(function () {
     this.subscribe('characters.all');
     this.subscribe('users.all');
 
-    this.userName = new ReactiveVar('SuperTest');    
-
-    Tracker.autorun(() => {
-        this.subscribe('games_from_name.all', this.userName.get());
-    });
-
+    this.userName = new ReactiveVar('');
 });
 
 
 Template.join_game.helpers({
-
+    games() {        
+        const games = Games.find({ userName: Template.instance().userName.get() });
+        return games;
+    }
 });
 
-
 Template.join_game.events({
-    'change .gm-name'(event, instance) {        
-        console.log($(event.target).val());
+    'change .gm-name'(event, instance) {
+        Template.instance().userName.set($(event.target).val());
     }
 });
 
@@ -40,10 +37,8 @@ Template.join_game.onRendered(function () {
 
             const dataUsers = new Array();
             users.forEach((user) => {
-                if (user.username) {
-                    let name = user.username;
-                    dataUsers.push({ "name": user.username });
-                }
+                let name = user.username;
+                dataUsers.push({ "name": user.username });
             });
 
             //Game list on autocomplete for MJ name    

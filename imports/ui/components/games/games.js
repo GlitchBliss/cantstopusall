@@ -19,7 +19,6 @@ Template.games.helpers({
     games() {
         return Games.find({userId: Meteor.userId()});
     },
-
 });
 
 Template.games.events({
