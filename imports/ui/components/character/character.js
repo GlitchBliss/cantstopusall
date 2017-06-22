@@ -1,6 +1,7 @@
-import { character } from '/imports/api/character/character.js';
+import { Characters } from '/imports/api/characters/characters.js';
 import { Meteor } from 'meteor/meteor';
 import './character.html';
+import './character.scss';
 
 Template.character.onCreated(function () {
 

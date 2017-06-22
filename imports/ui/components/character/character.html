@@ -1,12 +1,17 @@
-<section class="card col s12 avatar white">
-    {{#if avatar }}
-    <img class="circle responsive-img" src="{{avatar}}" alt=""> {{else}}
-    <img class="circle responsive-img" src="/img/base_avatar.png" alt=""> {{/if}}
+<template name="character">
 
-    <span class="title">{{name}}</span> {{#if ethos }} {{#each ethos}}
-    <p class="ethos_value">{{value}}</p>
-    {{/each}} {{/if }}
-    <a href="#!" class="secondary-content"><i class="material-icons">input</i></a>
+    <section class="row white">
+        <aside class="avatar col s4">
+            {{#if avatar }}
+            <img src="{{avatar}}" alt=""> {{else}}
+            <img src="/img/base_avatar.png" alt=""> {{/if}}
+        </aside>
 
-    <button class="select-character btn col s12" data-id="{{_id}}">Jouer ce personnage</button>
-</section>
+        <article class="col s8">
+            <h3 class="title">{{name}}</h3> {{#if ethos }} {{#each ethos}}
+            <p class="ethos_value">{{value}}</p>
+            {{/each}} {{/if }}
+        </article>
+    </section>
+
+</template>

@@ -11,6 +11,8 @@ Template.join_game.onCreated(function () {
     this.subscribe('users.all');
 
     this.userName = new ReactiveVar('');
+    this.selectedGame = new ReactiveVar('');
+    this.selectedCharacter = new ReactiveVar('');
 });
 
 
@@ -24,6 +26,16 @@ Template.join_game.helpers({
 Template.join_game.events({
     'change .gm-name'(event, instance) {
         Template.instance().userName.set($(event.target).val());
+    },
+
+    'click .game-element'(event, instance) {
+        const gameId = $(event.currentTarget).data('id');
+        instance.selectedGame.set(gameId);
+
+        $(".game-element", "#join_game").not("."+gameId).fadeOut();
+    },
+    'click .deselect-game'(event, instance) {
+
     }
 });
 

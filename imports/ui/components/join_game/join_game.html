@@ -1,6 +1,6 @@
 <template name="join_game">
 
-    <section class="card blue-grey darken-1">
+    <section id="join_game" class="card blue-grey darken-1">
         <div class="card-content">
             <span class="card-title white-text">Rejoindre une partie</span>
 
@@ -12,14 +12,16 @@
                         </div>
                         
                         <ul class="collection">
-                            {{#each games}}
-                            <li class="game-element collection-item avatar white" data-id="{{_id}}">
+                            {{#each games}}                                
+                            <li class="game-element collection-item avatar white {{_id}}" data-id="{{_id}}">
                                 {{#if image }}
                                 <img class="circle responsive-img" src="/img/{{image}}" alt=""> {{else}}
                                 <img class="circle responsive-img" src="/img/base_avatar.png" alt=""> {{/if}}
 
                                 <span class="title">{{title}}</span>
                                 <p>{{description}}</p>
+
+                                <a href="" class="secondary-content deselect-game" data-id="{{_id}}"><i class="material-icons">close</i></a>
                             </li>
                             {{/each}}
                         </ul>                        

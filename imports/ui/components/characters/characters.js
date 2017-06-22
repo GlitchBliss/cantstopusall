@@ -1,4 +1,5 @@
 import { Characters } from '/imports/api/characters/characters.js';
+import { Character } from '../character/character.js';
 import { Meteor } from 'meteor/meteor';
 import './characters.html';
 
