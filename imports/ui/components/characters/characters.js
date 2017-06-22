@@ -17,31 +17,31 @@ Template.characters.helpers({
 });
 
 Template.characters.events({
-    'click .select-character'(event, instance) {
+    // 'click .select-character'(event, instance) {
 
-        const characterId = $(event.target).data("id");
-        instance.characterSelectedId.set(characterId);
+    //     const characterId = $(event.target).data("id");
+    //     instance.characterSelectedId.set(characterId);
 
-    },
+    // },
     'click .add-character'(event) {
         event.preventDefault();
 
         FlowRouter.go('App.character.create');
     },
 
-    'change .select-character'(event) {
+    // 'change .select-character'(event) {
 
-        let option = event.target;
-        let characterId = option.value;
+    //     let option = event.target;
+    //     let characterId = option.value;
 
-        Meteor.call('characters.setSelected', characterId, (error) => {
-            if (error) {
-                console.log(error);
-            } else {
-                name.value = '';
-            }
-        });
-    }
+    //     Meteor.call('characters.setSelected', characterId, (error) => {
+    //         if (error) {
+    //             console.log(error);
+    //         } else {
+    //             name.value = '';
+    //         }
+    //     });
+    // }
 });
 
 

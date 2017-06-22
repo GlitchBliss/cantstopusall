@@ -1,0 +1,12 @@
+<section class="card col s12 avatar white">
+    {{#if avatar }}
+    <img class="circle responsive-img" src="{{avatar}}" alt=""> {{else}}
+    <img class="circle responsive-img" src="/img/base_avatar.png" alt=""> {{/if}}
+
+    <span class="title">{{name}}</span> {{#if ethos }} {{#each ethos}}
+    <p class="ethos_value">{{value}}</p>
+    {{/each}} {{/if }}
+    <a href="#!" class="secondary-content"><i class="material-icons">input</i></a>
+
+    <button class="select-character btn col s12" data-id="{{_id}}">Jouer ce personnage</button>
+</section>
