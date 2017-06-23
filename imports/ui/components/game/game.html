@@ -3,7 +3,7 @@
 	<h2>{{game.name}}</h2>
 
 	<ul>
-            {{#each characters}}
+		{{#each characters}}
 		<li>
 			{{name}}
 		</li>
@@ -11,4 +11,17 @@
 	</ul>
 
 	{{/if}}
+
+    <section class="row game-element card white {{_id}}" data-id="{{_id}}">
+        <aside class="avatar col s4">
+            {{#if avatar }}
+            <img src="{{avatar}}" alt=""> {{else}}
+            <img src="/img/base_avatar.png" alt=""> {{/if}}
+        </aside>
+
+        <article class="col s8">
+            <h3 class="title">{{title}}</h3>
+			<p>{{description}}</p>
+        </article>
+    </section>		
 </template>

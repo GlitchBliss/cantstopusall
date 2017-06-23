@@ -2,6 +2,7 @@ import { Games, CharactersInGames } from '/imports/api/games/games.js';
 import { Characters } from '/imports/api/characters/characters.js';
 import { Meteor } from 'meteor/meteor';
 import './game.html';
+import './game.scss';
 
 
 Template.game.onCreated(function () {

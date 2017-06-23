@@ -7,24 +7,13 @@
             <div class="row">
                 <div class="col s12">
                     <div class="row">
-                        <div class="col s12">
-                            <input type="text" class="autocomplete gm-name" placeholder="Nom du MJ">
-                        </div>
-                        
-                        <ul class="collection">
-                            {{#each games}}                                
-                            <li class="game-element collection-item avatar white {{_id}}" data-id="{{_id}}">
-                                {{#if image }}
-                                <img class="circle responsive-img" src="/img/{{image}}" alt=""> {{else}}
-                                <img class="circle responsive-img" src="/img/base_avatar.png" alt=""> {{/if}}
+                        <input type="text" class="autocomplete gm-name" placeholder="Nom du MJ">
+                    </div>
 
-                                <span class="title">{{title}}</span>
-                                <p>{{description}}</p>
+                    <button class="btn-large deselect-game">Annuler la sélection</button> {{#each games}} {{> game}} {{/each}}
 
-                                <a href="" class="secondary-content deselect-game" data-id="{{_id}}"><i class="material-icons">close</i></a>
-                            </li>
-                            {{/each}}
-                        </ul>                        
+                    <div class="character-selection">
+                        {{#each characters}} {{> character}} {{/each}}
                     </div>
                 </div>
             </div>
