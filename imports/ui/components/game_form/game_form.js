@@ -65,4 +65,8 @@ Template.game_form.events({
 
 Template.game_form.onRendered(function () {
     $('select').material_select();
+
+    //Titles    
+    setTitles();
+    
 });

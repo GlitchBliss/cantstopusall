@@ -1,10 +1,20 @@
 <template name="App_game_live">
 
+{{#with game}}
+  <h2 class="personnafied-h2">{{title}}</h2>
+  <p>{{description}}</p>
+{{/with}}
 
   <h2 class="personnafied-h2">Joueurs présents</h2>
 
   <ul>
-    {{#each players}} <li>{{name}}</li> {{/each}}
+    <li>MJ : {{MJName.userName}} </li>
+    {{#each players}} 
+      <li>{{name}}
+        {{#if isMJ}}<button class="send-notification btn" data-id="{{userId}}">Punir ce personnage</button>{{/if}}
+      </li> 
+    {{/each}}    
   </ul>
+  
 
 </template>

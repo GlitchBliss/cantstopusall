@@ -54,11 +54,11 @@ Template.join_game.events({
     'click .character-element'(event, instance) {
         const characterId = $(event.currentTarget).data('id');
         Session.set('selectedCharacter', characterId);
-
-        Meteor.call('games.join',  Session.get('selectedGame'), Meteor.userId(), (error) => {
+        
+        Meteor.call('games.join',  Session.get('selectedGame'), Session.get('selectedCharacter'), (error) => {
             if (error) {
                 console.log(error);
-            } else {                
+            } else {                                
                 FlowRouter.go('App.game.live', {_id: Session.get('selectedGame')});
             }
         }); 
@@ -66,9 +66,11 @@ Template.join_game.events({
     }
 });
 
-Template.join_game.onRendered(function () {
+Template.join_game.onRendered(function () {    
 
     this.autorun(function () {
+        setTitles();
+
         if (Template.instance().subscriptionsReady()) {
 
             //TODO : MJs ONLY, NOT ALL USERS ! 

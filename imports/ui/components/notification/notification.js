@@ -9,7 +9,7 @@ Template.notification.onCreated(function () {
 });
 
 Template.notification.helpers({
-    notifications() {
+    notifications() {        
         const cursor = Notifications.find({$or: [{userId: Meteor.userId()}, {isGlobal: true}]});
         const handle = cursor.observeChanges({
             added() {

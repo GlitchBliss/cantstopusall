@@ -23,17 +23,9 @@ Template.games.helpers({
 
 Template.games.events({
 
-    'click .game-element'(event){
-        
-        const gameId = $(event.target).data('id');
-
-        Meteor.call('games.join', gameId, Meteor.userId(), (error) => {
-            if (error) {
-                console.log(error);
-            } else {                
-                FlowRouter.go('App.game.live', {_id: gameId});
-            }
-        });        
+    'click .game-element'(event){        
+        const gameId = $(event.currentTarget).data('id');        
+        FlowRouter.go('App.game.live', {_id: gameId});        
     },
 
     'click .add-game'(event) {
@@ -41,22 +33,6 @@ Template.games.events({
 
         FlowRouter.go('App.game.create');
     },
-
-    'click .game-item'(event, instance) {
-        event.preventDefault();
-
-        const characterId = instance.getSelectedCharacter()._id;
-        const gameId = $(event.target).data('id');
-
-        Meteor.call('games.join', gameId, characterId, (error) => {
-            if (error) {
-                console.log(error);
-            } else {
-                FlowRouter.go('App.game', {_id: gameId});
-            }
-        });
-    },
-
     'click .open_game'(event, instance) {
         event.preventDefault();
         event.stopPropagation();
