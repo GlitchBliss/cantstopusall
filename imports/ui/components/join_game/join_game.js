@@ -82,7 +82,7 @@ Template.join_game.onRendered(function () {
                 dataUsers.push({ "name": user.username });
             });
 
-            $document.ready(function () {
+            $(document).ready(function () {
                 //Game list on autocomplete for MJ name    
                 $('input.autocomplete').easyAutocomplete({
                     data: dataUsers,
