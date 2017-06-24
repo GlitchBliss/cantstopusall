@@ -54,19 +54,19 @@ Template.join_game.events({
     'click .character-element'(event, instance) {
         const characterId = $(event.currentTarget).data('id');
         Session.set('selectedCharacter', characterId);
-        
-        Meteor.call('games.join',  Session.get('selectedGame'), Session.get('selectedCharacter'), (error) => {
+
+        Meteor.call('games.join', Session.get('selectedGame'), Session.get('selectedCharacter'), (error) => {
             if (error) {
                 console.log(error);
-            } else {                                
-                FlowRouter.go('App.game.live', {_id: Session.get('selectedGame')});
+            } else {
+                FlowRouter.go('App.game.live', { _id: Session.get('selectedGame') });
             }
-        }); 
-        
+        });
+
     }
 });
 
-Template.join_game.onRendered(function () {    
+Template.join_game.onRendered(function () {
 
     this.autorun(function () {
         setTitles();
@@ -82,28 +82,30 @@ Template.join_game.onRendered(function () {
                 dataUsers.push({ "name": user.username });
             });
 
-            //Game list on autocomplete for MJ name    
-            $('input.autocomplete').easyAutocomplete({
-                data: dataUsers,
-                placeholder: "Nom du MJ",
-                getValue: "name",
-                theme: "dark",
-                list: {
-                    match: {
-                        enabled: true
-                    },
-                    showAnimation: {
-                        type: "fade", //normal|slide|fade
-                        time: 400,
-                        callback: function () { }
-                    },
+            $document.ready(function () {
+                //Game list on autocomplete for MJ name    
+                $('input.autocomplete').easyAutocomplete({
+                    data: dataUsers,
+                    placeholder: "Nom du MJ",
+                    getValue: "name",
+                    theme: "dark",
+                    list: {
+                        match: {
+                            enabled: true
+                        },
+                        showAnimation: {
+                            type: "fade", //normal|slide|fade
+                            time: 400,
+                            callback: function () { }
+                        },
 
-                    hideAnimation: {
-                        type: "slide", //normal|slide|fade
-                        time: 400,
-                        callback: function () { }
+                        hideAnimation: {
+                            type: "slide", //normal|slide|fade
+                            time: 400,
+                            callback: function () { }
+                        }
                     }
-                }
+                });
             });
         }
     });
