@@ -8,17 +8,56 @@ body {
 
 nav {
     background: $navBackground;
+    
+    &.home {
+        .row .col {
+            padding:0;
+        }
+
+        li {
+            background: #e40102;
+            color: white;
+            font-weight: bold;
+            font-variant: small-caps;
+
+            $textShadow: 1px 1px 0 black, -1px -1px 0 black,  0px 1px 0 black,  1px 0px 0 black ;    
+
+            //nearly works!    
+            @for $iteration from 1px through 10px {
+                $shadow : $iteration $iteration 0 black, -$iteration -$iteration  0 black,  0px $iteration  0 black,  $iteration  0px 0 black ;
+                $textShadow: $textShadow + ', ' +  $shadow;
+            }
+
+            text-shadow: $textShadow;
+                
+            
+
+            //Neon :
+            //text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;            
+        }
+    }
 }
 
 nav .brand-logo.right {
-    right: -0.5rem;
+    right: 2rem;
     padding: 0;
-    top: 0.2rem;
+    top: 0.5rem;
 }
 
 header {
     position: fixed;
-    bottom:0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 102;
+
+    .collapsible {
+        margin:0;
+    }
+
+    .collapsible-body {
+        background: white;
+    }
 }
 
 @media (max-width:500px){
