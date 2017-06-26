@@ -1,4 +1,5 @@
 import './home.html';
+import './home.scss';
 
 import '../../components/hello/hello.js';
 import '../../components/info/info.js';

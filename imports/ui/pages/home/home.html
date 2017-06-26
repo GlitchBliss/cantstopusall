@@ -1,9 +1,22 @@
 <template name="App_home">
+  <nav class="home">
+    <ul class="row">
+      <li class="col s4">
+        Personnages
+      </li>
+      <li class="col s4">
+        Jeux crées
+      </li>
+      <li class="col s4">
+        Rejoindre une partie
+      </li>
+    </ul>
+  </nav>
 
   <div class="row">
     <div class="col s12 m6">{{> characters}}</div>
     <div class="col s12 m6">{{> games}}</div>
     <div class="col s12 m6">{{> join_game}}</div>
   </div>
-  
+
 </template>
