@@ -32,10 +32,10 @@ AccountsTemplates.configure({
     redirectTimeout: 4000,
 
     // Hooks
-    // onLogoutHook: myLogoutFunc,
-    // onSubmitHook: mySubmitFunc,
-    // preSignUpHook: myPreSubmitFunc,
-    // postSignUpHook: myPostSubmitFunc,
+    onLogoutHook: myLogoutFunc,
+    onSubmitHook: mySubmitFunc,
+    preSignUpHook: myPreSubmitFunc,
+    postSignUpHook: myPostSubmitFunc,
 
     // Texts
     texts: {

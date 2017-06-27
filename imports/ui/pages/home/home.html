@@ -1,4 +1,6 @@
 <template name="App_home">
+  {{#if currentUser}}
+
   <nav class="home">
     <ul class="row">
       <li class="col s4">
@@ -18,5 +20,11 @@
     <div class="col s12 m6">{{> games}}</div>
     <div class="col s12 m6">{{> join_game}}</div>
   </div>
+
+  {{else}} 
+  
+  {{ > atForm}} 
+  
+  {{/if}}
 
 </template>

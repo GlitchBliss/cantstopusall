@@ -4,6 +4,8 @@ import '../../components/notification/notification.js';
 
 //Global helpers
 
+T9n.setLanguage('fr');
+
 Template.registerHelper('formatDate', function (date) {
 
     moment.locale('fr', {
