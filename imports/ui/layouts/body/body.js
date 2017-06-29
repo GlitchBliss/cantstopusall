@@ -1,13 +1,63 @@
 import './body.html';
 import './layout.scss';
 import '../../components/notification/notification.js';
+import { CharactersInGames } from '/imports/api/games/games.js';
 
 //Global helpers
+Template.App_body.onCreated(function () {
+    this.subscribe("characters_in_games.all");
+});
 
-T9n.setLanguage('fr');
+
+Template.App_body.events({
+    'click .logout'(event, instance) {
+        event.preventDefault();
+
+        Meteor.call('games.leave', Meteor.userId(), (error) => {
+            console.log(error);
+        }, () => {
+            AccountsTemplates.logout();
+        });
+
+    }
+});
+
+Template.App_body.onRendered(function () {
+    setTitles();    
+    Meteor.typeahead.inject();
+});
+
+setTitles = function () {
+
+    //Fonts Handling
+    $(".personnafied, .personnafied-h2").each(function (title) {
+        var characters = $(this).text().split("");
+        var frontText = $("<div class='front'></div>");
+        var backText = $("<div class='back'></div>");
+
+        $(this).empty();
+
+        $.each(characters, (index, character) => {
+            var embeddedLetter = $("<span data-letter ='" + character + "'>" + character + "</span>");
+            var variantNumber = Math.floor((Math.random() * 20) + 1);
+            if (character != ' ') {
+                embeddedLetter.addClass("letter-" + variantNumber);
+            } else {
+                embeddedLetter.addClass("spacer");
+            }
+
+            $(this).append(embeddedLetter);
+        });
+    });
+};
+    T9n.setLanguage('fr'); 
+
+Meteor.startup(() => {    
+   
+});
+
 
 Template.registerHelper('formatDate', function (date) {
-
     moment.locale('fr', {
         months: 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
         monthsShort: 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
@@ -77,34 +127,5 @@ Template.registerHelper('isChecked', (inputName, gameValue) => {
     return inputName == gameValue ? 'checked' : '';
 });
 
-setTitles = function() {
-
-    //Fonts Handling
-    $(".personnafied, .personnafied-h2").each(function (title) {
-        var characters = $(this).text().split("");
-        var frontText = $("<div class='front'></div>");
-        var backText = $("<div class='back'></div>");
-
-        $(this).empty();
-
-        $.each(characters, (index, character) => {
-            var embeddedLetter = $("<span data-letter ='" + character + "'>" + character + "</span>");
-            var variantNumber = Math.floor((Math.random() * 20) + 1);
-            if (character != ' ') {
-                embeddedLetter.addClass("letter-" + variantNumber);
-            } else {
-                embeddedLetter.addClass("spacer");
-            }
-
-            $(this).append(embeddedLetter);
-        });
-    });
-
-};
 
 
-
-Template.App_body.onRendered(function () {
-    //Titles    
-    setTitles();
-});   

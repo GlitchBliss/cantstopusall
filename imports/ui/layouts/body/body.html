@@ -1,10 +1,11 @@
 <template name="App_body">
     <section class="container">               
-        <nav>
+        <nav class="row">
             <div class="nav-wrapper">
-                <a href="/" class="brand-logo personnafied right">1337</a>
-                <ul id="nav-mobile" class="left">                    
-                    <li><a href="/">Accueil</a></li>                    
+                <a href="/home" class="brand-logo personnafied right">1337</a>
+                <ul id="nav-mobile" class="left">                                  
+                    <li><a class="logout" href="">Logout : {{currentUser.username}}</a></li>                    
+                    <li><a href="/home">Accueil</a></li>                    
                 </ul>
             </div>
         </nav>                

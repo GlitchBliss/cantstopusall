@@ -29,26 +29,32 @@ AccountsTemplates.configure({
 
     // Redirects
     homeRoutePath: '/home',
-    redirectTimeout: 4000,
+    redirectTimeout: 100,
 
     // Hooks
-    // onLogoutHook: myLogoutFunc,
-    // onSubmitHook: mySubmitFunc,
+    onLogoutHook: function () {
+        FlowRouter.go('App.login');
+    },
+    onSubmitHook: function () {
+        FlowRouter.go('App.home');
+    },
     // preSignUpHook: myPreSubmitFunc,
-    // postSignUpHook: myPostSubmitFunc,
+    postSignUpHook: function () {
+        FlowRouter.go('App.home');
+    },
 
     // Texts
     texts: {
-      button: {
-          signUp: "Register Now!"
-      },
-      socialSignUp: "Register",
-      socialIcons: {
-          "meteor-developer": "fa fa-rocket"
-      },
-      title: {
-          forgotPwd: "Recover Your Password"
-      },
+        button: {
+            signUp: "Register Now!"
+        },
+        socialSignUp: "Register",
+        socialIcons: {
+            "meteor-developer": "fa fa-rocket"
+        },
+        title: {
+            forgotPwd: "Recover Your Password"
+        },
     },
 });
 

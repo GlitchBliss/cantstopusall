@@ -9,6 +9,11 @@ body {
 nav {
     background: $navBackground;
     
+    &.row {
+        margin-bottom:0;
+    }
+    
+
     &.home {
         .row .col {
             padding:0;

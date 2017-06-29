@@ -28,7 +28,6 @@ FlowRouter.route('/home', {
 	},
 });
 
-
 FlowRouter.route('/game/create', {
 	name: 'App.game.create',
 	action(params, queryParams) {

@@ -45,6 +45,7 @@ Template.character_form.events({
         characterObj.id = characterForm.id ? characterForm.id.value : '';
         characterObj.name = characterForm.name ? characterForm.name.value : '';
         characterObj.image_url = characterForm.avatar ? characterForm.avatar.value : '';
+        characterObj.morality = characterForm.morality ? characterForm.morality.value : '';
 
         //Signes values
         $('input[name^="ethos"]').each(function() {

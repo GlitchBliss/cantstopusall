@@ -40,4 +40,8 @@ Meteor.methods({
             }
         );
     },
+    'games.leave'(userId){
+        check(userId, String);
+        return CharactersInGames.remove({ userId: userId });
+    }
 });

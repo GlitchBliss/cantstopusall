@@ -67,8 +67,7 @@ Template.App_game_live.events({
     }
 });
 
-Template.App_game_live.onRendered(function () {
-
+Template.App_game_live.onRendered(function () {    
     this.autorun(function () {
         //Titles
         setTitles();

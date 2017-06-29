@@ -1,8 +1,8 @@
 <template name="App_home">
   {{#if currentUser}}
 
-  <nav class="home">
-    <ul class="row">
+  <nav class="home row">
+    <ul>
       <li class="col s4">
         Personnages
       </li>
@@ -15,11 +15,11 @@
     </ul>
   </nav>
 
-  <div class="row">
-    <div class="col s12 m6">{{> characters}}</div>
-    <div class="col s12 m6">{{> games}}</div>
-    <div class="col s12 m6">{{> join_game}}</div>
-  </div>
+  <section class="row">
+    <article class="col s12 m6">{{> characters}}</article>
+    <article class="col s12 m6">{{> games}}</article>
+    <article class="col s12 m6">{{> join_game}}</article>
+  </section>
 
   {{else}} 
   

@@ -7,7 +7,6 @@ import '../../components/characters/characters.js';
 import '../../components/games/games.js';
 import '../../components/join_game/join_game.js';
 
-Template.App_home.onCreated(function () {
-    T9n.setLanguage('<lang>');
+Template.App_home.onCreated(function () {    
 });
 
