@@ -35,8 +35,7 @@ Template.join_game.helpers({
 });
 
 Template.join_game.events({
-    'change .gm-name'(event, instance) {
-        console.log($(event.currentTarget).val());
+    'keyup .gm-name'(event, instance) {        
         Template.instance().userName.set($(event.currentTarget).val());
     },
 
