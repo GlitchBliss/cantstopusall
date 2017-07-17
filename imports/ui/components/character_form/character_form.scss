@@ -1,6 +1,13 @@
 
 $bg-color:#880e4f;
 
+.pointsleft {
+    position:  fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
 .btn-floating.btn-large i {
     background: #ea49ea;
     color: black;

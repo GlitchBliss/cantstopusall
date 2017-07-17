@@ -1,5 +1,7 @@
     <template name="character_form">
     <div class="row">
+
+        <a class="btn-floating btn-large waves-effect waves-light pointsleft">{{ pointsLeft }}</a>
         <form class="col s12 character_editor" name="character_editor">
 
             <input type='hidden' name="id" value="{{ character._id }}" />            
@@ -13,86 +15,86 @@
             <h2 class="personnafied-h2">#2 Avatar URL</h2>
             <div class="row">
                 <div class="input-field col m10 s8">
-                    <input id="avatar" name="avatar"  type="text" class="validate" value="{{character.image_url}}" >                                        
+                    <input id="avatar" name="avatar"  type="text" class="validate" value="{{character.avatar}}" >                                        
                     <label for="avatar">Adresse Web de l'image d'avatar</label>
                 </div>  
                 <div class="input-field col m2 s4">
-                    <img class="avatar_image" src="" alt="Avatar Image"/>
+                    <img class="avatar_image" src="{{character.avatar}}" alt="Avatar Image"/>
                 </div> 
             </div>
 
             <h2 class="personnafied-h2">#3 Ethos</h2>
             <div class="row">
                 <p class="col m4 s6">
-                    <input name="ethos['cosplayer']" type="checkbox" id="cosplayer" value="Cosplayer" />
+                    <input name="ethos['cosplayer']" type="checkbox" id="cosplayer" value="Cosplayer" checked = "{{ isEthosChecked 'Cosplayer'}}"/>
                     <label for="cosplayer">Cosplayer</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['otaku']" type="checkbox" id="otaku" value="Otaku" />
+                    <input name="ethos['otaku']" type="checkbox" id="otaku" value="Otaku"  checked = "{{ isEthosChecked 'Otaku'}}"/>
                     <label for="otaku">Otaku</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['gifted']" type="checkbox" id="gifted" value="Surdoué"/>
+                    <input name="ethos['gifted']" type="checkbox" id="gifted" value="Surdoué" checked = "{{ isEthosChecked 'Surdoué'}}"/>
                     <label for="gifted">Surdoué</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['marvel_fan']" type="checkbox" id="marvel_fan" value="Fan de Marvel"/>
+                    <input name="ethos['marvel_fan']" type="checkbox" id="marvel_fan" value="Fan de Marvel" checked = "{{ isEthosChecked 'Fan de Marvel'}}"/>
                     <label for="marvel_fan">Fan de Marvel</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['dc_fan']" type="checkbox" id="dc_fan" value="Fan de DC"  />
+                    <input name="ethos['dc_fan']" type="checkbox" id="dc_fan" value="Fan de DC" checked = "{{ isEthosChecked 'Fan de DC'}}"/>
                     <label for="dc_fan">Fan de DC</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['progamer']" type="checkbox" id="progamer" value="Pro-gamer" />
+                    <input name="ethos['progamer']" type="checkbox" id="progamer" value="Progamer" checked = "{{ isEthosChecked 'Progamer'}}"/>
                     <label for="progamer">Pro-gamer</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['drugaddict']" type="checkbox" id="drugaddict" value="Drogué" />
+                    <input name="ethos['drugaddict']" type="checkbox" id="drugaddict" value="Drogué" checked = "{{ isEthosChecked 'Drogué'}}" />
                     <label for="drugaddict">Drogué</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['cultist']" type="checkbox" id="cultist" value="Cultiste" />
+                    <input name="ethos['cultist']" type="checkbox" id="cultist" value="Cultiste" checked = "{{ isEthosChecked 'Cultiste'}}" />
                     <label for="cultist">Cultiste</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['spicy']" type="checkbox" id="spicy" value="Mange épicé" />
+                    <input name="ethos['spicy']" type="checkbox" id="spicy" value="Mange épicé" checked = "{{ isEthosChecked 'Mange épicé'}}" />
                     <label for="spicy">Mange épicé</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['oneeyed']" type="checkbox" id="oneeyed" value="Borgne" />
+                    <input name="ethos['oneeyed']" type="checkbox" id="oneeyed" value="Borgne" checked = "{{ isEthosChecked 'Borgne'}}" />
                     <label for="oneeyed">Borgne</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['armless']" type="checkbox" id="armless" value="Manchot" />
+                    <input name="ethos['armless']" type="checkbox" id="armless" value="Manchot" checked = "{{ isEthosChecked 'Manchot'}}" />
                     <label for="armless">Manchot</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['onelegged']" type="checkbox" id="onelegged" value="Unijambiste" />
+                    <input name="ethos['onelegged']" type="checkbox" id="onelegged" value="Unijambiste" checked = "{{ isEthosChecked 'Unijambiste'}}" />
                     <label for="onelegged">Unijambiste</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['paraplegic']" type="checkbox" id="paraplegic" value="Paraplégique" />
+                    <input name="ethos['paraplegic']" type="checkbox" id="paraplegic" value="Paraplégique" checked = "{{ isEthosChecked 'Paraplégique'}}" />
                     <label for="paraplegic">Paraplégique</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['albinos']" type="checkbox" id="albinos" value="Albinos" />
+                    <input name="ethos['albinos']" type="checkbox" id="albinos" value="Albinos" checked = "{{ isEthosChecked 'Albinos'}}" />
                     <label for="albinos">Albinos</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['badtastemusic']" type="checkbox" id="badtastemusic" value="Mauvais goûts musicaux"  />
+                    <input name="ethos['badtastemusic']" type="checkbox" id="badtastemusic" value="Mauvais goûts musicaux"  checked = "{{ isEthosChecked 'Mauvais goûts musicaux'}}" />
                     <label for="badtastemusic">Mauvais goûts musicaux</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['goodperfume']" type="checkbox" id="goodperfume" value="Sent bon" />
+                    <input name="ethos['goodperfume']" type="checkbox" id="goodperfume" value="Sent bon" checked = "{{ isEthosChecked 'Sent bon'}}" />
                     <label for="goodperfume">Sent bon</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['ddrmaster']" type="checkbox" id="ddrmaster" value="Maîtrise DDR" />
+                    <input name="ethos['ddrmaster']" type="checkbox" id="ddrmaster" value="Maîtrise DDR" checked = "{{ isEthosChecked 'Maîtrise DDR'}}" />
                     <label for="ddrmaster">Maîtrise DDR</label>
                 </p>
                 <p class="col m4 s6">
-                    <input name="ethos['blindtestwarior']" type="checkbox" id="blindtestwarior" value="Roi du blind-test" />
+                    <input name="ethos['blindtestwarior']" type="checkbox" id="blindtestwarior" value="Roi du blindtest" checked = "{{ isEthosChecked 'Roi du blindtest'}}" />
                     <label for="blindtestwarior">Roi du blind-test</label>
                 </p>
             </div>
@@ -100,7 +102,7 @@
             <h2 class="personnafied-h2">#4 Moralité</h2>
 
                 <div class="morality_input col s12">
-                    <input name="morality" type="range" id="morality" min="0" max="100" />
+                    <input name="morality" type="range" id="morality" min="0" max="100" value ="{{character.morality}}"/>
                     <p class="white">White Hat</p>
                     <p>Black Hat</p>
                 </div>                
@@ -115,116 +117,17 @@
                 <a class="swiper-button-prev btn-floating btn-large waves-effect waves-light red"><i class="material-icons">skip_previous</i></a>
                 <!--<div class="swiper-button-prev btn-floating"></div>                     -->
                 <div class="swiper-wrapper">               
+
+                    {{#each characteristics_groups}}    
                     <div class="swiper-slide">  
-                        <h4>>Hacking</h4>                      
+                        <h4>>{{category}}</h4>
+                        {{#each characteristics category}}
                         <div class="col m6 s12">
-                            {{> characteristic name="informatic" label="Informatique" help="Capacité à pousser les machines dans leurs retranchements." image="/img/computing.svg"}}
+                            {{> characteristic id=_id name=name label=label help=help image=image_url character=character}}
                         </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="mechatronic" label="Mécatronique" help="Savoir-faire en mécanique et électronique. La robotique moins l\'informatique, en somme." image="/img/processor.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="administratif" label="Administratif" help="Savoir exploiter une loi, refuter des charges, identifier la tête pensante d'une holding, falsifier des fiches de payes... Avec le sourire." image="/img/book-pile.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="diy" label="Bricolage" help="Comme Mc Giver ? Comme Mc Giver." image="/img/screwdriver.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="biohack" label="Biohack" help="Physique, chimie, bio. Et donc poisons, explosifs, adhesifs. Pour commencer." image="/img/molecule.svg"}}
-                        </div>
+                        {{/each}}
                     </div>
-                    <div class="swiper-slide">
-                        <h4>>Créativité</h4>
-                        <div class="col m6 s12">
-                            {{> characteristic name="illustration" label="Illustration" help="Dessiner, peindre, réaliser des images en deux dimensions." image="/img/palette.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="audio" label="Audio" help="Musicien, dj ou ingénieur du son, savoir faire danser les ondes." image="/img/music-spell.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="vidéo" label="Vidéo" help="Savoir créer, diffuser et éditer des vidéos, effets spéciaux compris." image="/img/video-camera.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="3darts" label="3D" help="L'art de modeliser, texturer et animer des images en 3 dimensions." image="/img/cube.svg"}}
-                        </div>                        
-                    </div>
-                    <div class="swiper-slide">
-                        <h4>>Physique</h4>
-                        <div class="col m6 s12">
-                            {{> characteristic name="observation" label="Repérage" help="Avoir le sens de l'observation et du détail." image="/img/sherlock-holmes.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="furtivity" label="Furtivité" help="Parfois, il vaut mieux passer inaperçu. Souvent en fait." image="/img/cloak-dagger.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="resistance" label="Résistance" help="Endurer ; qui endure construit sa force." image="/img/fire-silhouette.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="martial-arts" label="Arts Martiaux" help="Le délicat art ancestral de réduire vos adversaires en bouillie. Avec élégance." image="/img/ninja-heroic-stance.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="parkour" label="Parkour" help="Mélange d'athlétisme, d'acrobatie et de gymnastique avec ce petit côté urbain chic." image="/img/acrobatic.svg"}}
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <h4>>Savoirs</h4>
-                        <div class="col m6 s12">
-                            {{> characteristic name="letters" label="Lettres" help="Les Lettres sont belles a qui sait les cultiver. " image="/img/spell-book.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="economy" label="Économie" help="Science des actions, des fusion, des démons." image="/img/gold-stack.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="astronomy" label="Astronomie" help="De tout temps les hommes... (bla bla bla) ...les étoiles. Leur poésie subtile en fait d'éternelles amies." image="/img/dust-cloud.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="sociology" label="Sociologie" help="La science des foules, les secrets de l'Homme, l'amour des statistiques." image="/img/minions.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="taming" label="Dressage" help="Faut il faire le mort ou se tenir sur un pied face à un ours ? Cette compétence vous permet de le savoir." image="/img/griffin-symbol.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="histogeo" label="Histoire Géo" help="Je vois. Vous êtes un homme de culture vous aussi." image="/img/atlas.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="healing" label="Médecine" help="Etre capable d'exercer un diagnostic différentiel pour démasquer une sarcoïdose galopante ou un lupus. Ou retirer une balle." image="/img/love-injection.svg"}}
-                        </div> 
-                    </div>
-                    <div class="swiper-slide">
-                        <h4>>Relations sociales</h4>
-                        <div class="col m6 s12">
-                            {{> characteristic name="network" label="Réseau" help="L'art de savoir à qui demander service." image="/img/telepathy.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="seduction" label="Séduction" help="Plaire aux autres humains offre parfois des perspectives intéressantes." image="/img/shining-heart.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="body_language" label="Language gestuel" help="Savoir décrypter les émotions et les pensées dans les gestes." image="/img/anatomy.svg"}}
-                        </div>
-
-                        <div class="col m6 s12">
-                            {{> characteristic name="intimidation" label="Intimidation" help="Effrayer pour se faire obéir. Ou pour se donner un genre." image="/img/octoman.svg"}}
-                        </div>
-                    </div>
+                    {{/each}}
                 </div>
             </div>
             <div class="col s12 center-align">

@@ -11,26 +11,33 @@ Template.games.onCreated(function () {
     Meteor.subscribe('characters_in_games.all');
 
     this.getSelectedCharacter = () => {
-        let selectedCharacter = Characters.findOne({isSelected: true, userId: Meteor.userId()});
+        let selectedCharacter = Characters.findOne({ isSelected: true, userId: Meteor.userId() });
         return selectedCharacter;
     }
 });
 
 Template.games.helpers({
     games() {
-        return Games.find({userId: Meteor.userId()});
+        return Games.find({ userId: Meteor.userId() });
     },
 
-    playerNumber(gameId) {        
-        return CharactersInGames.find({gameId:gameId}).fetch().length;
+    playerNumber(gameId) {
+        return CharactersInGames.find({ gameId: gameId }).fetch().length;
     }
 });
 
 Template.games.events({
 
-    'click .game-element'(event){        
-        const gameId = $(event.currentTarget).data('id');        
-        FlowRouter.go('App.game.live', {_id: gameId});        
+    //Open the clicked game
+    'click .game-element'(event) {
+        const gameId = $(event.currentTarget).data('id');
+
+        Meteor.call('games.open', gameId,
+            (error) => console.log(error),
+            (success) => {
+                FlowRouter.go('App.game.live', { _id: gameId });
+            }
+        );        
     },
 
     'click .add-game'(event) {
@@ -42,6 +49,6 @@ Template.games.events({
         event.preventDefault();
         event.stopPropagation();
         const gameId = $(event.currentTarget).data('id');
-        FlowRouter.go('App.game.open', {_id: gameId});
+        FlowRouter.go('App.game.open', { _id: gameId });
     }
 });

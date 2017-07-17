@@ -30,6 +30,12 @@ Template.character.events({
                 name.value = '';
             }
         });
+    },
+    'click .open_character'(event, instance) {
+        event.preventDefault();
+        event.stopPropagation();
+        const characterId = $(event.currentTarget).data('id');
+        FlowRouter.go('App.character.edit', { _id: characterId });
     }
 });
 

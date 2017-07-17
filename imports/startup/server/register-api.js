@@ -11,6 +11,9 @@ import '../../api/games/server/publications.js';
 import '../../api/characters/methods.js';
 import '../../api/characters/server/publications.js';
 
+import '../../api/characteristics/methods.js';
+import '../../api/characteristics/server/publications.js';
+
 import '../../api/notifications/methods.js';
 import '../../api/notifications/server/publications.js';
 

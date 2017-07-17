@@ -1,6 +1,6 @@
 <template name="characteristic">
 
-    <article id="id_{{ name }}" class="{{ name }} characteristic_choice col s12">
+    <article id="{{ id }}" class="{{ name }} characteristic_choice col s12">
         <div class="left-wrapper">
             <div class="left-block">
                 <p class="title"> # {{ label }}</p>
@@ -26,7 +26,7 @@
             </aside>
         </div>
 
-        <input type="text" name="characteristics[{{ name }}]" value="{{ value }}" />
+        <input type="text" data-id="{{id}}" name="characteristics[{{ name }}]" value="{{ value }}" />
     </article>
 
 </template>

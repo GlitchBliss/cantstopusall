@@ -19,6 +19,7 @@ Meteor.methods({
                     times: gameObject.times,
                     userId: Meteor.userId(),
                     userName: user.username,
+                    isOpen:false,
                     createdAt: new Date()
                 }
             });
@@ -43,5 +44,9 @@ Meteor.methods({
     'games.leave'(userId){
         check(userId, String);
         return CharactersInGames.remove({ userId: userId });
+    },
+    'games.open'(gameId){
+        check(gameId, String);
+        return Games.update({ _id: gameId },{ $set:{isOpen:true}});
     }
 });

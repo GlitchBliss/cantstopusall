@@ -1,4 +1,5 @@
-import { characters, CharacterObject } from '/imports/api/characters/characters.js';
+import { Characters, CharacterObject } from '/imports/api/characters/characters.js';
+import { Characteristics } from '/imports/api/characteristics/characteristics.js';
 import { Meteor } from 'meteor/meteor';
 import '/imports/ui/components/inputs/characteristic/characteristic.js';
 import './character_form.html';
@@ -7,12 +8,20 @@ import './character_form.scss';
 Template.character_form.onCreated(function () {
     Meteor.subscribe('characters.all');
     this.characterId = FlowRouter.getParam('_id');
+    Session.set("CreationPointsGiven", "89");
+    Session.set("CreationPointsLeft", Session.get("CreationPointsGiven"));
+    Session.set("Characteristics", new Array());
 });
 
 
 Template.character_form.helpers({
+    characteristics_groups() {
+        return _.uniq(Characteristics.find({}, { fields: { category: 1 } }).fetch(), true, doc => doc.category);
+    },
+    characteristics(group) {
+        return Characteristics.find({ category: group });
+    },
     character() {
-
         if (Template.instance().characterId) {
             //Actually IT'S FUNCTIONNAL BUT UGLY AF !
             // Problem is  : material need to be updated after function return
@@ -21,22 +30,40 @@ Template.character_form.helpers({
                 $('select').material_select();
             }, 1000);
 
-            return characters.findOne(Template.instance().characterId);
+            return Characters.findOne(Template.instance().characterId);
         }
-
         return null;
+    },
+    pointsLeft() {
+        return Session.get('CreationPointsLeft');
+    },
+    isEthosChecked(value) {        
+        if (Template.instance().characterId) {
+            let character = Characters.findOne(Template.instance().characterId);
+            if (character) {                
+                let ethos = character.ethos.filter((item) => {
+                    return item.value == value;                    
+                });                
+                if (ethos && ethos.length > 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
-
 });
 
 
 Template.character_form.events({
 
-    'change #avatar'(event,template){                
+    'change #avatar'(event, template) {
         const value = $(event.currentTarget).val();
-        $('.avatar_image').attr('src', value);        
+        $('.avatar_image').attr('src', value);
     },
-    'submit .character_editor'(event, template) {        
+    'click .characteristicChange'(event, template) {
+
+    },
+    'submit .character_editor'(event, template) {
 
         event.preventDefault();
         const characterForm = event.target;
@@ -46,20 +73,15 @@ Template.character_form.events({
         characterObj.name = characterForm.name ? characterForm.name.value : '';
         characterObj.image_url = characterForm.avatar ? characterForm.avatar.value : '';
         characterObj.morality = characterForm.morality ? characterForm.morality.value : '';
+        characterObj.characteristics = Session.get('Characteristics');
 
         //Signes values
-        $('input[name^="ethos"]').each(function() {
-            if($(this).is(':checked')){                                
-                characterObj.ethos.push({'name' : $(this).attr('name'), 'value': $(this).val() });
-            }            
+        $('input[name^="ethos"]').each(function () {
+            if ($(this).is(':checked')) {
+                characterObj.ethos.push({ 'name': $(this).attr('name'), 'value': $(this).val() });
+            }
         });
 
-        $('input[name^="characteristics"]').each(function() {            
-            if($(this).val()>0){                
-                characterObj.characteristics.push({'name' : $(this).attr('name'), 'value': $(this).val() });
-            }                        
-        });
-                
         Meteor.call('characters.upsert', characterObj,
             (error) => {
                 console.log(error.error);
@@ -75,20 +97,26 @@ Template.character_form.events({
 
 Template.character_form.onRendered(function () {
 
-    //Titles    
+    //Titles
     setTitles();
-
-    //Sliders
-    var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        spaceBetween: 30,
-        autoHeight: true,
-        preventClicks: false,
-        preventClicksPropagation: false
-    });
-
     $('select').material_select();
+
+    this.subscribe('characteristics.all', () => {
+
+        //Executes after every find on characteristics
+        Tracker.afterFlush(() => {
+            //Sliders
+            var swiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                spaceBetween: 30,
+                autoHeight: true,
+                preventClicks: false,
+                preventClicksPropagation: false
+            });
+        });
+
+    });
 });
