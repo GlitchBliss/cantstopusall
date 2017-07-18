@@ -1,0 +1,13 @@
+<template name="App_profile">
+
+    {{#with getUser}}
+    <form id="profile_edit">
+        <input type="hidden" name="id" value="{{_id}}"/>
+        <input type="text" name="username" value="{{username}}"/>
+        <input type="text" name="mail" value="{{emails.[0].address}}"/>
+ 
+        <input class="btn" type="submit" name="Validate" value="validate"/>
+    </form>
+    {{/with}}
+
+</template>
