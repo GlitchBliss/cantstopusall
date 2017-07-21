@@ -11,7 +11,11 @@
             <h3 class="title">{{name}}</h3> {{#if ethos }} {{#each ethos}}
             <p class="ethos_value">{{value}}</p>
             {{/each}} {{/if }}
+            {{#if isDraft}}
+            <hr/>
+            <em>Brouillon</em>
             <a href="" class="secondary-content open_character" data-id="{{_id}}"><i class="material-icons">settings</i></a>
+            {{/if }}
         </article>
     </section>
 

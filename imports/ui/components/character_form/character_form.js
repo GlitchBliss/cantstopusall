@@ -37,13 +37,13 @@ Template.character_form.helpers({
     pointsLeft() {
         return Session.get('CreationPointsLeft');
     },
-    isEthosChecked(value) {        
+    isEthosChecked(value) {
         if (Template.instance().characterId) {
             let character = Characters.findOne(Template.instance().characterId);
-            if (character) {                
+            if (character) {
                 let ethos = character.ethos.filter((item) => {
-                    return item.value == value;                    
-                });                
+                    return item.value == value;
+                });
                 if (ethos && ethos.length > 0) {
                     return true;
                 }
@@ -60,8 +60,21 @@ Template.character_form.events({
         const value = $(event.currentTarget).val();
         $('.avatar_image').attr('src', value);
     },
-    'click .characteristicChange'(event, template) {
+    'click .finalize_character'(event, template) {
+        let characterId = $("#characterId").val();
 
+        if(Session.get("CreationPointsLeft") > 0 ){
+            $("#modal_confirm_finalize").modal("open");
+        }
+
+        Meteor.call('characters.upsert', characterObj,
+            (error) => {
+                console.log(error.error);
+            },
+            (success) => {
+                FlowRouter.go('App.home');
+            }
+        );
     },
     'submit .character_editor'(event, template) {
 
@@ -100,9 +113,9 @@ Template.character_form.onRendered(function () {
     //Titles
     setTitles();
     $('select').material_select();
+    $("#modal_confirm_finalize").modal();
 
     this.subscribe('characteristics.all', () => {
-
         //Executes after every find on characteristics
         Tracker.afterFlush(() => {
             //Sliders
@@ -115,7 +128,7 @@ Template.character_form.onRendered(function () {
                 autoHeight: true,
                 preventClicks: false,
                 preventClicksPropagation: false
-            });
+            });            
         });
 
     });

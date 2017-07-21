@@ -4,7 +4,7 @@
         <a class="btn-floating btn-large waves-effect waves-light pointsleft">{{ pointsLeft }}</a>
         <form class="col s12 character_editor" name="character_editor">
 
-            <input type='hidden' name="id" value="{{ character._id }}" />            
+            <input type='hidden' id="characterId" name="id" value="{{ character._id }}" />            
 
             <h2 class="personnafied-h2">#1 Nom</h2>
             <div class="input-field col s12">
@@ -134,9 +134,24 @@
                 <button class="btn waves-effect waves-light record_character" type="submit">Enregistrer
                     <i class="material-icons right">send</i>
                 </button>
+                <button class="btn waves-effect waves-light finalize_character" type="button">Finaliser la création
+                    <i class="material-icons right">warning</i>
+                </button>
             </div>            
         </form>
     </div>
 
+
+  <!-- Modal Structure -->
+  <div id="modal_confirm_finalize" class="modal">
+    <div class="modal-content">
+      <h4>Ils vous reste des points de création</h4>
+      <p>Voulez-vous tout de même finaliser la création de personnage ? Les points restants seront perdus !</p>
+    </div>
+    <div class="modal-footer">
+      <a id="agree_finalize" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Finaliser !</a>
+    </div>
+  </div>
+          
 
 </template>
