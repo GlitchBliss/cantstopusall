@@ -115,28 +115,10 @@ Template.character.events({
 
 });
 
-
 Template.character.onRendered(function () {
-
-    //Titles
-    setTitles();
-    $('select').material_select();
-
-    this.subscribe('characteristics.all', () => {
-        //Executes after every find on characteristics
+    this.subscribe('characters.all', () => {
         Tracker.afterFlush(() => {
-            //Sliders
-            var swiper = new Swiper('.swiper-container', {
-                pagination: '.swiper-pagination',
-                paginationClickable: true,
-                nextButton: '.swiper-button-next',
-                prevButton: '.swiper-button-prev',
-                spaceBetween: 30,
-                autoHeight: true,
-                preventClicks: false,
-                preventClicksPropagation: false
-            });
+            setTitles();
         });
-
     });
 });

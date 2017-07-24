@@ -121,7 +121,6 @@ Template.character_form.events({
 
 
 Template.character_form.onRendered(function () {
-
     //Titles
     setTitles();
     $('select').material_select();

@@ -1,61 +1,31 @@
 <template name="character">
-    <div class="row">        
-        <form id="character_editor" class="col s12 character_editor" name="character_editor">
-
-            <input type='hidden' id="character_id" name="id" value="{{ character._id }}" />
-
-            <div class="row">
-                {{#if character.avatar}}
-                <h2 class="personnafied-h2 col s8">{{character.name}}</h2>
-                <div class="input-field col s4">
-                    <img class="avatar_image" src="{{character.avatar}}" alt="Avatar Image" />
-                </div>
-                {{else}}
-                <h2 class="personnafied-h2 col s12">{{character.name}}</h2>
-                {{/if}}
-            </div>
-
-            <div class="row ethoi">
-                {{ethos}}
-                {{#each ethos}}                
-                    <em>{{value}}</em>
-                {{/each}}
-            </div>
-
-           
-
-            <h2 class="personnafied-h2">#4 Moralité</h2>
-
-            <div class="morality_input col s12">
-                <input name="morality" type="range" id="morality" min="0" max="100" value="{{character.morality}}" />
-                <p class="white">White Hat</p>
-                <p>Black Hat</p>
-            </div>
-
-            <h2 class="personnafied-h2">#5 SkillZ</h2>
-            <!-- Swiper -->
-            <div class="swiper-container">
-                <!-- Add Pagination -->
-                <!--<div class="swiper-pagination"></div>-->
-                <!-- Add Arrows -->
-                <a class="swiper-button-next btn-floating btn-large red"><i class="material-icons">skip_next</i></a>
-                <a class="swiper-button-prev btn-floating btn-large red"><i class="material-icons">skip_previous</i></a>
-                <!--<div class="swiper-button-prev btn-floating"></div>                     -->
-                <div class="swiper-wrapper">
-                    {{#each characteristics_groups}}
-                    <div class="swiper-slide">
-                        <h4>>{{category}}</h4>
-                        {{#each characteristics category}}
-                        <div class="col m6 s12">
-                            {{> characteristic id=_id name=name label=label help=help image=image_url character=character}}
-                        </div>
-                        {{/each}}
+    {{#with character}}
+    <section class="row" data-id="{{ _id }}">
+        <div class="row">
+            <div class="col s8">
+                <h2 class="personnafied-h2 col s12">{{name}}</h2>
+                <div class="row ethoi">
+                    {{#each ethos}}
+                    <div class="col s4">
+                        <em>{{value}}</em>
                     </div>
                     {{/each}}
                 </div>
-            </div>            
-        </form>
-    </div>
+            </div>
 
+            <div class="input-field col s4">
+                {{#if avatar}}
+                <img class="avatar_image" src="{{avatar}}" alt="Avatar Image" /> {{/if}}
+            </div>
+        </div>
 
+        <div class="row">
+            {{#each characteristics}}
+            <div class="col s6">
+                <em>{{name}}</em>
+            </div>
+            {{/each}}
+        </div>
+    </section>
+    {{/with}}
 </template>

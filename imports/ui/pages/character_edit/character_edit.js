@@ -22,6 +22,5 @@ Template.App_character_edit.events({
 
 
 
-Template.App_character_edit.rendered = function () {
-
+Template.App_character_edit.rendered = function () {    
 };
