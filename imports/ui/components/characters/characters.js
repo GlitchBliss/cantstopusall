@@ -25,23 +25,8 @@ Template.characters.events({
     },
     'click .add-character'(event) {
         event.preventDefault();
-
         FlowRouter.go('App.character.create');
-    },
-
-    // 'change .select-character'(event) {
-
-    //     let option = event.target;
-    //     let characterId = option.value;
-
-    //     Meteor.call('characters.setSelected', characterId, (error) => {
-    //         if (error) {
-    //             console.log(error);
-    //         } else {
-    //             name.value = '';
-    //         }
-    //     });
-    // }
+    }
 });
 
 

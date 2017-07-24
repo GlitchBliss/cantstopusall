@@ -7,18 +7,16 @@ import './character.scss';
 
 
 Template.character.onCreated(function () {
-    Meteor.subscribe('characters.all');
+    Meteor.subscribe('characters.all');    
+    Meteor.subscribe('characteristics.all');    
     this.characterId = FlowRouter.getParam('_id');
     Session.set("Characteristics", new Array());
 });
 
 
 Template.character.helpers({
-    characteristics_groups() {
-        return _.uniq(Characteristics.find({}, { fields: { category: 1 } }).fetch(), true, doc => doc.category);
-    },
-    characteristics(group) {
-        return Characteristics.find({ category: group });
+    getCharac(id) {
+       return Characteristics.findOne(id);        
     },
     character() {
         if (Template.instance().characterId) {
@@ -32,6 +30,9 @@ Template.character.helpers({
             return Characters.findOne(Template.instance().characterId);
         }
         return null;
+    },
+    inverseMorality(morality){
+        return 100-morality;
     },
     isEthosChecked(value) {
         if (Template.instance().characterId) {

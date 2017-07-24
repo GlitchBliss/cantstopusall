@@ -13,16 +13,28 @@
                 </div>
             </div>
 
-            <div class="input-field col s4">
+            <div class="avatar col s4">
                 {{#if avatar}}
                 <img class="avatar_image" src="{{avatar}}" alt="Avatar Image" /> {{/if}}
             </div>
         </div>
 
-        <div class="row">
+        <div class="moralz row" style="background:hsl(0,0%,{{morality}}%);">
+            <div class="left" style="color:hsl(0,0%,{{inverseMorality morality}}%);">Black Hat</div>
+            <div class="cursor" style="left:{{morality}}%;"></div>                  
+            <div class="right" style="color:hsl(0,0%,{{inverseMorality morality}}%);">White Hat</div>
+        </div>
+
+        <div class="skillz row">
             {{#each characteristics}}
             <div class="col s6">
-                <em>{{name}}</em>
+
+                <dl>
+                    {{#with getCharac id}}
+                    <dt class="center">{{label}}</dt>
+                    {{/with}}
+                    <dd class="center">{{value}}</dd>
+                </dl>
             </div>
             {{/each}}
         </div>
