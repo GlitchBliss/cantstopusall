@@ -1,17 +1,80 @@
 
+$bg-color:#880e4f;
 
-.avatar {
-    img {
-        display: block;
-        width: 100%;
-    }
+.pointsleft {
+    position:  fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
 }
 
-.character-element {
-    cursor: pointer;    
-    transition: .1s ease-out !important;
+.btn-floating.btn-large i {
+    background: #ea49ea;
+    color: black;
+    text-shadow: 1px 1px 0 white;
+}
 
-    &:hover{
-        transform: scale(1.05);
+.avatar_image{
+    width: 100%;
+}
+
+.morality_input {
+
+    p {
+        font-weight: bold;
+        font-size: 1.5em;
+        margin: 0;
+        font-variant: small-caps;
+
+        &.white {
+            float: right;
+        }
+    }    
+
+    $range-color: #ea49ea;
+
+    input[type=range]::-webkit-slider-thumb {
+        background-color:$range-color;
     }
+    input[type=range]::-moz-range-thumb {
+        background-color: $range-color;
+    }
+    input[type=range]::-ms-thumb {
+        background-color: $range-color;
+    }
+
+    /***** These are to edit the thumb and the text inside the thumb *****/
+    input[type=range] + .thumb {
+        background-color: #dedede;
+    }
+    input[type=range] + .thumb.active .value {
+        color: $range-color;
+    }    
+}
+
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    top: 30px;
+    background-image: none;
+    position:absolute;
+    z-index: 200;
+}
+
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+    top:0;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: $bg-color;
 }

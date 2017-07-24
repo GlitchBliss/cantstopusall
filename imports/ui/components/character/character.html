@@ -1,22 +1,61 @@
 <template name="character">
+    <div class="row">        
+        <form id="character_editor" class="col s12 character_editor" name="character_editor">
 
-    <section class="character-element row card white" data-id="{{_id}}">
-        <aside class="avatar col s4">
-            {{#if avatar }}
-            <img src="{{avatar}}" alt=""> {{else}}
-            <img src="/img/base_avatar.png" alt=""> {{/if}}
-        </aside>
+            <input type='hidden' id="character_id" name="id" value="{{ character._id }}" />
 
-        <article class="col s8">
-            <h3 class="title">{{name}}</h3> {{#if ethos }} {{#each ethos}}
-            <p class="ethos_value">{{value}}</p>
-            {{/each}} {{/if }}
-            {{#if isDraft}}
-            <hr/>
-            <em>Brouillon</em>
-            <a href="" class="secondary-content open_character" data-id="{{_id}}"><i class="material-icons">settings</i></a>
-            {{/if }}
-        </article>
-    </section>
+            <div class="row">
+                {{#if character.avatar}}
+                <h2 class="personnafied-h2 col s8">{{character.name}}</h2>
+                <div class="input-field col s4">
+                    <img class="avatar_image" src="{{character.avatar}}" alt="Avatar Image" />
+                </div>
+                {{else}}
+                <h2 class="personnafied-h2 col s12">{{character.name}}</h2>
+                {{/if}}
+            </div>
+
+            <div class="row ethoi">
+                {{ethos}}
+                {{#each ethos}}                
+                    <em>{{value}}</em>
+                {{/each}}
+            </div>
+
+           
+
+            <h2 class="personnafied-h2">#4 Moralité</h2>
+
+            <div class="morality_input col s12">
+                <input name="morality" type="range" id="morality" min="0" max="100" value="{{character.morality}}" />
+                <p class="white">White Hat</p>
+                <p>Black Hat</p>
+            </div>
+
+            <h2 class="personnafied-h2">#5 SkillZ</h2>
+            <!-- Swiper -->
+            <div class="swiper-container">
+                <!-- Add Pagination -->
+                <!--<div class="swiper-pagination"></div>-->
+                <!-- Add Arrows -->
+                <a class="swiper-button-next btn-floating btn-large red"><i class="material-icons">skip_next</i></a>
+                <a class="swiper-button-prev btn-floating btn-large red"><i class="material-icons">skip_previous</i></a>
+                <!--<div class="swiper-button-prev btn-floating"></div>                     -->
+                <div class="swiper-wrapper">
+                    {{#each characteristics_groups}}
+                    <div class="swiper-slide">
+                        <h4>>{{category}}</h4>
+                        {{#each characteristics category}}
+                        <div class="col m6 s12">
+                            {{> characteristic id=_id name=name label=label help=help image=image_url character=character}}
+                        </div>
+                        {{/each}}
+                    </div>
+                    {{/each}}
+                </div>
+            </div>            
+        </form>
+    </div>
+
 
 </template>

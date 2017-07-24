@@ -25,14 +25,15 @@ Meteor.methods({
 	'characters.finalize'(characterId) {
 
 		check(characterId, String);
-
-		return Characters.update(
-			{ _id: characterId },
-			{
-				$set: {
-					isDraft: false
-				}
-			});
+		if (Characters.findOne(characterId)) {
+			return Characters.update(
+				{ _id: characterId },
+				{
+					$set: {
+						isDraft: false
+					}
+				});
+		}
 	},
 	'characters.setSelected'(characterId) {
 		check(characterId, String);
@@ -43,6 +44,14 @@ Meteor.methods({
 
 			//Then, mark provided as selected
 			Characters.update(characterId, { $set: { isSelected: true } });
+		}
+	},
+	'characters.delete'(characterId) {
+		check(characterId, String);
+
+		if (Characters.findOne(characterId)) {			
+			//Then, mark provided as selected
+			Characters.remove(characterId);
 		}
 	},
 });

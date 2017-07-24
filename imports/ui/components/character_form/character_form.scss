@@ -66,6 +66,8 @@ $bg-color:#880e4f;
 .swiper-button-prev, .swiper-button-next {
     top: 30px;
     background-image: none;
+    position:absolute;
+    z-index: 200;
 }
 
 .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {

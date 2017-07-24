@@ -26,7 +26,7 @@ Template.join_game.helpers({
         return games;
     },
     characters() {
-        return Characters.find({ userId: Meteor.userId() });
+        return Characters.find({ userId: Meteor.userId(), isDraft:false });
     },
     gamemasters() {
         //TODO : MJs ONLY, NOT ALL USERS !         
@@ -55,7 +55,7 @@ Template.join_game.events({
         Session.set('selectedGame', '');
         Session.set('selectedCharacter', '');
     },
-    'click .character-element'(event, instance) {
+    'click .character_element'(event, instance) {
         const characterId = $(event.currentTarget).data('id');
         Session.set('selectedCharacter', characterId);
 

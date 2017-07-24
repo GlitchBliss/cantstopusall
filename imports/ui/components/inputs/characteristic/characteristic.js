@@ -185,9 +185,11 @@ Template.characteristic.onRendered(function () {
     const currentObject = Template.instance().fibonacciObjects[currentValue];
     $('.' + currentObject.image, element).addClass('battery-visible');
 
-    let character = Template.instance().data['character'];
-    let characteristic = character.characteristics.filter((item) => item.id == Template.instance().data['id']);
-    let value = characteristic && characteristic.length > 0 ? characteristic[0].value : 0;
+    if (Template.instance().data['character']) {
+        let character = Template.instance().data['character'];
+        let characteristic = character.characteristics.filter((item) => item.id == Template.instance().data['id']);
+        let value = characteristic && characteristic.length > 0 ? characteristic[0].value : 0;
 
-    setCharacteristicValue(Template.instance(), value);
+        setCharacteristicValue(Template.instance(), value);
+    }
 });

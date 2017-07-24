@@ -60,21 +60,33 @@ Template.character_form.events({
         const value = $(event.currentTarget).val();
         $('.avatar_image').attr('src', value);
     },
-    'click .finalize_character'(event, template) {
-        let characterId = $("#characterId").val();
+    'click #finalize_character'(event, template) {
+        let characterId = $("#character_id").val();        
 
-        if(Session.get("CreationPointsLeft") > 0 ){
-            $("#modal_confirm_finalize").modal("open");
+        if (Session.get("CreationPointsLeft") > 0) {
+
+            vex.defaultOptions.className = 'vex-theme-flat-attack';
+            vex.dialog.confirm({
+                message: 'Il vous reste ' + Session.get("CreationPointsLeft") + ' points de création, êtes-vous sur de vouloir finaliser le personnage ?',
+                callback: function (value) {
+                    if (value) {
+                        Meteor.call('characters.finalize', characterId,
+                            (error, result) => {
+                                if (error) {
+                                    console.log(error.error);
+                                } else {
+                                    FlowRouter.go('App.home');
+                                }
+                            }
+                        );
+                    } else {
+                        console.log('“Dans beaucoup de prudence il y a toujours un peu de lâcheté.”')
+                    }
+                }
+            });
         }
 
-        Meteor.call('characters.upsert', characterObj,
-            (error) => {
-                console.log(error.error);
-            },
-            (success) => {
-                FlowRouter.go('App.home');
-            }
-        );
+
     },
     'submit .character_editor'(event, template) {
 
@@ -113,7 +125,6 @@ Template.character_form.onRendered(function () {
     //Titles
     setTitles();
     $('select').material_select();
-    $("#modal_confirm_finalize").modal();
 
     this.subscribe('characteristics.all', () => {
         //Executes after every find on characteristics
@@ -128,7 +139,7 @@ Template.character_form.onRendered(function () {
                 autoHeight: true,
                 preventClicks: false,
                 preventClicksPropagation: false
-            });            
+            });
         });
 
     });

@@ -3,6 +3,15 @@ import './layout.scss';
 import '../../components/notification/notification.js';
 import { CharactersInGames } from '/imports/api/games/games.js';
 
+import '../../stylesheets/vex/vex.css';
+import '../../stylesheets/vex/vex-theme-bottom-right-corner.css';
+import '../../stylesheets/vex/vex-theme-default.css';
+import '../../stylesheets/vex/vex-theme-flat-attack.css';
+import '../../stylesheets/vex/vex-theme-os.css';
+import '../../stylesheets/vex/vex-theme-plain.css';
+import '../../stylesheets/vex/vex-theme-top.css';
+import '../../stylesheets/vex/vex-theme-wireframe.css';
+
 //Global helpers
 Template.App_body.onCreated(function () {
     this.subscribe("characters_in_games.all");

@@ -1,0 +1,23 @@
+<template name="character_element">
+
+    <section class="character_element row card white" data-id="{{_id}}">
+        <aside class="avatar col s4">
+            {{#if avatar }}
+            <img src="{{avatar}}" alt=""> {{else}}
+            <img src="/img/base_avatar.png" alt=""> {{/if}}
+        </aside>
+
+        <article class="col s8">
+            <h3 class="title">{{name}}</h3> {{#if ethos }} {{#each ethos}}
+            <p class="ethos_value">{{value}}</p>
+            {{/each}} {{/if }}
+            <hr/>
+            {{#if isDraft}}            
+            <em>Brouillon</em>
+            <a href="" class="secondary-content open_character" data-id="{{_id}}"><i class="material-icons">settings</i></a>
+            {{/if }}
+            <a href="" class="secondary-content delete_character" data-id="{{_id}}"><i class="material-icons">delete</i></a>
+        </article>
+    </section>
+
+</template>

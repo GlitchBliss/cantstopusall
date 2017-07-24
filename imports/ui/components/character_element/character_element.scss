@@ -1,0 +1,17 @@
+
+
+.avatar {
+    img {
+        display: block;
+        width: 100%;
+    }
+}
+
+.character_element {
+    cursor: pointer;    
+    transition: .1s ease-out !important;
+
+    &:hover{
+        transform: scale(1.05);
+    }
+}

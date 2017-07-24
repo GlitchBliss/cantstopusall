@@ -1,5 +1,5 @@
 import { Characters } from '/imports/api/characters/characters.js';
-import { Character } from '../character/character.js';
+import { CharacterElement } from '../character_element/character_element.js';
 import { Meteor } from 'meteor/meteor';
 import './characters.html';
 
@@ -18,12 +18,11 @@ Template.characters.helpers({
 });
 
 Template.characters.events({
-    // 'click .select-character'(event, instance) {
-
-    //     const characterId = $(event.target).data("id");
-    //     instance.characterSelectedId.set(characterId);
-
-    // },
+    'click .character_element'(event, instance) {
+        event.preventDefault();
+        const characterId = $(event.currentTarget).data("id");
+        FlowRouter.go('App.character.visualize', {_id: characterId});
+    },
     'click .add-character'(event) {
         event.preventDefault();
 

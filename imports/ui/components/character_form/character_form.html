@@ -2,9 +2,9 @@
     <div class="row">
 
         <a class="btn-floating btn-large waves-effect waves-light pointsleft">{{ pointsLeft }}</a>
-        <form class="col s12 character_editor" name="character_editor">
+        <form id="character_editor" class="col s12 character_editor" name="character_editor">
 
-            <input type='hidden' id="characterId" name="id" value="{{ character._id }}" />            
+            <input type='hidden' id="character_id" name="id" value="{{ character._id }}" />            
 
             <h2 class="personnafied-h2">#1 Nom</h2>
             <div class="input-field col s12">
@@ -113,17 +113,16 @@
                 <!-- Add Pagination -->
                 <!--<div class="swiper-pagination"></div>-->
                 <!-- Add Arrows -->                
-                <a class="swiper-button-next btn-floating btn-large waves-effect waves-light red"><i class="material-icons">skip_next</i></a>
-                <a class="swiper-button-prev btn-floating btn-large waves-effect waves-light red"><i class="material-icons">skip_previous</i></a>
+                <a class="swiper-button-next btn-floating btn-large red"><i class="material-icons">skip_next</i></a>
+                <a class="swiper-button-prev btn-floating btn-large red"><i class="material-icons">skip_previous</i></a>
                 <!--<div class="swiper-button-prev btn-floating"></div>                     -->
                 <div class="swiper-wrapper">               
-
-                    {{#each characteristics_groups}}    
+                    {{#each characteristics_groups}}                        
                     <div class="swiper-slide">  
                         <h4>>{{category}}</h4>
                         {{#each characteristics category}}
-                        <div class="col m6 s12">
-                            {{> characteristic id=_id name=name label=label help=help image=image_url character=character}}
+                        <div class="col m6 s12">                            
+                            {{> characteristic id=_id name=name label=label help=help image=image_url character=character}}                            
                         </div>
                         {{/each}}
                     </div>
@@ -131,27 +130,15 @@
                 </div>
             </div>
             <div class="col s12 center-align">
-                <button class="btn waves-effect waves-light record_character" type="submit">Enregistrer
+                <button class="btn waves-effect waves-light record_character" type="submit">Enregistrer brouillon
                     <i class="material-icons right">send</i>
                 </button>
-                <button class="btn waves-effect waves-light finalize_character" type="button">Finaliser la création
+                <button id="finalize_character" class="btn waves-effect waves-light" type="button">Terminer Création
                     <i class="material-icons right">warning</i>
                 </button>
             </div>            
         </form>
     </div>
 
-
-  <!-- Modal Structure -->
-  <div id="modal_confirm_finalize" class="modal">
-    <div class="modal-content">
-      <h4>Ils vous reste des points de création</h4>
-      <p>Voulez-vous tout de même finaliser la création de personnage ? Les points restants seront perdus !</p>
-    </div>
-    <div class="modal-footer">
-      <a id="agree_finalize" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Finaliser !</a>
-    </div>
-  </div>
-          
 
 </template>
