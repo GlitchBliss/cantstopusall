@@ -67,12 +67,14 @@ FlowRouter.route('/character/:_id', {
 	},
 });
 
-FlowRouter.route('/character/create', {
+
+FlowRouter.route('/characters/creation', {
 	name: 'App.character.create',
 	action(params, queryParams) {
 		BlazeLayout.render('App_body', { main: 'App_character_create' });
 	},
 });
+
 
 FlowRouter.route('/character/edit/:_id', {
 	name: 'App.character.edit',

@@ -6,7 +6,7 @@ import './character_create.html';
 import './character_create.scss';
 
 Template.App_character_create.onCreated(function () {
-    console.log("created, therefore, reached.");
+    
 });
 
 
