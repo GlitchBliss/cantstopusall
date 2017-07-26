@@ -6,10 +6,33 @@ import './character_form.html';
 import './character_form.scss';
 
 Template.character_form.onCreated(function () {
-    Meteor.subscribe('characters.all');
+
     this.characterId = FlowRouter.getParam('_id');
+    Meteor.subscribe('characters.all', () => {
+        Tracker.afterFlush(() => {
+            this.character = Characters.findOne(this.characterId);
+            if (this.character) {
+                Session.set("XpPoints", this.character.xpPoints);
+            }
+
+        });
+    });
+
+    Tracker.autorun(() => {
+        let availablePoints = parseInt(Session.get("CreationPointsGiven")) - parseInt(Session.get("CreationPointsUsed"));
+        if (this.character
+            && this.character.isDraft
+            && Session.get("XpPoints")) {
+            Session.set("CreationPointsLeft", availablePoints + parseInt(Session.get("XpPoints")));
+        } else {            
+            Session.set("CreationPointsLeft", availablePoints);
+        }
+    });
+
+    Session.set("XpPoints", 0);
     Session.set("CreationPointsGiven", "89");
     Session.set("CreationPointsLeft", Session.get("CreationPointsGiven"));
+    Session.set("CreationPointsUsed", 0);
     Session.set("Characteristics", new Array());
 });
 
@@ -35,7 +58,7 @@ Template.character_form.helpers({
         return null;
     },
     pointsLeft() {
-        return Session.get('CreationPointsLeft');
+        return Session.get("CreationPointsLeft");
     },
     isEthosChecked(value) {
         if (Template.instance().characterId) {
@@ -61,7 +84,7 @@ Template.character_form.events({
         $('.avatar_image').attr('src', value);
     },
     'click #finalize_character'(event, template) {
-        let characterId = $("#character_id").val();        
+        let characterId = $("#character_id").val();
 
         if (Session.get("CreationPointsLeft") > 0) {
 
@@ -98,6 +121,8 @@ Template.character_form.events({
         characterObj.name = characterForm.name ? characterForm.name.value : '';
         characterObj.image_url = characterForm.avatar ? characterForm.avatar.value : '';
         characterObj.morality = characterForm.morality ? characterForm.morality.value : '';
+        characterObj.creaPoints = Session.get('CreationPointsLeft');
+        characterObj.xpPoints = Session.get('XpPoints');
         characterObj.characteristics = Session.get('Characteristics');
 
         //Signes values

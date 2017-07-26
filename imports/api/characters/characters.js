@@ -8,5 +8,7 @@ export class CharacterObject {
     'name' = '';
     'image_url' = '';
     'ethos' = new Array();
+    'creaPoints' = '';
+    'xpPoints' = '';
     'characteristics' = new Array();    
 }

@@ -8,7 +8,9 @@ Template.character_element.onCreated(function () {
 });
 
 Template.character_element.helpers({
-
+    hasXPLeft() {        
+        return Template.instance().data['xpPoints'] > 0;
+    }
 });
 
 Template.character_element.events({

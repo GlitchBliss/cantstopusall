@@ -95,6 +95,8 @@ Template.character.events({
         characterObj.name = characterForm.name ? characterForm.name.value : '';
         characterObj.image_url = characterForm.avatar ? characterForm.avatar.value : '';
         characterObj.morality = characterForm.morality ? characterForm.morality.value : '';
+        characterObj.creaPoints= Session.get('CreationPointsLeft');
+        characterObj.xpPoints = 0;
         characterObj.characteristics = Session.get('Characteristics');
 
         //Signes values

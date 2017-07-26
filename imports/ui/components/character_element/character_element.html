@@ -15,6 +15,10 @@
             {{#if isDraft}}            
             <em>Brouillon</em>
             <a href="" class="secondary-content open_character" data-id="{{_id}}"><i class="material-icons">settings</i></a>
+            {{else}}
+                {{#if hasXPLeft}}
+                    <a href="" class="secondary-content open_character" data-id="{{_id}}"><i class="material-icons">priority_high</i></a>
+                {{/if}}
             {{/if }}
             <a href="" class="secondary-content delete_character" data-id="{{_id}}"><i class="material-icons">delete</i></a>
         </article>

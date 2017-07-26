@@ -111,9 +111,8 @@ var characteristicUpdate = function (id, value) {
             removeCharacteristicFromArray(id);
         }
     }
-
-    let creationsPointsMax = Session.get("CreationPointsGiven");
-    Session.set("CreationPointsLeft", creationsPointsMax - getCreationCosts());
+    
+    Session.set("CreationPointsUsed", getCreationCosts());
 }
 
 var setCharacteristicValue = function (template, value) {
@@ -134,7 +133,7 @@ Template.characteristic.events({
         const currentValue = $('input', element).val();
         const nextValue = template.fibonacciObjects[currentValue].next != 0 ? template.fibonacciObjects[currentValue].next : 21;
 
-        if ((Session.get("CreationPointsGiven") - getCreationCosts() - nextValue) > 0) {
+        if (parseInt(Session.get("CreationPointsLeft") - nextValue) > 0) {
 
             element.removeClass('shake');
             $('.pointsleft').removeClass('shake');
