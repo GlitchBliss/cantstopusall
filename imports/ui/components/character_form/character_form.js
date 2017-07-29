@@ -7,37 +7,43 @@ import './character_form.scss';
 
 Template.character_form.onCreated(function () {
 
-    this.characterId = FlowRouter.getParam('_id');
-    Meteor.subscribe('characters.all', () => {
-        Tracker.afterFlush(() => {
-            this.character = Characters.findOne(this.characterId);
-            if (this.character) {
-                Session.set("XpPoints", this.character.xpPoints);
-            }
-
-        });
-    });
-
-    Tracker.autorun(() => {
-        let availablePoints = parseInt(Session.get("CreationPointsGiven")) - parseInt(Session.get("CreationPointsUsed"));
-        if (this.character
-            && this.character.isDraft
-            && Session.get("XpPoints")) {
-            Session.set("CreationPointsLeft", availablePoints + parseInt(Session.get("XpPoints")));
-        } else {            
-            Session.set("CreationPointsLeft", availablePoints);
-        }
-    });
-
-    Session.set("XpPoints", 0);
-    Session.set("CreationPointsGiven", "89");
-    Session.set("CreationPointsLeft", Session.get("CreationPointsGiven"));
     Session.set("CreationPointsUsed", 0);
     Session.set("Characteristics", new Array());
+    Session.set("CreationPointsGiven", "89");
+    Session.set("CreationPointsLeft", Session.get("CreationPointsGiven"));
+
+    this.characterId = FlowRouter.getParam('_id');
+
+    Meteor.subscribe('characters.all', () => {
+        Tracker.afterFlush(() => {
+
+            if (this.characterId) {
+                this.character = Characters.findOne(this.characterId);
+
+                if (this.character) {                    
+                    Session.set("CreationPointsLeft", this.character.creaPoints);
+                }
+            }
+        });
+    });
 });
 
 
 Template.character_form.helpers({
+    avatarsUrls() {
+        const avatars = [
+            {"url":"https://tctechcrunch2011.files.wordpress.com/2014/01/growth-hacker1.jpg?w=738", "alt":""},
+            {"url":"http://i0.kym-cdn.com/photos/images/facebook/000/225/834/image.axd", "alt":""},
+            {"url":"https://19818-presscdn-pagely.netdna-ssl.com/wp-content/uploads/1e3/21/343a9fdddd56f697160326116cac26e1.jpg", "alt":""},
+            {"url":"https://pbs.twimg.com/profile_images/1778635715/Larry1Avatar_400x400.jpg", "alt":""},
+            {"url":"https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP2099-CUSA02478_00-AV00000000000008/1499638801000/image?_version=00_09_000&platform=chihiro&w=225&h=225&bg_color=000000&opacity=100", "alt":""},
+            {"url":"https://iamkio.files.wordpress.com/2011/04/lolcat-need-more-internets.jpg", "alt":""},
+            {"url":"https://forum.nexoneu.com/image.php?u=1656576&dateline=1354653886", "alt":""},
+            {"url":"http://img02.deviantart.net/64af/i/2012/307/1/b/cybercat_by_zoranphoto-d4v6wvx.jpg", "alt":""}
+        ];
+
+        return avatars;
+    },
     characteristics_groups() {
         return _.uniq(Characteristics.find({}, { fields: { category: 1 } }).fetch(), true, doc => doc.category);
     },
@@ -56,6 +62,14 @@ Template.character_form.helpers({
             return Characters.findOne(Template.instance().characterId);
         }
         return null;
+    },
+    isDraft() {
+        let character = Characters.findOne(Template.instance().characterId);
+        if(character != null){
+            return character.isDraft;
+        }else{
+            return true;
+        }
     },
     pointsLeft() {
         return Session.get("CreationPointsLeft");
@@ -82,6 +96,13 @@ Template.character_form.events({
     'change #avatar'(event, template) {
         const value = $(event.currentTarget).val();
         $('.avatar_image').attr('src', value);
+    },
+    'click .avatar_element'(event, template){
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        $("#avatar").val($(element).attr('src'));
+        $("#avatar").change();
     },
     'click #finalize_character'(event, template) {
         let characterId = $("#character_id").val();
@@ -122,7 +143,6 @@ Template.character_form.events({
         characterObj.image_url = characterForm.avatar ? characterForm.avatar.value : '';
         characterObj.morality = characterForm.morality ? characterForm.morality.value : '';
         characterObj.creaPoints = Session.get('CreationPointsLeft');
-        characterObj.xpPoints = Session.get('XpPoints');
         characterObj.characteristics = Session.get('Characteristics');
 
         //Signes values

@@ -6,10 +6,12 @@ import '../../ui/layouts/body/body.js';
 import '../../ui/pages/home/home.js';
 import '../../ui/pages/profile/profile.js';
 import '../../ui/pages/login/login.js';
+import '../../ui/pages/games/games.js';
 import '../../ui/pages/game/game.js';
 import '../../ui/pages/game_live/game_live.js';
 import '../../ui/pages/game_create/game_create.js';
 import '../../ui/pages/game_open/game_open.js';
+import '../../ui/pages/characters/characters.js';
 import '../../ui/pages/character_edit/character_edit.js';
 import '../../ui/pages/character_create/character_create.js';
 import '../../ui/pages/character_visualize/character_visualize.js';
@@ -39,6 +41,13 @@ FlowRouter.route('/profile', {
 });
 
 
+FlowRouter.route('/games', {
+	name: 'App.games.list',
+	action(params, queryParams) {
+		BlazeLayout.render('App_body', { main: 'App_games_list' });
+	},
+});
+
 FlowRouter.route('/game/create', {
 	name: 'App.game.create',
 	action(params, queryParams) {
@@ -57,6 +66,13 @@ FlowRouter.route('/game/open/:_id', {
 	name: 'App.game.open',
 	action(params, queryParams) {
 		BlazeLayout.render('App_body', { main: 'App_game_open' });
+	},
+});
+
+FlowRouter.route('/characters', {
+	name: 'App.characters.list',
+	action(params, queryParams) {
+		BlazeLayout.render('App_body', { main: 'App_characters_list' });
 	},
 });
 

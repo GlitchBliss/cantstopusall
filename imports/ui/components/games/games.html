@@ -6,23 +6,26 @@
         <div class="card-content">
             <span class="card-title white-text">Game Rooms</span>
 
-            <ul class="collection">
-                {{#each games}}
-                
-                <li class="game-element collection-item avatar white" data-id="{{_id}}">
+            {{#each games}}
+            <section class="game-element row card white" data-id="{{_id}}">
+                <aside class="avatar col s4">
                     {{#if image }}
-                    <img class="circle responsive-img" src="/img/{{image}}" alt="" >
-                    {{else}}
-                    <img class="circle responsive-img" src="/img/base_avatar.png" alt="" >
-                    {{/if}}
+                    <img class="circle responsive-img" src="/img/{{image}}" alt=""> {{else}}
+                    <img class="circle responsive-img" src="/img/base_avatar.png" alt=""> {{/if}}
+                </aside>
 
+                <article class="col s8">
                     <span class="title">{{title}}</span>
-                    <p>{{description}}</p>                    
+                    <p>{{description}}</p>
+                    <hr/>
                     <span class="new badge" data-badge-caption="joueurs">{{playerNumber _id}}</span>
+
                     <a href="" class="secondary-content open_game" data-id="{{_id}}"><i class="material-icons">settings</i></a>
-                </li>
-                {{/each}}
-            </ul>
+                    <a href="" class="secondary-content delete_game" data-id="{{_id}}"><i class="material-icons">delete</i></a>
+                </article>
+            </section>
+            {{/each}}
+
 
         </div>
         <div class="card-action">
@@ -30,7 +33,7 @@
                 <i class="material-icons right">contacts</i>
             </a>
         </div>
-    </div>                     
+    </div>
 
 
 

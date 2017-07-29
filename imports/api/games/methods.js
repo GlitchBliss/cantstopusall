@@ -48,5 +48,13 @@ Meteor.methods({
     'games.open'(gameId){
         check(gameId, String);
         return Games.update({ _id: gameId },{ $set:{isOpen:true}});
-    }
+    },
+	'games.delete'(gameId) {
+		check(gameId, String);
+
+		if (Games.findOne(gameId)) {			
+			//Then, mark provided as selected
+			Games.remove(gameId);
+		}
+	}    
 });

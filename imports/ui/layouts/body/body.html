@@ -1,19 +1,34 @@
 <template name="App_body">
-    <section class="container">               
+
+    <section class="container">
         <nav class="row">
             <div class="nav-wrapper">
                 <a href="/home" class="brand-logo personnafied right">1337</a>
-                <ul id="nav-mobile" class="left">                                  
-                    <li><a class="logout" href="">Logout : {{currentUser.username}}</a></li>                    
-                    <li><a href="/home">Accueil</a></li>                    
-                    <li><a href="/profile">Profile</a></li>                    
+                <ul id="nav-mobile" class="left">
+                    <li><a class="logout" href="">Logout : {{currentUser.username}}</a></li>
+                    <li><a href="/home">Accueil</a></li>
+                    <li><a href="/profile">Profile</a></li>
                 </ul>
             </div>
-        </nav>                
+        </nav>
+        <nav class="home row">
+            <ul>
+                <li class="col s6">
+                    <a href="{{pathFor 'App.characters.list' }}" title="Personnages" class="">
+        Personnages
+        </a>
+                </li>
+                <li class="col s6">
+                    <a href="{{pathFor 'App.games.list' }}" title="Parties" class="">
+        Parties
+        </a>
+                </li>
+            </ul>
+        </nav>
         {{> Template.dynamic template=main}}
-        
-        <header >
-            {{ > notification }} 
+
+        <header>
+            {{ > notification }}
         </header>
     </section>
 </template>

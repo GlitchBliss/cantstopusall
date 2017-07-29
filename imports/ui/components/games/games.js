@@ -20,7 +20,6 @@ Template.games.helpers({
     games() {
         return Games.find({ userId: Meteor.userId() });
     },
-
     playerNumber(gameId) {
         return CharactersInGames.find({ gameId: gameId }).fetch().length;
     }
@@ -37,7 +36,7 @@ Template.games.events({
             (success) => {
                 FlowRouter.go('App.game.live', { _id: gameId });
             }
-        );        
+        );
     },
 
     'click .add-game'(event) {
@@ -50,5 +49,33 @@ Template.games.events({
         event.stopPropagation();
         const gameId = $(event.currentTarget).data('id');
         FlowRouter.go('App.game.open', { _id: gameId });
+    },
+    'click .delete_game'(event, instance) {
+        event.preventDefault();
+        event.stopPropagation();
+        const gameId = $(event.currentTarget).data("id");
+
+        if (gameId) {
+            vex.defaultOptions.className = 'vex-theme-flat-attack';
+            vex.dialog.confirm({
+                message: 'Aucun retour en arrière possible - briser en bits cette petite boite ?',
+                callback: function (value) {
+                    if (value) {
+                        Meteor.call('games.delete', gameId,
+                            (error, result) => {
+                                if (error) {
+                                    console.log(error.error);
+                                } else {
+                                    console.log("Supprimé avec succès.")
+                                }
+                            }
+                        );
+                    } else {
+                        console.log('“Dans beaucoup de prudence il y a toujours un peu de lâcheté.”')
+                    }
+                }
+            });
+
+        }
     }
 });

@@ -1,6 +1,5 @@
-<template name="characteristic">
-
-    <article id="{{ id }}" class="{{ name }} characteristic_choice col s12">
+<template name="characteristic">    
+    <article id="{{ id }}" class="{{ name }} characteristic_choice col s12 {{#if isDisabled}} disabled {{/if}}">
         <div class="left-wrapper">
             <div class="left-block">
                 <p class="title"> # {{ label }}</p>
@@ -8,8 +7,8 @@
 
                 <div class="action-wrapper col s12">
                     <img class="plus action-icon" src="/img/battery-plus-ghost.svg" />
-                    <em class="level-label">Inapte</em>
-                    <img class="minus action-icon" src="/img/battery-minus-ghost.svg" />
+                    <em class="level-label">Inapte</em> {{#if isDraft }}
+                    <img class="minus action-icon" src="/img/battery-minus-ghost.svg" /> {{/if}}
                 </div>
             </div>
         </div>
@@ -21,12 +20,11 @@
                 <img class="battery-level battery-50" src="/img/battery-50.svg" />
                 <img class="battery-level battery-75" src="/img/battery-75.svg" />
                 <img class="battery-level battery-100" src="/img/battery-100.svg" />
-                <img class="battery-level energise" src="/img/energise.svg" />                
+                <img class="battery-level energise" src="/img/energise.svg" />
                 <img src=" {{image }} " />
             </aside>
         </div>
 
         <input type="text" data-id="{{id}}" name="characteristics[{{ name }}]" value="{{ value }}" />
-    </article>
-
+    </article>    
 </template>

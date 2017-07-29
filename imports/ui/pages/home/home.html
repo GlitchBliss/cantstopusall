@@ -1,30 +1,12 @@
 <template name="App_home">
   {{#if currentUser}}
 
-  <nav class="home row">
-    <ul>
-      <li class="col s4">
-        Personnages
-      </li>
-      <li class="col s4">
-        Créer une partie
-      </li>
-      <li class="col s4">
-        Rejoindre une partie
-      </li>
-    </ul>
-  </nav>
-
   <section class="row">
     <article class="col s12 m6">{{> characters}}</article>
     <article class="col s12 m6">{{> games}}</article>
     <article class="col s12 m6">{{> join_game}}</article>
   </section>
 
-  {{else}} 
-  
-  {{ > atForm}} 
-  
-  {{/if}}
+  {{else}} {{> atForm}} {{/if}}
 
 </template>

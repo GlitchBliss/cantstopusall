@@ -18,7 +18,7 @@ Meteor.methods({
 					characteristics: characterObject.characteristics,
 					isDraft: true,
 					creaPoints:characterObject.creaPoints,
-					xpPoints: characterObject.xpPoints,
+					xpPoints: characterObject.xpPoints ? characterObject.xpPoints : 0,
 					userId: Meteor.userId(),
 					createdAt: new Date()
 				}
@@ -32,8 +32,7 @@ Meteor.methods({
 				{ _id: characterId },
 				{
 					$set: {
-						creaPoints:0,
-						xpPoints:0,
+						creaPoints:0,						
 						isDraft: false
 					}
 				});

@@ -6,6 +6,8 @@ import './characteristic.scss';
 
 Template.characteristic.onCreated(function () {
 
+    this.canShow = new ReactiveVar(true);
+
     this.fibonacciValues = [0, 3, 5, 8, 13, 21];
     this.fibonacciObjects = {
         '0': {
@@ -43,7 +45,17 @@ Template.characteristic.onCreated(function () {
 
 
 Template.characteristic.helpers({
+    isDisabled() {
+        return !Template.instance().canShow.get();
+    },
+    isDraft() {
+        if (Template.instance().data['character']) {
+            return Template.instance().data['character']['isDraft'];
+        } else {
+            return true;
+        }
 
+    }
 });
 
 ///Array need to be cloned to trigger change
@@ -111,8 +123,6 @@ var characteristicUpdate = function (id, value) {
             removeCharacteristicFromArray(id);
         }
     }
-    
-    Session.set("CreationPointsUsed", getCreationCosts());
 }
 
 var setCharacteristicValue = function (template, value) {
@@ -146,6 +156,7 @@ Template.characteristic.events({
             }
 
             setCharacteristicValue(template, nextValue);
+            Session.set("CreationPointsLeft", parseInt(Session.get("CreationPointsLeft")) - nextValue);
 
         } else {
             $('.pointsleft').addClass('shake');
@@ -164,12 +175,13 @@ Template.characteristic.events({
             }
         }
 
-        prevValue = prevValue == 21 ? 0 : prevValue;
+        prevValue = prevValue == 21 ? 0 : parseInt(prevValue);
 
         element.removeClass('shake');
         $('em', element).removeClass('parangon');
 
         setCharacteristicValue(template, prevValue);
+        Session.set("CreationPointsLeft", parseInt(Session.get("CreationPointsLeft")) + parseInt(currentValue));
     }
 
 });
@@ -190,5 +202,9 @@ Template.characteristic.onRendered(function () {
         let value = characteristic && characteristic.length > 0 ? characteristic[0].value : 0;
 
         setCharacteristicValue(Template.instance(), value);
+
+        const nextValue = Template.instance().fibonacciObjects[value].next != 0 ? Template.instance().fibonacciObjects[value].next : 21;
+        Template.instance().canShow.set(Session.get("CreationPointsLeft") > nextValue);
     }
+
 });

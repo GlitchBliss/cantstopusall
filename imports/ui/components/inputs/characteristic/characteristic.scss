@@ -1,4 +1,8 @@
 
+.disabled {
+    opacity: .2;
+}
+
 .round_characteristic {
     $border-color:#880e4f;
     $buttons-border-color: white;
@@ -178,5 +182,5 @@
                 left:0;
             }
         }
-    }      
+    }  
 }

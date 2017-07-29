@@ -8,8 +8,8 @@ Template.character_element.onCreated(function () {
 });
 
 Template.character_element.helpers({
-    hasXPLeft() {        
-        return Template.instance().data['xpPoints'] > 0;
+    canEvolve() {        
+        return Template.instance().data['creaPoints'] > 0;
     }
 });
 
@@ -64,7 +64,6 @@ Template.character_element.events({
                     }
                 }
             });
-
         }
     }
 });

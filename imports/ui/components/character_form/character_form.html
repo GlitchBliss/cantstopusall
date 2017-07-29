@@ -4,110 +4,121 @@
         <a class="btn-floating btn-large waves-effect waves-light pointsleft">{{ pointsLeft }}</a>
         <form id="character_editor" class="col s12 character_editor" name="character_editor">
 
-            <input type='hidden' id="character_id" name="id" value="{{ character._id }}" />            
+            <input type='hidden' id="character_id" name="id" value="{{ character._id }}" />                        
 
-            <h2 class="personnafied-h2">#1 Nom</h2>
-            <div class="input-field col s12">
-                <input id="name" name="name"  type="text" class="validate" value="{{character.name}}" required>                                        
-                <label for="name">Nom du personnage *</label>
-            </div>   
+            {{#if isDraft}}
 
-            <h2 class="personnafied-h2">#2 Avatar URL</h2>
-            <div class="row">
-                <div class="input-field col m10 s8">
-                    <input id="avatar" name="avatar"  type="text" class="validate" value="{{character.avatar}}" >                                        
-                    <label for="avatar">Adresse Web de l'image d'avatar</label>
-                </div>  
-                <div class="input-field col m2 s4">
-                    <img class="avatar_image" src="{{character.avatar}}" alt="Avatar Image"/>
-                </div> 
-            </div>
+                <h2 class="personnafied-h2">#1 Nom</h2>
+                <div class="input-field col s12">
+                    <input id="name" name="name"  type="text" class="validate" value="{{character.name}}" required>                                        
+                    <label for="name">Nom du personnage *</label>
+                </div>   
 
-            <h2 class="personnafied-h2">#3 Ethos</h2>
-            <div class="row">
-                <p class="col m4 s6">
-                    <input name="ethos['cosplayer']" type="checkbox" id="cosplayer" value="Cosplayer" checked = "{{ isEthosChecked 'Cosplayer'}}"/>
-                    <label for="cosplayer">Cosplayer</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['otaku']" type="checkbox" id="otaku" value="Otaku"  checked = "{{ isEthosChecked 'Otaku'}}"/>
-                    <label for="otaku">Otaku</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['gifted']" type="checkbox" id="gifted" value="Surdoué" checked = "{{ isEthosChecked 'Surdoué'}}"/>
-                    <label for="gifted">Surdoué</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['marvel_fan']" type="checkbox" id="marvel_fan" value="Fan de Marvel" checked = "{{ isEthosChecked 'Fan de Marvel'}}"/>
-                    <label for="marvel_fan">Fan de Marvel</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['dc_fan']" type="checkbox" id="dc_fan" value="Fan de DC" checked = "{{ isEthosChecked 'Fan de DC'}}"/>
-                    <label for="dc_fan">Fan de DC</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['progamer']" type="checkbox" id="progamer" value="Progamer" checked = "{{ isEthosChecked 'Progamer'}}"/>
-                    <label for="progamer">Pro-gamer</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['drugaddict']" type="checkbox" id="drugaddict" value="Drogué" checked = "{{ isEthosChecked 'Drogué'}}" />
-                    <label for="drugaddict">Drogué</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['cultist']" type="checkbox" id="cultist" value="Cultiste" checked = "{{ isEthosChecked 'Cultiste'}}" />
-                    <label for="cultist">Cultiste</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['spicy']" type="checkbox" id="spicy" value="Mange épicé" checked = "{{ isEthosChecked 'Mange épicé'}}" />
-                    <label for="spicy">Mange épicé</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['oneeyed']" type="checkbox" id="oneeyed" value="Borgne" checked = "{{ isEthosChecked 'Borgne'}}" />
-                    <label for="oneeyed">Borgne</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['armless']" type="checkbox" id="armless" value="Manchot" checked = "{{ isEthosChecked 'Manchot'}}" />
-                    <label for="armless">Manchot</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['onelegged']" type="checkbox" id="onelegged" value="Unijambiste" checked = "{{ isEthosChecked 'Unijambiste'}}" />
-                    <label for="onelegged">Unijambiste</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['paraplegic']" type="checkbox" id="paraplegic" value="Paraplégique" checked = "{{ isEthosChecked 'Paraplégique'}}" />
-                    <label for="paraplegic">Paraplégique</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['albinos']" type="checkbox" id="albinos" value="Albinos" checked = "{{ isEthosChecked 'Albinos'}}" />
-                    <label for="albinos">Albinos</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['badtastemusic']" type="checkbox" id="badtastemusic" value="Mauvais goûts musicaux"  checked = "{{ isEthosChecked 'Mauvais goûts musicaux'}}" />
-                    <label for="badtastemusic">Mauvais goûts musicaux</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['goodperfume']" type="checkbox" id="goodperfume" value="Sent bon" checked = "{{ isEthosChecked 'Sent bon'}}" />
-                    <label for="goodperfume">Sent bon</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['ddrmaster']" type="checkbox" id="ddrmaster" value="Maîtrise DDR" checked = "{{ isEthosChecked 'Maîtrise DDR'}}" />
-                    <label for="ddrmaster">Maîtrise DDR</label>
-                </p>
-                <p class="col m4 s6">
-                    <input name="ethos['blindtestwarior']" type="checkbox" id="blindtestwarior" value="Roi du blindtest" checked = "{{ isEthosChecked 'Roi du blindtest'}}" />
-                    <label for="blindtestwarior">Roi du blind-test</label>
-                </p>
-            </div>
+                <h2 class="personnafied-h2">#2 Avatar URL</h2>
+                <div class="row">
+                    <div class="input-field col m10 s8">
+                        <input id="avatar" name="avatar"  type="text" class="validate" value="{{character.avatar}}" >                                        
+                        <label for="avatar">Adresse Web de l'image d'avatar</label>
+                    </div>  
+                    <div class="input-field col m2 s4">
+                        <img class="avatar_image" src="{{character.avatar}}" alt="Avatar Image"/>
+                    </div> 
 
-            <h2 class="personnafied-h2">#4 Moralité</h2>
+                    <div class="avatar_gallery col s12">
+                        {{#each avatarsUrls}}
+                            <img class="avatar_element col m2 s4" src="{{url}}" alt="{{alt}}"/>
+                        {{/each}}
+                    </div>
+                </div>
 
-                <div class="morality_input col s12">
-                    <input name="morality" type="range" id="morality" min="0" max="100" value ="{{character.morality}}"/>
-                    <p class="white">White Hat</p>
-                    <p>Black Hat</p>
-                </div>                
+                <h2 class="personnafied-h2">#3 Ethos</h2>
+                <div class="row">
+                    <p class="col m4 s6">
+                        <input name="ethos['cosplayer']" type="checkbox" id="cosplayer" value="Cosplayer" checked = "{{ isEthosChecked 'Cosplayer'}}"/>
+                        <label for="cosplayer">Cosplayer</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['otaku']" type="checkbox" id="otaku" value="Otaku"  checked = "{{ isEthosChecked 'Otaku'}}"/>
+                        <label for="otaku">Otaku</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['gifted']" type="checkbox" id="gifted" value="Surdoué" checked = "{{ isEthosChecked 'Surdoué'}}"/>
+                        <label for="gifted">Surdoué</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['marvel_fan']" type="checkbox" id="marvel_fan" value="Fan de Marvel" checked = "{{ isEthosChecked 'Fan de Marvel'}}"/>
+                        <label for="marvel_fan">Fan de Marvel</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['dc_fan']" type="checkbox" id="dc_fan" value="Fan de DC" checked = "{{ isEthosChecked 'Fan de DC'}}"/>
+                        <label for="dc_fan">Fan de DC</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['progamer']" type="checkbox" id="progamer" value="Progamer" checked = "{{ isEthosChecked 'Progamer'}}"/>
+                        <label for="progamer">Pro-gamer</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['drugaddict']" type="checkbox" id="drugaddict" value="Drogué" checked = "{{ isEthosChecked 'Drogué'}}" />
+                        <label for="drugaddict">Drogué</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['cultist']" type="checkbox" id="cultist" value="Cultiste" checked = "{{ isEthosChecked 'Cultiste'}}" />
+                        <label for="cultist">Cultiste</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['spicy']" type="checkbox" id="spicy" value="Mange épicé" checked = "{{ isEthosChecked 'Mange épicé'}}" />
+                        <label for="spicy">Mange épicé</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['oneeyed']" type="checkbox" id="oneeyed" value="Borgne" checked = "{{ isEthosChecked 'Borgne'}}" />
+                        <label for="oneeyed">Borgne</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['armless']" type="checkbox" id="armless" value="Manchot" checked = "{{ isEthosChecked 'Manchot'}}" />
+                        <label for="armless">Manchot</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['onelegged']" type="checkbox" id="onelegged" value="Unijambiste" checked = "{{ isEthosChecked 'Unijambiste'}}" />
+                        <label for="onelegged">Unijambiste</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['paraplegic']" type="checkbox" id="paraplegic" value="Paraplégique" checked = "{{ isEthosChecked 'Paraplégique'}}" />
+                        <label for="paraplegic">Paraplégique</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['albinos']" type="checkbox" id="albinos" value="Albinos" checked = "{{ isEthosChecked 'Albinos'}}" />
+                        <label for="albinos">Albinos</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['badtastemusic']" type="checkbox" id="badtastemusic" value="Mauvais goûts musicaux"  checked = "{{ isEthosChecked 'Mauvais goûts musicaux'}}" />
+                        <label for="badtastemusic">Mauvais goûts musicaux</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['goodperfume']" type="checkbox" id="goodperfume" value="Sent bon" checked = "{{ isEthosChecked 'Sent bon'}}" />
+                        <label for="goodperfume">Sent bon</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['ddrmaster']" type="checkbox" id="ddrmaster" value="Maîtrise DDR" checked = "{{ isEthosChecked 'Maîtrise DDR'}}" />
+                        <label for="ddrmaster">Maîtrise DDR</label>
+                    </p>
+                    <p class="col m4 s6">
+                        <input name="ethos['blindtestwarior']" type="checkbox" id="blindtestwarior" value="Roi du blindtest" checked = "{{ isEthosChecked 'Roi du blindtest'}}" />
+                        <label for="blindtestwarior">Roi du blind-test</label>
+                    </p>
+                </div>
 
-            <h2 class="personnafied-h2">#5 SkillZ</h2>
+                <h2 class="personnafied-h2">#4 Moralité</h2>
+
+                    <div class="morality_input col s12">
+                        <input name="morality" type="range" id="morality" min="0" max="100" value ="{{character.morality}}"/>
+                        <p class="white">White Hat</p>
+                        <p>Black Hat</p>
+                    </div>                
+
+                
+                <h2 class="personnafied-h2">#5 SkillZ</h2>
+            {{/if}}
+
             <!-- Swiper -->
             <div class="swiper-container">
                 <!-- Add Pagination -->
@@ -130,9 +141,11 @@
                 </div>
             </div>
             <div class="col s12 center-align">
+                {{#if isDraft}}
                 <button class="btn waves-effect waves-light record_character" type="submit">Enregistrer brouillon
                     <i class="material-icons right">send</i>
                 </button>
+                {{/if}}
                 <button id="finalize_character" class="btn waves-effect waves-light" type="button">Terminer Création
                     <i class="material-icons right">warning</i>
                 </button>
