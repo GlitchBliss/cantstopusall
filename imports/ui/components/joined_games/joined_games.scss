@@ -1,0 +1,16 @@
+.easy-autocomplete {
+    width:100%!important;
+    display: inline-flex;
+
+    input {
+        padding: 1px;
+    }
+}
+
+.easy-autocomplete-container ul {
+    top: 39px;
+}
+
+.deselect-game, .character-selection {
+    display: none;
+}
