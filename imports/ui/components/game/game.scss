@@ -1,20 +1,15 @@
-
-h3 {
-    font-size: 14px;
-}
-
-.avatar {
-    img {
-        display: block;
-        width: 100%;
-    }
-}
-
 .game-element {
-    cursor: pointer;    
+    h3 {
+        font-size: 14px;
+    }
+    .avatar {
+        img {
+            max-width: 100px;
+        }
+    }
+    cursor: pointer;
     transition: .1s ease-out !important;
-
-    &:hover{
+    &:hover {
         transform: scale(1.05);
     }
 }

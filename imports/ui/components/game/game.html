@@ -13,7 +13,7 @@
 	{{/if}}
 
     <section class="row game-element card white {{_id}}" data-id="{{_id}}">
-        <aside class="avatar col s4">
+        <aside class="avatar col m2 s4">
             {{#if avatar }}
             <img src="{{avatar}}" alt=""> {{else}}
             <img src="/img/base_avatar.png" alt=""> {{/if}}
@@ -21,7 +21,11 @@
 
         <article class="col s8">
             <h3 class="title">{{title}}</h3>
-			<p>{{description}}</p>
+			<p>{{description}}</p>			
+			{{#if character_in_game}}
+			<hr/>
+			Personnage : <em>{{character_in_game.name}}</em>
+			{{/if}}
         </article>
     </section>		
 </template>

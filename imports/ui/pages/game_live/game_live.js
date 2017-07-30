@@ -5,7 +5,7 @@ import './game_live.html';
 import './game_live.scss';
 
 
-Template.App_game_live.onCreated(function () {
+Template.App_game_live.onCreated(function() {
 
     this.subscribe("games.all");
     this.subscribe("characters.all");
@@ -23,27 +23,22 @@ Template.App_game_live.helpers({
         return Games.findOne(Template.instance().getgame_Id());
     },
     MJName() {
-        return Games.find({ _id: Template.instance().getgame_Id() },
-            { fields: { userName: 1 } }).fetch()[0];
+        return Games.find({ _id: Template.instance().getgame_Id() }, { fields: { userName: 1 } }).fetch()[0];
     },
     isMJ() {
         const dataIds = new Array();
         const gameId = Template.instance().getgame_Id();
         const GamesForCurrentUser =
             Games.find({ userId: Meteor.userId() })
-                .map((item) => {
-                    dataIds.push(item._id);
-                });
-
-        console.log(dataIds.indexOf(gameId));
+            .map((item) => {
+                dataIds.push(item._id);
+            });
 
         return dataIds.indexOf(gameId) > -1;
     },
     players() {
         const dataCharactersId = new Array();
-        const charactersInGames = CharactersInGames.find(
-            { gameId: Template.instance().getgame_Id() },
-            { fields: { characterId: 1 } })
+        const charactersInGames = CharactersInGames.find({ gameId: Template.instance().getgame_Id() }, { fields: { characterId: 1 } })
             .map((item) => {
                 dataCharactersId.push(item.characterId);
             });
@@ -53,7 +48,7 @@ Template.App_game_live.helpers({
 });
 
 Template.App_game_live.events({
-    'click .send-notification'(event, instance) {
+    'click .send-notification' (event, instance) {
         const userId = $(event.currentTarget).data('id');
 
         Meteor.call('notification.send', "Vous êtes PUNI ! ", "Vous avez reçu une punition", 'basic', false, userId,
@@ -62,13 +57,13 @@ Template.App_game_live.events({
                 console.log(error);
             },
             (success) => {
-                console.log('Success !');                
+                console.log('Success !');
             });
     }
 });
 
-Template.App_game_live.onRendered(function () {    
-    this.autorun(function () {
+Template.App_game_live.onRendered(function() {
+    this.autorun(function() {
         //Titles
         setTitles();
     });

@@ -19,8 +19,12 @@
                     <button class="btn-large deselect-game">Annuler la sélection</button> {{#each games}} {{> game}} {{/each}}
 
                     <div class="character-selection">
-                        {{#each characters}} {{> character_element}} {{/each}}
+                        {{#if characters}}
+                            <h2>Sélectionnez votre personnage : </h2>
+                            {{#each characters}} {{> character_element}} {{/each}}
+                        {{/if}}
                     </div>
+                    
                 </div>
             </div>
         </div>

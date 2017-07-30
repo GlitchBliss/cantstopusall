@@ -2,9 +2,8 @@
   {{#if currentUser}}
 
   <section class="row">
-    <article class="col s12 m6">{{> characters}}</article>
-    <article class="col s12 m6">{{> games}}</article>
-    <article class="col s12 m6">{{> join_game}}</article>
+    <article class="col s12">{{> joined_games}}</article>
+    <article class="col s12">{{> join_game}}</article>
   </section>
 
   {{else}} {{> atForm}} {{/if}}

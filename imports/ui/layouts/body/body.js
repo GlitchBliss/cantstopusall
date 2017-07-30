@@ -21,7 +21,7 @@ Template.App_body.onCreated(function () {
 Template.App_body.events({
     'click .logout'(event, instance) {
         event.preventDefault();
-
+                
         Meteor.call('games.leave', Meteor.userId(), (error) => {
             console.log(error);
         }, () => {

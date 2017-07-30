@@ -3,10 +3,8 @@ import './home.scss';
 
 import '../../components/hello/hello.js';
 import '../../components/info/info.js';
-import '../../components/characters/characters.js';
-import '../../components/games/games.js';
 import '../../components/join_game/join_game.js';
+import '../../components/joined_games/joined_games.js';
 
-Template.App_home.onCreated(function () {    
-});
 
+Template.App_home.onCreated(function() {});
