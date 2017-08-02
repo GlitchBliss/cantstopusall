@@ -1,20 +1,25 @@
 <template name="App_game_live">
 
-{{#with game}}
-  <h2 class="personnafied-h2">{{title}}</h2>
-  <p>{{description}}</p>
-{{/with}}
+  {{#with game}}
+    <h2 class="personnafied-h2">{{title}}</h2>
+    <p>{{description}}</p>
+  {{/with}}
 
-  <h2 class="personnafied-h2">Joueurs présents</h2>
+    <h2 class="personnafied-h2">Joueurs présents</h2>
 
-  <ul>
-    <li>MJ : {{MJName.userName}} </li>
-    {{#each players}} 
-      <li>{{name}}
-        {{#if isMJ}}<button class="send-notification btn" data-id="{{userId}}">Punir ce personnage</button>{{/if}}
-      </li> 
-    {{/each}}    
-  </ul>
-  
+    <ul id="game_characters">
+      <li>MJ : {{MJName.userName}} </li>
+      {{#each players}} 
+        <li>{{name}}
+          <a class="waves-effect waves-light btn"><i class="material-icons left">remove_red_eye</i>Voir</a>
+          {{#if isMJ}}<button class="send-notification btn" data-id="{{userId}}">Punir ce personnage</button>{{/if}}
+        </li>         
+      {{/each}}    
+    </ul>
+    
+{{#each players}} 
+    <article class="character fold">
+    </article>
+{{/each}}    
 
 </template>
