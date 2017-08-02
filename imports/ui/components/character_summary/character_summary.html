@@ -1,0 +1,43 @@
+<template name="character">
+    {{#with character}}
+    <section class="row" data-id="{{ _id }}">
+        <div class="row">
+            <div class="col s8">
+                <h2 class="personnafied-h2 col s12">{{name}}</h2>
+                <div class="row ethoi">
+                    {{#each ethos}}
+                    <div class="col s4">
+                        <em>{{value}}</em>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            <div class="avatar col s4">
+                {{#if avatar}}
+                <img class="avatar_image" src="{{avatar}}" alt="Avatar Image" /> {{/if}}
+            </div>
+        </div>
+
+        <div class="moralz row" style="background:hsl(0,0%,{{morality}}%);">
+            <div class="left" style="color:hsl(0,0%,{{inverseMorality morality}}%);">Black Hat</div>
+            <div class="cursor" style="left:{{morality}}%;"></div>                  
+            <div class="right" style="color:hsl(0,0%,{{inverseMorality morality}}%);">White Hat</div>
+        </div>
+
+        <div class="skillz row">
+            {{#each characteristics}}
+            <div class="col s6">
+
+                <dl>
+                    {{#with getCharac id}}
+                    <dt class="center">{{label}}</dt>
+                    {{/with}}
+                    <dd class="center">{{value}}</dd>
+                </dl>
+            </div>
+            {{/each}}
+        </div>
+    </section>
+    {{/with}}
+</template>

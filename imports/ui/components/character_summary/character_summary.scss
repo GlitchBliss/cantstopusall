@@ -1,0 +1,16 @@
+ 
+$cursorHeight : 25px;
+$cursorWidth : 25px;
+
+.moralz {
+    position:relative;
+    height: $cursorHeight;
+
+    .cursor{        
+        position:absolute;
+        top:0;        
+        width : $cursorWidth;
+        height:100%;
+        background:black;
+    }
+}

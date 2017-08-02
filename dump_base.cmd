@@ -1,0 +1,1 @@
+mongodump --host 127.0.0.1 --port 1338 --archive=./dump/dev.base.archive --db meteor
