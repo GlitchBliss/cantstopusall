@@ -18,7 +18,7 @@ Template.joined_games.onCreated(function() {
 Template.joined_games.helpers({
     games() {
         const gamesId = new Array();
-        const joinedGames = CharactersInGames.find({ userId: Meteor.userId() }).map((item) => gamesId.push(item.gameId));
+        const joinedGames = CharactersInGames.find({ userId: Meteor.userId(), isMJ: false }).map((item) => gamesId.push(item.gameId));
         const games = Games.find({ _id: { "$in": gamesId } });
         return games;
     }

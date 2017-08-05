@@ -32,6 +32,7 @@ Meteor.methods({
                 gameId: gameId,
                 gameUserUnicity: gameUserUnicity,
                 isCurrentlyIn: true,
+                isMJ: false,
                 userId: Meteor.userId(),
                 createdAt: new Date()
             }
@@ -47,6 +48,20 @@ Meteor.methods({
     },
     'games.open' (gameId) {
         check(gameId, String);
+        let gameUserUnicity = gameId + Meteor.userId();
+
+        CharactersInGames.upsert({ gameUserUnicity: gameUserUnicity }, {
+            $set: {
+                characterId: null,
+                gameId: gameId,
+                gameUserUnicity: gameUserUnicity,
+                isCurrentlyIn: true,
+                isMJ: true,
+                userId: Meteor.userId(),
+                createdAt: new Date()
+            }
+        });
+
         return Games.update({ _id: gameId }, { $set: { isOpen: true } });
     },
     'games.delete' (gameId) {

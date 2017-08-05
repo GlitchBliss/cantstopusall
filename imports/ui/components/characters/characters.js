@@ -3,8 +3,8 @@ import { CharacterElement } from '../character_element/character_element.js';
 import { Meteor } from 'meteor/meteor';
 import './characters.html';
 
-Template.characters.onCreated(function () {
-    Meteor.subscribe('characters.all');    
+Template.characters.onCreated(function() {
+    Meteor.subscribe('characters.all');
     this.characterSelectedId = new ReactiveVar();
 });
 
@@ -18,19 +18,19 @@ Template.characters.helpers({
 });
 
 Template.characters.events({
-    'click .character_element'(event, instance) {
+    'click .character_element' (event, instance) {
         event.preventDefault();
         const characterId = $(event.currentTarget).data("id");
-        FlowRouter.go('App.character.visualize', {_id: characterId});
+        FlowRouter.go('App.character.visualize', { _characterid: characterId });
     },
-    'click .add-character'(event) {
+    'click .add-character' (event) {
         event.preventDefault();
         FlowRouter.go('App.character.create');
     }
 });
 
 
-Template.characters.onRendered(function () {
+Template.characters.onRendered(function() {
 
 
 });

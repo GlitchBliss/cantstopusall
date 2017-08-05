@@ -5,7 +5,7 @@ import './games.html';
 import './games.scss';
 
 
-Template.games.onCreated(function () {
+Template.games.onCreated(function() {
     Meteor.subscribe('games.all');
     Meteor.subscribe('characters.all');
     Meteor.subscribe('characters_in_games.all');
@@ -21,14 +21,14 @@ Template.games.helpers({
         return Games.find({ userId: Meteor.userId() });
     },
     playerNumber(gameId) {
-        return CharactersInGames.find({ gameId: gameId }).fetch().length;
+        return CharactersInGames.find({ gameId: gameId, isMJ: false }).fetch().length;
     }
 });
 
 Template.games.events({
 
     //Open the clicked game
-    'click .game-element'(event) {
+    'click .game-element' (event) {
         const gameId = $(event.currentTarget).data('id');
 
         Meteor.call('games.open', gameId,
@@ -39,18 +39,18 @@ Template.games.events({
         );
     },
 
-    'click .add-game'(event) {
+    'click .add-game' (event) {
         event.preventDefault();
 
         FlowRouter.go('App.game.create');
     },
-    'click .open_game'(event, instance) {
+    'click .open_game' (event, instance) {
         event.preventDefault();
         event.stopPropagation();
         const gameId = $(event.currentTarget).data('id');
         FlowRouter.go('App.game.open', { _id: gameId });
     },
-    'click .delete_game'(event, instance) {
+    'click .delete_game' (event, instance) {
         event.preventDefault();
         event.stopPropagation();
         const gameId = $(event.currentTarget).data("id");
@@ -59,7 +59,7 @@ Template.games.events({
             vex.defaultOptions.className = 'vex-theme-flat-attack';
             vex.dialog.confirm({
                 message: 'Aucun retour en arrière possible - briser en bits cette petite boite ?',
-                callback: function (value) {
+                callback: function(value) {
                     if (value) {
                         Meteor.call('games.delete', gameId,
                             (error, result) => {

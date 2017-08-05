@@ -20,103 +20,103 @@ import '../../ui/pages/not-found/not-found.js';
 
 // Set up all routes in the app
 FlowRouter.route('/', {
-	name: 'App.login',
-	action() {
-		BlazeLayout.render('App_body', { main: 'App_login' });
-	},
+    name: 'App.login',
+    action() {
+        BlazeLayout.render('App_body', { main: 'App_login' });
+    },
 });
 
 FlowRouter.route('/home', {
-	name: 'App.home',
-	action() {
-		BlazeLayout.render('App_body', { main: 'App_home' });
-	},
+    name: 'App.home',
+    action() {
+        BlazeLayout.render('App_body', { main: 'App_home' });
+    },
 });
 
 FlowRouter.route('/profile', {
-	name: 'App.profile',
-	action() {
-		BlazeLayout.render('App_body', { main: 'App_profile' });
-	},
+    name: 'App.profile',
+    action() {
+        BlazeLayout.render('App_body', { main: 'App_profile' });
+    },
 });
 
 
 FlowRouter.route('/games', {
-	name: 'App.games.list',
-	action(params, queryParams) {
-		BlazeLayout.render('App_body', { main: 'App_games_list' });
-	},
+    name: 'App.games.list',
+    action(params, queryParams) {
+        BlazeLayout.render('App_body', { main: 'App_games_list' });
+    },
 });
 
 FlowRouter.route('/game/create', {
-	name: 'App.game.create',
-	action(params, queryParams) {
-		BlazeLayout.render('App_body', { main: 'App_game_create' });
-	},
+    name: 'App.game.create',
+    action(params, queryParams) {
+        BlazeLayout.render('App_body', { main: 'App_game_create' });
+    },
 });
 
 FlowRouter.route('/game/live/:_id', {
-	name: 'App.game.live',
-	action(params, queryParams) {
-		BlazeLayout.render('App_body', { main: 'App_game_live' });
-	},
+    name: 'App.game.live',
+    action(params, queryParams) {
+        BlazeLayout.render('App_body', { main: 'App_game_live' });
+    },
 });
 
 FlowRouter.route('/game/open/:_id', {
-	name: 'App.game.open',
-	action(params, queryParams) {
-		BlazeLayout.render('App_body', { main: 'App_game_open' });
-	},
+    name: 'App.game.open',
+    action(params, queryParams) {
+        BlazeLayout.render('App_body', { main: 'App_game_open' });
+    },
 });
 
 FlowRouter.route('/characters', {
-	name: 'App.characters.list',
-	action(params, queryParams) {
-		BlazeLayout.render('App_body', { main: 'App_characters_list' });
-	},
+    name: 'App.characters.list',
+    action(params, queryParams) {
+        BlazeLayout.render('App_body', { main: 'App_characters_list' });
+    },
 });
 
-FlowRouter.route('/character/:_id', {
-	name: 'App.character.visualize',
-	action(params, queryParams) {
-		BlazeLayout.render('App_body', { main: 'App_character_visualize' });
-	},
+FlowRouter.route('/character/:_characterid', {
+    name: 'App.character.visualize',
+    action(params, queryParams) {
+        BlazeLayout.render('App_body', { main: 'App_character_visualize' });
+    },
 });
 
 
 FlowRouter.route('/characters/creation', {
-	name: 'App.character.create',
-	action(params, queryParams) {
-		BlazeLayout.render('App_body', { main: 'App_character_create' });
-	},
+    name: 'App.character.create',
+    action(params, queryParams) {
+        BlazeLayout.render('App_body', { main: 'App_character_create' });
+    },
 });
 
 
 FlowRouter.route('/character/edit/:_id', {
-	name: 'App.character.edit',
-	action(params, queryParams) {
-		BlazeLayout.render('App_body', { main: 'App_character_edit' });
-	},
+    name: 'App.character.edit',
+    action(params, queryParams) {
+        BlazeLayout.render('App_body', { main: 'App_character_edit' });
+    },
 });
 
 
 FlowRouter.route('/game/:_id', {
-	name: 'App.game',
-	action(params, queryParams) {
-		BlazeLayout.render('App_body', { main: 'App_game' });
-	},
+    name: 'App.game',
+    action(params, queryParams) {
+        BlazeLayout.render('App_body', { main: 'App_game' });
+    },
 });
 
 FlowRouter.route('/gm/:_id', {
-	name: 'App.gm',
-	action(params, queryParams) {
-		BlazeLayout.render('App_body', { main: 'App_gm' });
-	},
+    name: 'App.gm',
+    action(params, queryParams) {
+        BlazeLayout.render('App_body', { main: 'App_gm' });
+    },
 });
 
 
 FlowRouter.notFound = {
-	action() {
-		BlazeLayout.render('App_body', { main: 'App_notFound' });
-	},
+    action() {
+        BlazeLayout.render('App_body', { main: 'App_notFound' });
+    },
 };

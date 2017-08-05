@@ -1,16 +1,20 @@
+ $cursorHeight: 25px;
+ $cursorWidth: 25px;
+ .moralz {
+     position: relative;
+     height: $cursorHeight;
+     .cursor {
+         position: absolute;
+         top: 0;
+         width: $cursorWidth;
+         height: 100%;
+         background: black;
+     }
+ }
  
-$cursorHeight : 25px;
-$cursorWidth : 25px;
-
-.moralz {
-    position:relative;
-    height: $cursorHeight;
-
-    .cursor{        
-        position:absolute;
-        top:0;        
-        width : $cursorWidth;
-        height:100%;
-        background:black;
-    }
-}
+ #folded_sheets {
+     .avatar img {
+         max-height: 150px;
+         width: auto;
+     }
+ }

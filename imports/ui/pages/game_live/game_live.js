@@ -22,6 +22,14 @@ Template.App_game_live.helpers({
     game() {
         return Games.findOne(Template.instance().getgame_Id());
     },
+    isMJHere() {
+        let game = Games.findOne({ _id: Template.instance().getgame_Id() });
+        if (game) {
+            let mjId = game.userId;
+            return CharactersInGames.findOne({ gameId: game._id, userId: game.userId, isCurrentlyIn: true });
+        }
+        return false;
+    },
     MJName() {
         return Games.find({ _id: Template.instance().getgame_Id() }, { fields: { userName: 1 } }).fetch()[0];
     },
@@ -59,6 +67,10 @@ Template.App_game_live.events({
             (success) => {
                 console.log('Success !');
             });
+    },
+    'click .show_character' (event, instance) {
+        const charactedId = $(event.currentTarget).data('id');
+        $("." + charactedId, "#folded_sheets").toggle();
     }
 });
 
