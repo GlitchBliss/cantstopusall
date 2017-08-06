@@ -1,0 +1,17 @@
+<template name="skills_box">
+    <div class="skills_box">
+        {{#each skills}}            
+            <div class="skill_card btn col s4" data-value="{{value}}">
+                <div class="description">
+                    {{label}}                    
+                </div>
+                <!--
+                    {{value}}
+                -->
+                <div class="icon">
+                    <img src ="{{image_url}}"/>
+                </div>
+            </div>
+        {{/each}}
+    </div>    
+</template>

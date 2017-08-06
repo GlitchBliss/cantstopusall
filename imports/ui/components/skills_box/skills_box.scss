@@ -1,0 +1,22 @@
+.skills_box {
+    .skill_card {
+        display: flex;
+        height: 50px;
+        padding: 0;
+        cursor: pointer;
+    }
+    .description {
+        flex-grow: 1;
+        padding: 3px;
+        text-align: center;
+        font-size: 12px;
+    }
+    .icon {
+        justify-content: flex-end;
+    }
+    img {
+        $imageSize: 50px;
+        height: $imageSize;
+        width: $imageSize;
+    }
+}

@@ -4,27 +4,36 @@ import './notification.html';
 import './notification.scss';
 
 
-Template.notification.onCreated(function () {
+Template.notification.onCreated(function() {
     Meteor.subscribe('notifications.all');
+
+    const cursor = Notifications.find({ $or: [{ userId: Meteor.userId(), type: "skilltest" }, { isGlobal: true, type: "skilltest" }] });
+    const handle = cursor.observeChanges({
+        added() {
+            //Make mobile phone vibrate! 
+            navigator.vibrate([1000, 100, 1000]);
+
+            console.info("LAUNCH POOOOPUP ! ");
+        }
+    });
 });
 
 Template.notification.helpers({
-    notifications() {        
-        const cursor = Notifications.find({$or: [{userId: Meteor.userId()}, {isGlobal: true}]});
+    notifications_basic() {
+        const cursor = Notifications.find({ $or: [{ userId: Meteor.userId(), type: "basic" }, { isGlobal: true, type: "basic" }] });
         const handle = cursor.observeChanges({
             added() {
                 //Make mobile phone vibrate! 
                 navigator.vibrate(1000);
             },
         });
-
         return cursor;
     }
 });
 
 Template.notification.events({
 
-    'click .remove-notification'(event, template) {
+    'click .remove-notification' (event, template) {
         const notifId = $(event.target).data('id');
 
         if (notifId) {
@@ -38,6 +47,8 @@ Template.notification.events({
 
 });
 
-Template.notification.onRendered(function () {
+Template.notification.onRendered(function() {
     $('.collapsible').collapsible();
+
+
 });

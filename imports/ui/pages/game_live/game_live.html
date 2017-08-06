@@ -12,6 +12,7 @@
       {{#each players}} 
         <li>{{name}}
           <a class="waves-effect waves-light btn show_character" data-id="{{_id}}"><i class="material-icons left">remove_red_eye</i>Voir</a>          
+          {{#if isCurrentPlayer userId }}<a class="waves-effect waves-light btn test_skill" data-id="{{_id}}"><i class="material-icons left">view_comfy</i>Tester</a>{{/if}}
           {{#if isMJ}}<button class="send-notification btn" data-id="{{userId}}">Punir ce personnage</button>{{/if}}
         </li>         
       {{/each}}    
@@ -19,9 +20,12 @@
     
 <section id="folded_sheets" class="row">
 {{#each players}} 
-    <article class="character fold col s12 {{_id}}">
+    <article class="character fold col s12 sheet{{_id}}">
       {{> character characterId = _id}}
     </article>
+    <article class="skills fold col s12 skills{{_id}}">
+      {{> skills_box characterId = _id}}
+    </article>    
 {{/each}}
 </section>    
 

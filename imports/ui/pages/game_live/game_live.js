@@ -3,6 +3,7 @@ import { Characters } from '/imports/api/characters/characters.js';
 import { Meteor } from 'meteor/meteor';
 import './game_live.html';
 import './game_live.scss';
+import '../../components/skills_box/skills_box.js';
 
 
 Template.App_game_live.onCreated(function() {
@@ -32,6 +33,9 @@ Template.App_game_live.helpers({
     },
     MJName() {
         return Games.find({ _id: Template.instance().getgame_Id() }, { fields: { userName: 1 } }).fetch()[0];
+    },
+    isCurrentPlayer(id) {
+        return id == Meteor.userId();
     },
     isMJ() {
         const dataIds = new Array();
@@ -70,7 +74,11 @@ Template.App_game_live.events({
     },
     'click .show_character' (event, instance) {
         const charactedId = $(event.currentTarget).data('id');
-        $("." + charactedId, "#folded_sheets").toggle();
+        $(".sheet" + charactedId, "#folded_sheets").toggle();
+    },
+    'click .test_skill' (event, instance) {
+        const charactedId = $(event.currentTarget).data('id');
+        $(".skills" + charactedId, "#folded_sheets").toggle();
     }
 });
 
