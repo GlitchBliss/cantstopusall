@@ -1,12 +1,41 @@
 .notifications {
     .close {
-        position:absolute;
-        top:10px;
-        right:10px;
-        cursor:pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
     }
 }
 
 .collapsible-body {
     position: relative;
+}
+
+.countDown {
+    position: fixed;
+    display: none;
+    background: black;
+    color: white;
+    left: 50%;
+    top: 50%;
+    margin-left: -50px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    font-size: 90px;
+    z-index: 100;
+}
+
+.resultPopup {
+    position: fixed;
+    display: none;
+    background: black;
+    color: white;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 50px;
+    padding: 10px;
+    z-index: 100;
 }

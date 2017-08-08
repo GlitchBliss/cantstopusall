@@ -13,15 +13,15 @@ import '../../stylesheets/vex/vex-theme-top.css';
 import '../../stylesheets/vex/vex-theme-wireframe.css';
 
 //Global helpers
-Template.App_body.onCreated(function () {
+Template.App_body.onCreated(function() {
     this.subscribe("characters_in_games.all");
 });
 
 
 Template.App_body.events({
-    'click .logout'(event, instance) {
+    'click .logout' (event, instance) {
         event.preventDefault();
-                
+
         Meteor.call('games.leave', Meteor.userId(), (error) => {
             console.log(error);
         }, () => {
@@ -31,15 +31,17 @@ Template.App_body.events({
     }
 });
 
-Template.App_body.onRendered(function () {
-    setTitles();    
+Template.App_body.onRendered(function() {
+    setTitles();
     Meteor.typeahead.inject();
 });
 
-setTitles = function () {
+
+
+setTitles = function() {
 
     //Fonts Handling
-    $(".personnafied, .personnafied-h2").each(function (title) {
+    $(".personnafied, .personnafied-h2").each(function(title) {
         var characters = $(this).text().split("");
         var frontText = $("<div class='front'></div>");
         var backText = $("<div class='back'></div>");
@@ -59,14 +61,14 @@ setTitles = function () {
         });
     });
 };
-    T9n.setLanguage('fr'); 
+T9n.setLanguage('fr');
 
-Meteor.startup(() => {    
-   
+Meteor.startup(() => {
+
 });
 
 
-Template.registerHelper('formatDate', function (date) {
+Template.registerHelper('formatDate', function(date) {
     moment.locale('fr', {
         months: 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
         monthsShort: 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
@@ -107,11 +109,11 @@ Template.registerHelper('formatDate', function (date) {
             yy: '%d ans'
         },
         dayOfMonthOrdinalParse: /\d{1,2}(er|e)/,
-        ordinal: function (number) {
+        ordinal: function(number) {
             return number + (number === 1 ? 'er' : 'e');
         },
         meridiemParse: /PD|MD/,
-        isPM: function (input) {
+        isPM: function(input) {
             return input.charAt(0) === 'M';
         },
         // In case the meridiem units are not separated around 12, then implement
@@ -119,12 +121,12 @@ Template.registerHelper('formatDate', function (date) {
         // meridiemHour : function (hour, meridiem) {
         //     return /* 0-23 hour, given meridiem token and hour 1-12 */ ;
         // },
-        meridiem: function (hours, minutes, isLower) {
+        meridiem: function(hours, minutes, isLower) {
             return hours < 12 ? 'PD' : 'MD';
         },
         week: {
             dow: 1, // Monday is the first day of the week.
-            doy: 4  // The week that contains Jan 4th is the first week of the year.
+            doy: 4 // The week that contains Jan 4th is the first week of the year.
         }
     });
 
@@ -135,6 +137,3 @@ Template.registerHelper('formatDate', function (date) {
 Template.registerHelper('isChecked', (inputName, gameValue) => {
     return inputName == gameValue ? 'checked' : '';
 });
-
-
-

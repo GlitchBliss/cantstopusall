@@ -8,12 +8,18 @@
     <h2 class="personnafied-h2">Joueurs présents</h2>
 
     <ul id="game_characters">
-      <li>MJ : {{MJName.userName}} {{#if isMJHere}} <i class="material-icons left">person</i>{{else}} <i class="material-icons left">person_outline</i>{{/if}} </li>      
+      <li class="row">MJ : {{MJName.userName}} {{#if isMJHere}} <i class="material-icons left">person</i>{{else}} <i class="material-icons left">person_outline</i>{{/if}} </li>      
       {{#each players}} 
-        <li>{{name}}
-          <a class="waves-effect waves-light btn show_character" data-id="{{_id}}"><i class="material-icons left">remove_red_eye</i>Voir</a>          
-          {{#if isCurrentPlayer userId }}<a class="waves-effect waves-light btn test_skill" data-id="{{_id}}"><i class="material-icons left">view_comfy</i>Tester</a>{{/if}}
-          {{#if isMJ}}<button class="send-notification btn" data-id="{{userId}}">Punir ce personnage</button>{{/if}}
+        <li class="row">
+          <div class="col s4 left">
+            {{#if isPlayerHere _id}} <i class="material-icons left">person</i>{{else}} <i class="material-icons left">person_outline</i>{{/if}}
+            {{name}}
+          </div>
+          <div class="col s8 right">
+            <a class="waves-effect waves-light btn show_character" data-id="{{_id}}"><i class="material-icons left">remove_red_eye</i>Voir</a>          
+            {{#if isCurrentPlayer userId }}<a class="waves-effect waves-light btn test_skill" data-id="{{_id}}"><i class="material-icons left">view_comfy</i>Tester</a>{{/if}}
+            {{#if isMJ}}<button class="send-notification btn" data-id="{{userId}}">Punir ce personnage</button>{{/if}}
+          </div>
         </li>         
       {{/each}}    
     </ul>

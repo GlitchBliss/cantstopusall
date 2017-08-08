@@ -23,6 +23,9 @@ Template.App_game_live.helpers({
     game() {
         return Games.findOne(Template.instance().getgame_Id());
     },
+    isPlayerHere(playerId) {
+        return CharactersInGames.findOne({ characterId: playerId, isCurrentlyIn: true });
+    },
     isMJHere() {
         let game = Games.findOne({ _id: Template.instance().getgame_Id() });
         if (game) {
