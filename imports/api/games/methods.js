@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Games, GameObject, CharactersInGames } from './games.js';
+import { Gamelogs } from '../gamelogs/gamelogs.js';
+
 Meteor.methods({
     'games.upsert' (gameObject) {
 
@@ -26,6 +28,9 @@ Meteor.methods({
         check(gameId, String);
         check(characterId, String);
         let gameUserUnicity = gameId + Meteor.userId();
+
+        Gamelogs.insert({ text: "something", date: new Date() });
+
         return CharactersInGames.upsert({ gameUserUnicity: gameUserUnicity }, {
             $set: {
                 characterId: characterId,

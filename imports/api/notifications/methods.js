@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Notifications } from './notifications.js';
+import { Gamelogs } from '../gamelogs/gamelogs.js';
 
 Meteor.methods({
     'notification.send' (text, title = '', type = 'basic', isGlobal = false, datasPayload = {}, userId = "") {
