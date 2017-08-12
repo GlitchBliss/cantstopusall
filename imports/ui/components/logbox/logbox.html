@@ -1,0 +1,14 @@
+<template name="logbox">
+    <div class="logbox col s12 ">
+        {{#each logs}}      
+        <dl>
+            <dt class="col s2">
+                {{formatDate createdAt}} :
+            </dt>
+            <dd class="col s10">
+                {{{text}}}
+            </dd>
+        </dl>        
+        {{/each}}
+    </div>    
+</template>

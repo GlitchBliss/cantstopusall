@@ -1,6 +1,8 @@
 // Register your apis here
 
+
 import '../../api/gamelogs/methods.js';
+import '../../api/gamelogs/server/publications.js';
 
 import '../../api/links/methods.js';
 import '../../api/links/server/publications.js';

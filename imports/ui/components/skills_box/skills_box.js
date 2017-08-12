@@ -4,28 +4,24 @@ import { Session } from 'meteor/session';
 import { Characters } from '/imports/api/characters/characters.js';
 import { Notifications } from '/imports/api/notifications/notifications.js';
 import { Characteristics } from '/imports/api/characteristics/characteristics.js';
+import { LogEntry } from '/imports/classes/log_entry.class.js';
 import './skills_box.html';
 import './skills_box.scss';
 
-//dice possible values
-const DiceSuccess = {
-    "Critical_Success": 100,
-    "Normal": 50,
-    "Fail": 30,
-    "Critical_Fail": 0
-}
+
 
 Template.skills_box.onCreated(function() {
     this.subscribe('characters.all');
     this.subscribe('characteristics.all');
-
+    this.currentCharacter = {};
     this.characterId = this.data.characterId;
 });
 
 
 Template.skills_box.helpers({
     skills() {
-        let character = Characters.findOne(this.characterId);
+        let character = Characters.findOne(Template.instance().characterId);
+        Template.instance().currentCharacter = character;
         let skills = [];
         if (character) {
             for (let skill of character.characteristics) {
@@ -57,13 +53,30 @@ Template.skills_box.events({
                 result = diceRoll > value ? DiceSuccess.Normal : DiceSuccess.Fail;
         }
 
-        let datasPayload = { "skillvalue": value, "result": result };
+        let character = Template.instance().currentCharacter;
+        let skill = Characteristics.findOne($(event.currentTarget).data("id"));
 
-        Meteor.call('notification.send', "test is done", "Title test", 'skilltest', true, datasPayload, Meteor.userId(), (error, result) => {
+        let line = new LogEntry("{1} tente une action de {2} avec un résultat de {3} sur {4}");
+        line.add(character.name, "strong");
+        line.add(skill.label, "strong");
+        line.add(result, "strong");
+        line.add(value, "strong");
+
+        Meteor.call('gamelogs.insert', line.render(), Session.get("currentGameId"), false, (error, id) => {
             if (error) {
                 console.log(error.error);
+            } else {
+                let datasPayload = { "skillvalue": value, "result": result, "logLine": id };
+
+                Meteor.call('notification.send', "test is done", "Title test", 'skilltest', true, datasPayload, Meteor.userId(), (error, result) => {
+                    if (error) {
+                        console.log(error.error);
+                    }
+                });
             }
         });
+
+
     }
 });
 

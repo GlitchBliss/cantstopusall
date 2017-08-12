@@ -2,3 +2,4 @@
 
 import './routes.js';
 import '../accounts-config.js';
+import './custom_library/main.js';

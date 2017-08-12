@@ -1,5 +1,6 @@
 import { Games, CharactersInGames } from '/imports/api/games/games.js';
 import { Characters } from '/imports/api/characters/characters.js';
+import { Gamelogs } from '../../components/logbox/logbox.js';
 import { Meteor } from 'meteor/meteor';
 import './game_live.html';
 import './game_live.scss';
@@ -13,6 +14,7 @@ Template.App_game_live.onCreated(function() {
     this.subscribe("characters_in_games.all");
 
     this.getgame_Id = () => FlowRouter.getParam('_id');
+    Session.set('currentGameId', this.getgame_Id());
 
     this.autorun(() => {
         this.subscribe('game.all');

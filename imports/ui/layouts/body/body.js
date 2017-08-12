@@ -2,6 +2,7 @@ import './body.html';
 import './layout.scss';
 import '../../components/notification/notification.js';
 import { CharactersInGames } from '/imports/api/games/games.js';
+import { Gamelogs } from '/imports/api/gamelogs/gamelogs.js';
 
 import '../../stylesheets/vex/vex.css';
 import '../../stylesheets/vex/vex-theme-bottom-right-corner.css';
@@ -12,11 +13,12 @@ import '../../stylesheets/vex/vex-theme-plain.css';
 import '../../stylesheets/vex/vex-theme-top.css';
 import '../../stylesheets/vex/vex-theme-wireframe.css';
 
+Meteor.startup(() => {});
+
 //Global helpers
 Template.App_body.onCreated(function() {
     this.subscribe("characters_in_games.all");
 });
-
 
 Template.App_body.events({
     'click .logout' (event, instance) {
@@ -35,38 +37,6 @@ Template.App_body.onRendered(function() {
     setTitles();
     Meteor.typeahead.inject();
 });
-
-
-
-setTitles = function() {
-
-    //Fonts Handling
-    $(".personnafied, .personnafied-h2").each(function(title) {
-        var characters = $(this).text().split("");
-        var frontText = $("<div class='front'></div>");
-        var backText = $("<div class='back'></div>");
-
-        $(this).empty();
-
-        $.each(characters, (index, character) => {
-            var embeddedLetter = $("<span data-letter ='" + character + "'>" + character + "</span>");
-            var variantNumber = Math.floor((Math.random() * 20) + 1);
-            if (character != ' ') {
-                embeddedLetter.addClass("letter-" + variantNumber);
-            } else {
-                embeddedLetter.addClass("spacer");
-            }
-
-            $(this).append(embeddedLetter);
-        });
-    });
-};
-T9n.setLanguage('fr');
-
-Meteor.startup(() => {
-
-});
-
 
 Template.registerHelper('formatDate', function(date) {
     moment.locale('fr', {

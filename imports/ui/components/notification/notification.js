@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Notifications } from '/imports/api/notifications/notifications.js';
+import { GameLogs } from '/imports/api/gamelogs/gamelogs.js';
 import './notification.html';
 import './notification.scss';
 
@@ -33,14 +34,7 @@ const countDown = function(countNumber, callback, fadesTime = {}) {
 
 Template.notification.onCreated(function() {
     Meteor.subscribe('notifications.all');
-
-    //dice possible values
-    const DiceSuccess = {
-        "Critical_Success": 100,
-        "Normal": 50,
-        "Fail": 30,
-        "Critical_Fail": 0
-    }
+    Meteor.subscribe('gamelogs.all');
 
     const cursor = Notifications.find({ $or: [{ userId: Meteor.userId(), type: "skilltest" }, { isGlobal: true, type: "skilltest" }] });
     const handle = cursor.observeChanges({
@@ -63,6 +57,16 @@ Template.notification.onCreated(function() {
                         resultLabel = "Echec CRITIQUE";
                         break;
 
+                }
+
+                if (notification.datas['logLine']) {
+                    Meteor.call("gamelogs.set_visible", notification.datas['logLine'], true, (error, result) => {
+                        if (error) {
+                            console.log(error.message);
+                        } else {
+                            console.log("update alright ! ");
+                        }
+                    });
                 }
 
                 let resultPopup = $("<div class='resultPopup'>" + resultLabel + "</div>");

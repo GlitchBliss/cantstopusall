@@ -29,8 +29,6 @@ Meteor.methods({
         check(characterId, String);
         let gameUserUnicity = gameId + Meteor.userId();
 
-        Gamelogs.insert({ text: "something", date: new Date() });
-
         return CharactersInGames.upsert({ gameUserUnicity: gameUserUnicity }, {
             $set: {
                 characterId: characterId,

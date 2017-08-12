@@ -4,7 +4,7 @@ import { Notifications } from '/imports/api/notifications/notifications.js';
 import { Meteor } from 'meteor/meteor';
 import './gm.html';
 
-Template.App_gm.onCreated(function () {
+Template.App_gm.onCreated(function() {
     Meteor.subscribe('characters_in_games.all');
     Meteor.subscribe('characters.all');
 
@@ -12,7 +12,6 @@ Template.App_gm.onCreated(function () {
 });
 
 Template.App_gm.helpers({
-
     game() {
         return Games.findOne(Template.instance().getGameId());
     },
@@ -26,12 +25,11 @@ Template.App_gm.helpers({
         }, this);
 
         return characters;
-    },
-
+    }
 });
 
 Template.App_gm.events({
-    'click .send-notification'(event, template) {
+    'click .send-notification' (event, template) {
         event.preventDefault();
         const userId = $(event.target).data('id');
 
