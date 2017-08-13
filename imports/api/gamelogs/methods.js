@@ -6,12 +6,26 @@ Meteor.methods({
     'gamelogs.insert' (text, gameId, isVisible = true) {
         check(text, String);
         check(gameId, String);
-        return Gamelogs.insert({
-            text,
-            gameId,
-            isVisible: isVisible,
-            createdAt: new Date()
-        });
+
+        //Logs hard debounce
+        //We seek for same combination text/gameId with less than one second of insertion
+        //If none only do we do the insertion
+        let now = new Date();
+        let isTooClose = false;
+        for (let log of Gamelogs.find({ gameId: gameId, text: text }).fetch()) {
+            if (now.getTime() - new Date(log.createdAt).getTime() < 1000) {
+                isTooClose = true;
+            }
+        }
+
+        if (!isTooClose) {
+            return Gamelogs.insert({
+                text,
+                gameId,
+                isVisible: isVisible,
+                createdAt: new Date()
+            });
+        }
     },
 
     'gamelogs.update' (logId, text, gameId, isVisible = true) {

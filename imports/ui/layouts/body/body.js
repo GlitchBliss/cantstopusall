@@ -24,12 +24,13 @@ Template.App_body.events({
     'click .logout' (event, instance) {
         event.preventDefault();
 
-        Meteor.call('games.leave', Meteor.userId(), (error) => {
-            console.log(error);
-        }, () => {
-            AccountsTemplates.logout();
+        Meteor.call('games.leave', Meteor.userId(), (error, result) => {
+            if (error) {
+                console.log(error.message);
+            } else {
+                AccountsTemplates.logout();
+            }
         });
-
     }
 });
 

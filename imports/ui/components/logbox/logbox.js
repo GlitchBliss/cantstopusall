@@ -16,7 +16,7 @@ Template.logbox.helpers({
         return logs;
     },
     formatDate(date) {
-        return moment(date).format('hh:mm:ss');
+        return moment(date).format('HH:mm:ss');
     }
 });
 

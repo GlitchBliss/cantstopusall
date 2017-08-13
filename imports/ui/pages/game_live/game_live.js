@@ -1,23 +1,48 @@
+import { Meteor } from 'meteor/meteor';
+
 import { Games, CharactersInGames } from '/imports/api/games/games.js';
 import { Characters } from '/imports/api/characters/characters.js';
+import { LogEntry } from '/imports/classes/log_entry.class.js';
 import { Gamelogs } from '../../components/logbox/logbox.js';
-import { Meteor } from 'meteor/meteor';
+
 import './game_live.html';
 import './game_live.scss';
 import '../../components/skills_box/skills_box.js';
 
 
 Template.App_game_live.onCreated(function() {
-
-    this.subscribe("games.all");
-    this.subscribe("characters.all");
-    this.subscribe("characters_in_games.all");
-
     this.getgame_Id = () => FlowRouter.getParam('_id');
     Session.set('currentGameId', this.getgame_Id());
 
     this.autorun(() => {
-        this.subscribe('game.all');
+        this.subscribe("games.all");
+        this.subscribe("characters.all");
+        this.subscribe("characters_in_games.all");
+
+        const cursor = CharactersInGames.find({ gameId: this.getgame_Id() }, {
+            $fields: { isCurrentlyIn: true }
+        });
+        const handle = cursor.observeChanges({
+            changed(id, fields) {
+
+                let charaInGame = CharactersInGames.findOne(id);
+                let character = Characters.findOne(charaInGame.characterId);
+                let line = "";
+                if (fields.isCurrentlyIn == false) {
+                    line = new LogEntry("{1} vient de quitter la partie.");
+                    line.add(character.name, "strong");
+                } else if (fields.isCurrentlyIn == true) {
+                    line = new LogEntry("{1} vient de rentrer dans la partie.");
+                    line.add(character.name, "strong");
+                }
+
+                Meteor.call('gamelogs.insert', line.render(), Session.get('currentGameId'), true, (error, id) => {
+                    if (error) {
+                        console.log(error.error);
+                    }
+                });
+            }
+        });
     });
 });
 

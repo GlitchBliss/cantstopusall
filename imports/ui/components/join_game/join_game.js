@@ -3,6 +3,7 @@ import { Session } from 'meteor/session';
 
 import { Characters } from '/imports/api/characters/characters.js';
 import { Games } from '/imports/api/games/games.js';
+import { LogEntry } from '/imports/classes/log_entry.class.js';
 import '../game/game.js';
 import './join_game.html';
 import './join_game.scss';
@@ -37,7 +38,6 @@ Template.join_game.events({
     'keyup .gm-name' (event, instance) {
         Template.instance().userName.set($(event.currentTarget).val());
     },
-
     'click .game-element' (event, instance) {
         const gameId = $(event.currentTarget).data('id');
         instance.selectedGame.set(gameId);
@@ -63,6 +63,19 @@ Template.join_game.events({
                 console.log(error);
             } else {
                 if (instance.selectedGame.get()) {
+
+                    console.log("phalbala");
+
+                    // let character = Characters.findOne(characterId);
+                    // let line = new LogEntry("{1} vient d'arriver dans la partie");
+                    // line.add(character.name, "strong");
+
+                    // Meteor.call('gamelogs.insert', line.render(), Session.get("currentGameId"), false, (error, id) => {
+                    //     if (error) {
+                    //         console.log(error.error);
+                    //     }
+                    // });
+
                     FlowRouter.go('App.game.live', { _id: instance.selectedGame.get() });
                 }
             }
