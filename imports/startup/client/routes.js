@@ -16,6 +16,7 @@ import '../../ui/pages/character_edit/character_edit.js';
 import '../../ui/pages/character_create/character_create.js';
 import '../../ui/pages/character_visualize/character_visualize.js';
 import '../../ui/pages/gm/gm.js';
+import '../../ui/pages/admin/admin.js';
 import '../../ui/pages/not-found/not-found.js';
 
 // Set up all routes in the app
@@ -39,7 +40,6 @@ FlowRouter.route('/profile', {
         BlazeLayout.render('App_body', { main: 'App_profile' });
     },
 });
-
 
 FlowRouter.route('/games', {
     name: 'App.games.list',
@@ -83,7 +83,6 @@ FlowRouter.route('/character/:_characterid', {
     },
 });
 
-
 FlowRouter.route('/characters/creation', {
     name: 'App.character.create',
     action(params, queryParams) {
@@ -91,14 +90,12 @@ FlowRouter.route('/characters/creation', {
     },
 });
 
-
 FlowRouter.route('/character/edit/:_id', {
     name: 'App.character.edit',
     action(params, queryParams) {
         BlazeLayout.render('App_body', { main: 'App_character_edit' });
     },
 });
-
 
 FlowRouter.route('/game/:_id', {
     name: 'App.game',
@@ -114,6 +111,15 @@ FlowRouter.route('/gm/:_id', {
     },
 });
 
+/* PAGES ADMIN */
+FlowRouter.route('/admin', {
+    name: 'App.admin',
+    action(params, queryParams) {
+        BlazeLayout.render('App_body', { main: 'App_admin' });
+    },
+});
+
+/* DEFAULT */
 
 FlowRouter.notFound = {
     action() {

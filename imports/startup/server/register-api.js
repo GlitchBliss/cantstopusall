@@ -16,6 +16,9 @@ import '../../api/characters/server/publications.js';
 import '../../api/characteristics/methods.js';
 import '../../api/characteristics/server/publications.js';
 
+import '../../api/skills/methods.js';
+import '../../api/skills/server/publications.js';
+
 import '../../api/notifications/methods.js';
 import '../../api/notifications/server/publications.js';
 
