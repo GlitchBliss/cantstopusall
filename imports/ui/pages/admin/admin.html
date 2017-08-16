@@ -2,36 +2,45 @@
     Administration
     <h2>Skills</h2>
     <form id="new_skill" method="POST">
+        <div class="row">
+            <div class="col s6">
 
-        <label>Nom:</label><input type="text" name="name"/>
-        <label>Label :</label><input type="text" name="label"/>
-        <div class="input-field">
-            <select name="level">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-            <label>Level :</label>
-        </div>
-        <label>Description:</label><textarea type="text" name="description"></textarea>
-        <label>Phrase du log:</label><input type="text" name="saidWhenDone"/>        
-        <label>Image URL:</label><input type="text" name="imageUrl"/>                
-
-        <div class="parent_and_group" data-id="">
-                Parents ET
-            <div class="parent_and">
-                <select name="parent_and[]" data-group-id="0">
-                    {{#each skills 0}}
-                        <option value={{_id}}>{{label}}</option>
-                    {{/each}}
-                </select>      
-                <span class="btn remove_parent_and">-(parent)</span>                                     
-            </div>
-            <span class="btn add_parent_and">+(parent)</span>            
-        </div>
-        <span class="btn add_group_parent_and">+(group)</span>
-
-        <input class="btn" type="submit" value="Add Skill"/>
+                <div class="col s6">
+                    <label>Nom:</label><input type="text" name="name"/>
+                    <label>Label :</label><input type="text" name="label"/>
+                    <div class="input-field">
+                        <select name="level">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <label>Level :</label>
+                    </div>
+                    <label>Description:</label><textarea type="text" name="description"></textarea>
+                    <label>Phrase du log:</label><input type="text" name="saidWhenDone"/>        
+                    <label>Image URL:</label><input type="text" name="imageUrl"/>                        
+                </div>
+                <div class="col s6">   
+                    Parents ET <span class="btn add_group_parent_and">ADD AND GROUP</span>
+                    <div class="parent_and_group col s12" data-id="">                        
+                        <div class="parent_and col s10">
+                            <div class="col s2"><a class="btnParents remove_parent_and"><i class="material-icons left">delete</i></a></div>
+                            <div class="col s10">
+                                <select name="parent_and[]" data-group-id="0">
+                                    {{#each skills 0}}
+                                        <option value={{_id}}>{{label}}</option>
+                                    {{/each}}
+                                </select>        
+                            </div>                            
+                        </div>
+                        <div class="col s2">
+                            <a class="btnParents add_parent_and"><i class="material-icons left">playlist_add</i></a>                            
+                        </div>                 
+                    </div>
+                </div>        
+            </div>            
+        </div>    
+        <div class="row"><input class="btn" type="submit" value="Add Skill"/></div>
     </form>
 </template>

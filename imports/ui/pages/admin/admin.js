@@ -30,20 +30,24 @@ Template.App_admin.helpers({
 
 Template.App_admin.events({
     'click .remove_parent_and' (event, instance) {
+        event.preventDefault();
         $(event.target).closest(".parent_and").remove();
     },
     'click .add_parent_and' (event, instance) {
+        event.preventDefault();
         let baseTemplate = $(".parent_and").clone().get(0);
         let parent = $(event.target).closest(".parent_and_group");
         $("input", baseTemplate).val("");
         $(baseTemplate).insertAfter($(".parent_and", parent).last());
     },
     'click .add_group_parent_and' (event, instance) {
+        event.preventDefault();
         let baseTemplate = $(".parent_and_group").clone().get(0);
         $("input", baseTemplate).val("");
         $(baseTemplate).insertAfter($(".parent_and_group").last());
     },
     'click .add_group_parent_and' (event, instance) {
+        event.preventDefault();
         let baseTemplate = $(".parent_and_group").clone().get(0);
         $("input", baseTemplate).val("");
         $(baseTemplate).insertAfter($(".parent_and_group").last());
