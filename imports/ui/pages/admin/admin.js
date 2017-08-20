@@ -105,7 +105,7 @@ Template.parent_group.helpers({
 
 Template.parent_group.events({
     'click .add_parent'(event, instance) {
-        event.preventDefault();               
+        event.preventDefault();
         instance.parentsIteration.set(instance.parentsIteration.get() + 1);
     },
     'click .remove_parent'(event, instance) {
@@ -124,7 +124,7 @@ Template.parent_group.events({
  */
 
 Template.App_admin.onCreated(function () {
-    Meteor.subscribe('skills.all');    
+    Meteor.subscribe('skills.all');
     Session.set("parentsGroups", [{ "type": "OR", "iteration": 0 }, { "type": "AND", "iteration": 0 }]);
     Session.set("currentSkillId", null);
     Session.set("oldSkillId", null);
@@ -132,9 +132,9 @@ Template.App_admin.onCreated(function () {
 
     Tracker.autorun((computation) => {
         if (getIterationParentGroup("OR") >= 1) {
-            $(".add_group_parent").filter( (index, element) => $(element).data('type') == "OR").hide();
+            $(".add_group_parent").filter((index, element) => $(element).data('type') == "OR").hide();
         } else {
-            $(".add_group_parent").filter( (index, element) => $(element).data('type') == "OR").show();
+            $(".add_group_parent").filter((index, element) => $(element).data('type') == "OR").show();
         }
 
         if (Session.get("currentSkillId") && Session.get("currentSkillId") != Session.get("oldSkillId") && !Session.get("parentsIsEdited")) {
@@ -221,6 +221,12 @@ Template.App_admin.events({
         } else {
             updateIterationParentGroup(type, "add");
         }
+    },
+    'click .flushForm'(event, instance) {
+        Session.set("parentsGroups", [{ "type": "OR", "iteration": 0 }, { "type": "AND", "iteration": 0 }]);
+        Session.set("currentSkillId", null);
+        Session.set("oldSkillId", null);
+        Session.set("parentsIsEdited", false);
     },
     'submit #new_skill'(event, instance) {
         event.preventDefault();
