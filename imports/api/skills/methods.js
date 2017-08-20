@@ -1,13 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { skills } from './skills.js';
+import { Skills } from './skills.js';
 
 Meteor.methods({
     'skills.upsert' (skillObject) {
 
         check(skillObject.name, String);
+        check(skillObject.label, String);
 
-        return skills.upsert({ _id: skillObject.id }, {
+        return Skills.upsert({ _id: skillObject.id }, {
             $set: {
                 name: skillObject.name,
                 label: skillObject.label,

@@ -1,46 +1,72 @@
+<template name="parent_group">
+    <div class="parent_group col s12" data-id="">
+        {{#each getIterations currentIteration}}
+        <div class="parent col s10">
+            <div class="col s2"><a class="btnParents remove_parent"><i class="material-icons left">delete</i></a></div>
+            <div class="col s10">
+                <select name="parent[{{getType}}][{{getGroupIndex}}][{{@index}}]" data-group-id="{{@index}}">
+                    {{#let selectIndex=@index}}
+                        {{#each skills}}
+                            <option value={{_id}} selected="{{hasIt _id selectIndex}}">{{label}}</option>
+                        {{/each}}
+                    {{/let}}
+                </select>
+            </div>
+        </div>
+        {{/each}}
+        <div class="col s2">
+            <a class="btnParents add_parent"><i class="material-icons left">playlist_add</i></a>
+        </div>
+    </div>
+</template>
+
 <template name="App_admin">
     Administration
     <h2>Skills</h2>
+    {{#with skill=getCurrent}}
     <form id="new_skill" method="POST">
+        <input type="hidden" name="id" value="{{skill._id}}" />
         <div class="row">
             <div class="col s6">
-
-                <div class="col s6">
-                    <label>Nom:</label><input type="text" name="name"/>
-                    <label>Label :</label><input type="text" name="label"/>
+                <div class="col s12">
+                    <h3>Parents ET <span class="btnParents add_group_parent" data-type="AND"><i class="material-icons left">plus_one</i></span></h3>
+                    {{#each getIterations "AND"}} {{> parent_group currentIteration = @index type = "AND"}} {{/each}}
+                </div>
+                <div class="col s12">
+                    <h3>Parents OU <span class="btnParents add_group_parent" data-type="OR"><i class="material-icons left">plus_one</i></span></h3>
+                    {{#each getIterations "OR"}} {{> parent_group currentIteration = @index type = "OR"}} {{/each}}
+                </div>
+                <div class="col s12">
+                    <h3>Details</h3>
+                    <label>Nom:</label><input type="text" name="name" value="{{skill.name}}" required/>
+                    <label>Label :</label><input type="text" name="label" value="{{skill.label}}" required/>
                     <div class="input-field">
-                        <select name="level">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                        <select name="level">                            
+                            <option value="0" selected={{isLevel 0}}>0</option>
+                            <option value="1" selected={{isLevel 1}}>1</option>
+                            <option value="2" selected={{isLevel 2}}>2</option>
+                            <option value="3" selected={{isLevel 3}}>3</option>                            
                         </select>
                         <label>Level :</label>
                     </div>
-                    <label>Description:</label><textarea type="text" name="description"></textarea>
-                    <label>Phrase du log:</label><input type="text" name="saidWhenDone"/>        
-                    <label>Image URL:</label><input type="text" name="imageUrl"/>                        
+                    <label>Description:</label><textarea type="text" name="description">{{skill.description}}</textarea>
+                    <label>Phrase du log:</label><input type="text" name="saidWhenDone" value="{{skill.saidWhenDone}}" />
+                    <label>Image URL:</label><input type="text" name="imageUrl" value="{{skill.imageUrl}}" />
                 </div>
-                <div class="col s6">   
-                    Parents ET <span class="btn add_group_parent_and">ADD AND GROUP</span>
-                    <div class="parent_and_group col s12" data-id="">                        
-                        <div class="parent_and col s10">
-                            <div class="col s2"><a class="btnParents remove_parent_and"><i class="material-icons left">delete</i></a></div>
-                            <div class="col s10">
-                                <select name="parent_and[]" data-group-id="0">
-                                    {{#each skills 0}}
-                                        <option value={{_id}}>{{label}}</option>
-                                    {{/each}}
-                                </select>        
-                            </div>                            
-                        </div>
-                        <div class="col s2">
-                            <a class="btnParents add_parent_and"><i class="material-icons left">playlist_add</i></a>                            
-                        </div>                 
-                    </div>
-                </div>        
-            </div>            
-        </div>    
-        <div class="row"><input class="btn" type="submit" value="Add Skill"/></div>
+            </div>
+            <div class="col s6">
+                <h3>Liste</h3>
+
+                {{#each getSkillLevels}}
+                <div class="col s12 levels level{{cssLevel}}">
+                    {{#each skills realLevel  }}
+                        <span class="skill_tag" data-id="{{_id}}">{{label}}</span> 
+                    {{/each}}
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="row"><input class="btn" type="submit" value="Add Skill" /></div>
     </form>
+    {{/with}}
 </template>

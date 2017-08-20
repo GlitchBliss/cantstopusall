@@ -39,3 +39,4 @@ softwarerero:accounts-t9n
 sergeyt:typeahead
 materialize:materialize@=0.99.0
 underscore
+raix:handlebar-helpers

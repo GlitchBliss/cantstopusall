@@ -1,4 +1,15 @@
+h3 {
+    font-size: 2em;
+}
+
 .parent_and_group {
+    border: solid 1px #434242;
+    box-shadow: 1px 1px 1px #434242;
+    padding: 5px !important;
+    margin: 5px;
+}
+
+.parent_group {
     border: solid 1px #434242;
     box-shadow: 1px 1px 1px #434242;
     padding: 5px !important;
@@ -14,3 +25,37 @@
     height: 100%;
     cursor: pointer;
 }
+
+
+.levels {
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+$colour1:#01579b; 
+$colour2:#0277bd; 
+$colour3:#0288d1; 
+$colour4:#039be5; 
+$colour5:#03a9f4; 
+$colors: $colour1,  $colour2, $colour3, $colour4, $colour5;
+@for $i from 1 through length($colors){
+    .level#{$i} {        
+        .skill_tag {
+            background-color: nth($colors, $i);                        
+        }
+    }
+}
+
+.skill_tag {
+    display: inline-block;        
+    margin: 5px;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px black;
+    box-shadow: 1px 1px 1px #808080;
+    cursor:pointer;
+}
+
