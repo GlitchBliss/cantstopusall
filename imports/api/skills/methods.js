@@ -22,5 +22,9 @@ Meteor.methods({
                 createdAt: new Date()
             }
         });
+    },
+    'skills.delete' (id) {
+        check(id, String);
+        return Skills.remove(id);
     }
 });

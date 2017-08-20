@@ -29,11 +29,11 @@
         <div class="row">
             <div class="col s6">
                 <div class="col s12">
-                    <h3>Parents ET <span class="btnParents add_group_parent" data-type="AND"><i class="material-icons left">plus_one</i></span></h3>
+                    <h3 class="parentAND">Parents ET <span class="btnParents add_group_parent" data-type="AND"><i class="material-icons left">plus_one</i></span></h3>
                     {{#each getIterations "AND"}} {{> parent_group currentIteration = @index type = "AND"}} {{/each}}
                 </div>
                 <div class="col s12">
-                    <h3>Parents OU <span class="btnParents add_group_parent" data-type="OR"><i class="material-icons left">plus_one</i></span></h3>
+                    <h3 class="parentOR">Parents OU <span class="btnParents add_group_parent" data-type="OR"><i class="material-icons left">plus_one</i></span></h3>
                     {{#each getIterations "OR"}} {{> parent_group currentIteration = @index type = "OR"}} {{/each}}
                 </div>
                 <div class="col s12">
@@ -59,15 +59,17 @@
 
                 {{#each getSkillLevels}}
                 <div class="col s12 levels level{{cssLevel}}">
-                    {{#each skills realLevel  }}
-                        <span class="skill_tag" data-id="{{_id}}">{{label}}</span> 
-                    {{/each}}
+                    {{#each skills realLevel }}
+                    <span class="skill_tag" data-id="{{_id}}">{{label}}</span> {{/each}}
                 </div>
                 {{/each}}
             </div>
         </div>
-        <div class="row"><input class="btn" type="submit" value="Mise à jour" /></div>
-        <div class="row"><input class="btn flushForm" type="reset" value="Vider" /></div>
+        <div class="row">
+            <input class="btn" type="submit" value="Mise à jour" />
+            <input class="btn flushForm" type="reset" value="Vider" />
+            <input class="btn red darken-4 delete_skill" type="button" value="Supprimer"/>
+        </div>
     </form>
     {{/with}}
 </template>

@@ -48,6 +48,10 @@ $colors: $colour1,  $colour2, $colour3, $colour4, $colour5;
     }
 }
 
+
+$titleAND : #00AE00;
+$titleOR : #AE006E;
+
 .skill_tag {
     display: inline-block;        
     margin: 5px;
@@ -57,5 +61,24 @@ $colors: $colour1,  $colour2, $colour3, $colour4, $colour5;
     text-shadow: 1px 1px 1px black;
     box-shadow: 1px 1px 1px #808080;
     cursor:pointer;
+
+    &.selected {        
+        color: #FF2A00;        
+        border: solid 2px black,
+    }
+}
+
+.parentAND:after {
+    content: "\0025BA";
+    padding: 0 5px;
+    color: $titleAND;       
+    font-size: 1.5em;      
+}
+
+.parentOR:before {
+    content: "\0025C0";
+    padding: 0 5px;
+    color: $titleOR;                
+    font-size: 1.5em;      
 }
 

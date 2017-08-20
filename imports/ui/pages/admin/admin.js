@@ -204,8 +204,26 @@ Template.App_admin.helpers({
 
 Template.App_admin.events({
     'click .skill_tag'(event, instance) {
+
+        $(".skill_tag").removeClass("parentOR parentAND selected");
+        $(event.currentTarget).addClass("selected");
         let id = $(event.currentTarget).data("id");
+        let skill = Skills.findOne(id);
         Session.set("currentSkillId", id);
+
+        for (let groupIndex in skill.parentsOR) {
+            for (let parentIndex in skill.parentsOR[groupIndex]) {
+                let id = skill.parentsOR[groupIndex][parentIndex].id;
+                $(".skill_tag").filter((index, item) => $(item).data("id") == id).addClass("parentOR");
+            }
+        }
+
+        for (let groupIndex in skill.parentsAND) {
+            for (let parentIndex in skill.parentsAND[groupIndex]) {
+                let id = skill.parentsAND[groupIndex][parentIndex].id;
+                $(".skill_tag").filter((index, item) => $(item).data("id") == id).addClass("parentAND");
+            }
+        }
     },
     'click .add_group_parent'(event, instance) {
 
@@ -227,6 +245,22 @@ Template.App_admin.events({
         Session.set("currentSkillId", null);
         Session.set("oldSkillId", null);
         Session.set("parentsIsEdited", false);
+    },
+    'click .delete_skill'(event, instance) {
+        event.preventDefault();
+        
+        let id = Session.get("currentSkillId");
+        Meteor.call('skills.delete', id, (error, result) => {
+            if (error) {
+                console.log(error.message);
+            } else {
+                Session.set("parentsGroups", [{ "type": "OR", "iteration": 0 }, { "type": "AND", "iteration": 0 }]);
+                Session.set("currentSkillId", null);
+                Session.set("oldSkillId", null);
+                Session.set("parentsIsEdited", false);
+                console.log("Skill removed ! ");
+            }
+        });
     },
     'submit #new_skill'(event, instance) {
         event.preventDefault();
