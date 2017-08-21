@@ -58,16 +58,18 @@
                 <h3>Liste</h3>
 
                 {{#each getSkillLevels}}
-                <div class="col s12 levels level{{cssLevel}}">
-                    {{#each skills realLevel }}
-                    <span class="skill_tag" data-id="{{_id}}">{{label}}</span> {{/each}}
-                </div>
-                {{/each}}
+                    {{#let skillLevel= @index}}
+                    <div class="col s12 levels level{{cssLevel}}">
+                        {{#each skills realLevel }}
+                        <span class="skill_tag waves-effect waves-light btn blue lighten-{{getSkillClassNumer skillLevel}} black-text text-lighten-{{getSkillClassNumer skillLevel}}" data-id="{{_id}}">{{label}}</span> {{/each}}
+                    </div>
+                    {{/let}}
+                {{/each}}                    
             </div>
         </div>
         <div class="row">
-            <input class="btn" type="submit" value="Mise à jour" />
-            <input class="btn flushForm" type="reset" value="Vider" />
+            <input class="btn" type="submit" value="Enregistrer" />
+            <input class="btn flushForm" type="reset" value="Nouveau" />
             <input class="btn red darken-4 delete_skill" type="button" value="Supprimer"/>
         </div>
     </form>

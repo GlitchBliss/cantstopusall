@@ -191,6 +191,9 @@ Template.App_admin.helpers({
         }
         return iterationsArray;
     },
+    getSkillClassNumer(skillIndex) {
+        return 5 - skillIndex;
+    },
     skills(level = null) {
         Meteor.setTimeout(() => $('select').material_select(), 1000);
 
@@ -205,7 +208,7 @@ Template.App_admin.helpers({
 Template.App_admin.events({
     'click .skill_tag'(event, instance) {
 
-        $(".skill_tag").removeClass("parentOR parentAND selected");
+        $(".skill_tag").removeClass("parentOR parentAND selected blurred");
         $(event.currentTarget).addClass("selected");
         let id = $(event.currentTarget).data("id");
         let skill = Skills.findOne(id);
@@ -224,6 +227,8 @@ Template.App_admin.events({
                 $(".skill_tag").filter((index, item) => $(item).data("id") == id).addClass("parentAND");
             }
         }
+
+        $(".skill_tag").filter((index, item) => !$(item).hasClass("parentOR") && !$(item).hasClass("parentAND") && !$(item).hasClass("selected")).addClass("blurred");
     },
     'click .add_group_parent'(event, instance) {
 
@@ -241,6 +246,9 @@ Template.App_admin.events({
         }
     },
     'click .flushForm'(event, instance) {
+
+        $(".skill_tag").removeClass("parentOR parentAND selected blurred");
+        
         Session.set("parentsGroups", [{ "type": "OR", "iteration": 0 }, { "type": "AND", "iteration": 0 }]);
         Session.set("currentSkillId", null);
         Session.set("oldSkillId", null);
@@ -248,7 +256,7 @@ Template.App_admin.events({
     },
     'click .delete_skill'(event, instance) {
         event.preventDefault();
-        
+
         let id = Session.get("currentSkillId");
         Meteor.call('skills.delete', id, (error, result) => {
             if (error) {
