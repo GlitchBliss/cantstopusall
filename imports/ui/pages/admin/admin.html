@@ -4,10 +4,14 @@
         <div class="parent col s10">
             <div class="col s2"><a class="btnParents remove_parent"><i class="material-icons left">delete</i></a></div>
             <div class="col s10">
-                <select name="parent[{{getType}}][{{getGroupIndex}}][{{@index}}]" data-group-id="{{@index}}">
+                <select name="parent[{{getType}}][{{getGroupIndex}}][{{@index}}]" data-group-id="{{@index}}">                    
                     {{#let selectIndex=@index}}
-                        {{#each skills}}
-                            <option value={{_id}} selected="{{hasIt _id selectIndex}}">{{label}}</option>
+                        {{#each getSkillLevels}}             
+                            <optgroup label="Skills level ==> {{@index}} ">
+                            {{#each skills realLevel }}                            
+                                <option value={{_id}} selected="{{hasIt _id selectIndex}}">{{label}}</option>                                
+                            {{/each}}
+                            </optgroup>
                         {{/each}}
                     {{/let}}
                 </select>
@@ -58,19 +62,20 @@
                 <h3>Liste</h3>
 
                 {{#each getSkillLevels}}
-                    {{#let skillLevel= @index}}
-                    <div class="col s12 levels level{{cssLevel}}">
-                        {{#each skills realLevel }}
-                        <span class="skill_tag waves-effect waves-light btn blue lighten-{{getSkillClassNumer skillLevel}} black-text text-lighten-{{getSkillClassNumer skillLevel}}" data-id="{{_id}}">{{label}}</span> {{/each}}
-                    </div>
-                    {{/let}}
-                {{/each}}                    
+                {{#let skillLevel= @index}}
+                <div class="col s12 levels level{{cssLevel}}">
+                    {{#each skills realLevel }}
+                    <span class="skill_tag waves-effect waves-light btn blue lighten-{{getSkillClassNumer skillLevel}} black-text text-lighten-{{getSkillClassNumer skillLevel}}"
+                        data-id="{{_id}}">{{label}}</span> {{/each}}
+                </div>
+                {{/let}} 
+                {{/each}}
             </div>
         </div>
         <div class="row">
             <input class="btn" type="submit" value="Enregistrer" />
             <input class="btn flushForm" type="reset" value="Nouveau" />
-            <input class="btn red darken-4 delete_skill" type="button" value="Supprimer"/>
+            <input class="btn red darken-4 delete_skill" type="button" value="Supprimer" />
         </div>
     </form>
     {{/with}}

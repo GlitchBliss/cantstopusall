@@ -92,12 +92,23 @@ Template.parent_group.helpers({
     getType() {
         return Template.instance().data["type"];
     },
+    getSkillLevels() {
+        let levels =
+            [
+                { "cssLevel": 1, "realLevel": 0 },
+                { "cssLevel": 2, "realLevel": 1 },
+                { "cssLevel": 3, "realLevel": 2 },
+                { "cssLevel": 4, "realLevel": 3 },
+                { "cssLevel": 5, "realLevel": 4 }
+            ];
+        return levels;
+    },    
     skills(level = null) {
         Meteor.setTimeout(() => $('select').material_select(), 1000);
 
         let skills = Skills.find();
         if (level != null) {
-            skills = Skills.find({ level: '0' });
+            skills = Skills.find({ level: level.toString() });
         }
         return skills;
     }
@@ -248,7 +259,7 @@ Template.App_admin.events({
     'click .flushForm'(event, instance) {
 
         $(".skill_tag").removeClass("parentOR parentAND selected blurred");
-        
+
         Session.set("parentsGroups", [{ "type": "OR", "iteration": 0 }, { "type": "AND", "iteration": 0 }]);
         Session.set("currentSkillId", null);
         Session.set("oldSkillId", null);
@@ -309,6 +320,7 @@ Template.App_admin.events({
                 console.log(error.message);
             } else {
                 console.log("Skill added ! ");
+                $(".flushForm").click();
             }
         });
     }
