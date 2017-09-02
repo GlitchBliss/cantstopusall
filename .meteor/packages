@@ -30,13 +30,13 @@ facebook-config-ui@1.0.0
 arillo:flow-router-helpers
 gwendall:accounts-helpers
 momentjs:moment
-fourseven:scss
 dynamic-import@0.1.1
 session@1.1.7
 nolimits4web:swiper
 useraccounts:unstyled
-softwarerero:accounts-t9n
 sergeyt:typeahead
-materialize:materialize@=0.99.0
 underscore
 raix:handlebar-helpers
+fourseven:scss
+materialize:materialize
+softwarerero:accounts-t9n
