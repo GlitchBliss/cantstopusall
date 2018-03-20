@@ -1,0 +1,25 @@
+<template name="skill_tag">
+
+</template>
+
+<template name="skills">
+    <div class="row">
+        {{#each getSkillLevels}} 
+            {{#let skillLevel= @index}} 
+                {{#if skills realLevel}}
+            <div class="col s2 cost">
+                {{getCostByLevel skillLevel}}
+            </div>
+            <div class="col s10 levels level{{cssLevel}}">
+                {{#each skills realLevel }} 
+                    {{ > skill (skillArgs _id)}}
+                    <span class="skill_tag waves-effect waves-light btn blue lighten-{{getSkillClassNumer skillLevel}} black-text text-lighten-{{getSkillClassNumer skillLevel}}"
+                        data-level="{{skillLevel}}" data-id="{{_id}}">{{label}}
+                    </span>
+                {{/each}}
+            </div>
+                {{/if}} 
+            {{/let}} 
+        {{/each}}
+    </div>
+</template>

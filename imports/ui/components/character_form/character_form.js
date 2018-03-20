@@ -2,6 +2,7 @@ import { Characters, CharacterObject } from '/imports/api/characters/characters.
 import { Characteristics } from '/imports/api/characteristics/characteristics.js';
 import { Meteor } from 'meteor/meteor';
 import '/imports/ui/components/inputs/characteristic/characteristic.js';
+import '/imports/ui/components/skills/skills.js';
 import './character_form.html';
 import './character_form.scss';
 

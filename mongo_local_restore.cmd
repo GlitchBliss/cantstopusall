@@ -1,0 +1,1 @@
+mongorestore --db meteor --host localhost:1338 --verbose ./dump/meteor

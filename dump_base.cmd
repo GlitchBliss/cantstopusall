@@ -1,1 +1,0 @@
-mongodump --host 127.0.0.1 --port 1338 --archive=./dump/base.bson --db meteor
