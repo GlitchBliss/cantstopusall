@@ -1,32 +1,15 @@
 <template name="skill">
     {{#if skillReady}}
-    <article id="{{ id }}" class="{{ name }} skill_choice col s12 {{#if isDisabled}} disabled {{/if}}">
-        <div class="left-wrapper">
-            <div class="left-block">
-                <p class="title"> # {{ skill.label }}</p>
-                <p class="help flow-text"> {{help }}</p>
+    <article id="{{ skill.id }}" class="{{ skill.name }} option-button col s12  waves-effect waves-light">
+        <input type="radio" name="{{ skill.name }}" value="{{ skill.value }}" {{ isChecked value gameValue }} />
 
-                <div class="action-wrapper col s12">
-                    <img class="plus action-icon" src="/img/battery-plus-ghost.svg" />
-                    <em class="level-label">Inapte</em> {{#if isDraft }}
-                    <img class="minus action-icon" src="/img/battery-minus-ghost.svg" /> {{/if}}
-                </div>
-            </div>
+        <div class="pink darken-4 border-color"></div>
+        <div class="bag-o-text">
+            <p class="title"> {{ skill.label }}</p>
+            <p class="help flow-text"> {{skill.help }}</p>
         </div>
 
-        <div class="right-wrapper">
-            <aside class="right-block">
-                <img class="battery-level battery-0 " src="/img/battery-0.svg" />
-                <img class="battery-level battery-25" src="/img/battery-25.svg" />
-                <img class="battery-level battery-50" src="/img/battery-50.svg" />
-                <img class="battery-level battery-75" src="/img/battery-75.svg" />
-                <img class="battery-level battery-100" src="/img/battery-100.svg" />
-                <img class="battery-level energise" src="/img/energise.svg" />
-                <img src=" {{image }} " />
-            </aside>
-        </div>
-
-        <input type="text" data-id="{{id}}" name="skills[{{ name }}]" value="{{ value }}" />
+        <img src=" {{skill.image }} " />
     </article>
     {{/if}}
 </template>

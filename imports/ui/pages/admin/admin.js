@@ -1,5 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Skills, SkillsObject } from '/imports/api/skills/skills.js';
+import { Icons } from '/imports/api/icons/icons.js';
+
 
 import './admin.html';
 import './admin.scss';
@@ -102,7 +104,7 @@ Template.parent_group.helpers({
                 { "cssLevel": 5, "realLevel": 4 }
             ];
         return levels;
-    },    
+    },
     skills(level = null) {
         Meteor.setTimeout(() => $('select').material_select(), 1000);
 
@@ -136,12 +138,17 @@ Template.parent_group.events({
 
 Template.App_admin.onCreated(function () {
     Meteor.subscribe('skills.all');
+    Meteor.subscribe('icons.all');
+
     Session.set("parentsGroups", [{ "type": "OR", "iteration": 0 }, { "type": "AND", "iteration": 0 }]);
     Session.set("currentSkillId", null);
     Session.set("oldSkillId", null);
     Session.set("parentsIsEdited", false);
 
+    this.iconPredicate = new ReactiveVar('');
+
     Tracker.autorun((computation) => {
+
         if (getIterationParentGroup("OR") >= 1) {
             $(".add_group_parent").filter((index, element) => $(element).data('type') == "OR").hide();
         } else {
@@ -172,6 +179,9 @@ Template.App_admin.onCreated(function () {
 });
 
 Template.App_admin.helpers({
+    getIcons() {
+        return Icons.find({ label: { $regex: Template.instance().iconPredicate.get(), $options: 'i' } }).fetch();
+    },
     getSkillLevels() {
         let levels =
             [
@@ -281,6 +291,10 @@ Template.App_admin.events({
             }
         });
     },
+    'change .icons-search'(event, instance) {
+        let predicate = $(event.currentTarget).val();
+        instance.iconPredicate.set(predicate);
+    },
     'submit #new_skill'(event, instance) {
         event.preventDefault();
 
@@ -329,3 +343,4 @@ Template.App_admin.events({
 Template.App_admin.rendered = function () {
     $('select').material_select();
 };
+

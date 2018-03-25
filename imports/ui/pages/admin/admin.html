@@ -1,3 +1,4 @@
+
 <template name="parent_group">
     <div class="parent_group col s12" data-id="">
         {{#each getIterations currentIteration}}
@@ -55,7 +56,14 @@
                     </div>
                     <label>Description:</label><textarea type="text" name="description">{{skill.description}}</textarea>
                     <label>Phrase du log:</label><input type="text" name="saidWhenDone" value="{{skill.saidWhenDone}}" />
-                    <label>Image URL:</label><input type="text" name="imageUrl" value="{{skill.imageUrl}}" />
+                    <label>Image URL:</label>                         
+                    <input class="form-control icons-search" name="icons" type="text"/>
+                    <div class="col s12 icons-list">
+                        {{#each getIcons}}
+                        <img class="col s3" src="{{url}}" alt="{{label}}" />
+                        {{/each}}
+                    </div> 
+
                 </div>
             </div>
             <div class="col s6">
