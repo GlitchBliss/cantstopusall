@@ -7,11 +7,9 @@ Template.game_form_option.onCreated(function () {
 
 });
 
-
 Template.game_form_option.helpers({
 
 });
-
 
 Template.game_form_option.events({
 
@@ -22,9 +20,7 @@ Template.game_form_option.events({
         $(element).addClass('active');
         $('input', element).prop("checked", true);
     }
-
 });
-
 
 Template.game_form_option.onRendered(function () {
     const element = $("#id_" + Template.instance().data['value']);

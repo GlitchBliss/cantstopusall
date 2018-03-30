@@ -184,3 +184,48 @@
         }
     }  
 }
+
+article.option-button {
+    &.skill-level-0{
+        $color : #444;
+        background-color: $color; 
+        &.active, &:hover {
+            $lighterColor: lighten($color, 30);
+            background-color: $lighterColor!important; 
+        }
+    }
+
+    &.skill-level-1{
+        $color : #3288e6;
+        background-color: $color; 
+        &.active, &:hover {
+            $lighterColor: lighten($color, 30);
+            color: #444;
+            background-color: $lighterColor!important; 
+        }
+    }
+
+    &.skill-level-2{
+        $color : #d28a0c;
+        background-color: $color; 
+        &.active, &:hover {
+            $lighterColor: lighten($color, 30);
+            .flow-text, .title {
+                color: #444;
+            }
+            background-color: $lighterColor!important; 
+        }
+    }
+
+    &.skill-level-3{
+        $color : #d2370c;
+        background-color: $color; 
+        &.active, &:hover {
+            $lighterColor: lighten($color, 30);            
+            .flow-text, .title {
+                color: #444;
+            }
+            background-color: $lighterColor!important; 
+        }
+    }
+}

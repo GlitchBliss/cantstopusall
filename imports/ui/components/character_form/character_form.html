@@ -121,27 +121,6 @@
                 {{> skills character._id }}                
             {{/if}}
 
-            <!-- Swiper -->
-            <div class="swiper-container">
-                <!-- Add Pagination -->
-                <!--<div class="swiper-pagination"></div>-->
-                <!-- Add Arrows -->                
-                <a class="swiper-button-next btn-floating btn-large red"><i class="material-icons">skip_next</i></a>
-                <a class="swiper-button-prev btn-floating btn-large red"><i class="material-icons">skip_previous</i></a>
-                <!--<div class="swiper-button-prev btn-floating"></div>                     -->
-                <div class="swiper-wrapper">               
-                    {{#each characteristics_groups}}                        
-                    <div class="swiper-slide">  
-                        <h4>>{{category}}</h4>
-                        {{#each characteristics category}}
-                        <div class="col m6 s12">                            
-                            {{> characteristic id=_id name=name label=label help=help image=image_url character=character}}                            
-                        </div>
-                        {{/each}}
-                    </div>
-                    {{/each}}
-                </div>
-            </div>
             <div class="col s12 center-align">
                 {{#if isDraft}}
                 <button class="btn waves-effect waves-light record_character" type="submit">Enregistrer brouillon

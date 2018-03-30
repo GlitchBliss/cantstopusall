@@ -146,6 +146,7 @@ Template.App_admin.onCreated(function () {
     Session.set("parentsIsEdited", false);
 
     this.iconPredicate = new ReactiveVar('');
+    this.selectedIconUrl = new ReactiveVar(null);
 
     Tracker.autorun((computation) => {
 
@@ -180,7 +181,8 @@ Template.App_admin.onCreated(function () {
 
 Template.App_admin.helpers({
     getIcons() {
-        return Icons.find({ label: { $regex: Template.instance().iconPredicate.get(), $options: 'i' } }).fetch();
+        if (Template.instance().iconPredicate.get())
+            return Icons.find({ label: { $regex: Template.instance().iconPredicate.get(), $options: 'i' } }, { limit: 100 }).fetch();
     },
     getSkillLevels() {
         let levels =
@@ -223,6 +225,18 @@ Template.App_admin.helpers({
             skills = Skills.find({ level: level.toString() });
         }
         return skills;
+    },
+    getCurrentIconUrl() {
+        const selectedIconUrl = Template.instance().selectedIconUrl.get();
+        if (selectedIconUrl)
+            return selectedIconUrl;
+
+        let skill = Skills.findOne(Session.get("currentSkillId"));
+        if (skill) {
+            return skill.imageUrl;
+        } else {
+            return false;
+        }
     }
 });
 
@@ -234,6 +248,7 @@ Template.App_admin.events({
         let id = $(event.currentTarget).data("id");
         let skill = Skills.findOne(id);
         Session.set("currentSkillId", id);
+        instance.selectedIconUrl.set(null);
 
         for (let groupIndex in skill.parentsOR) {
             for (let parentIndex in skill.parentsOR[groupIndex]) {
@@ -269,7 +284,8 @@ Template.App_admin.events({
     'click .flushForm'(event, instance) {
 
         $(".skill_tag").removeClass("parentOR parentAND selected blurred");
-
+        instance.iconPredicate.set(null);
+        instance.selectedIconUrl.set(null);
         Session.set("parentsGroups", [{ "type": "OR", "iteration": 0 }, { "type": "AND", "iteration": 0 }]);
         Session.set("currentSkillId", null);
         Session.set("oldSkillId", null);
@@ -291,9 +307,19 @@ Template.App_admin.events({
             }
         });
     },
-    'change .icons-search'(event, instance) {
+    'keyup .icons-search'(event, instance) {
         let predicate = $(event.currentTarget).val();
         instance.iconPredicate.set(predicate);
+    },
+    'click .skillIcon'(event, instance) {
+        let iconSelectedUrl = $(event.currentTarget).prop('src');
+        if (iconSelectedUrl) {
+            instance.selectedIconUrl.set(iconSelectedUrl);
+            instance.iconPredicate.set('');
+            $(".icons-search").val('');
+        } else {
+            console.error("Issue with icon selection");
+        }
     },
     'submit #new_skill'(event, instance) {
         event.preventDefault();

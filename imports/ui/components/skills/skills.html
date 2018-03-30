@@ -12,10 +12,9 @@
             </div>
             <div class="col s10 levels level{{cssLevel}}">
                 {{#each skills realLevel }} 
-                    {{ > skill (skillArgs _id)}}
-                    <span class="skill_tag waves-effect waves-light btn blue lighten-{{getSkillClassNumer skillLevel}} black-text text-lighten-{{getSkillClassNumer skillLevel}}"
-                        data-level="{{skillLevel}}" data-id="{{_id}}">{{label}}
-                    </span>
+                    <div class="col s12 m6">
+                        {{ > skill (skillArgs _id)}}
+                    </div>
                 {{/each}}
             </div>
                 {{/if}} 

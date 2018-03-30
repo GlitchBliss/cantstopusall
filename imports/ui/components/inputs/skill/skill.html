@@ -1,15 +1,16 @@
 <template name="skill">
     {{#if skillReady}}
-    <article id="{{ skill.id }}" class="{{ skill.name }} option-button col s12  waves-effect waves-light">
-        <input type="radio" name="{{ skill.name }}" value="{{ skill.value }}" {{ isChecked value gameValue }} />
+    <article id="{{ skill.id }}" class="{{ skill.name }} skill_tag option-button col s12 waves-effect waves-light skill-level-{{skill.level}}" data-level="{{skill.level}}"
+        data-id="{{skill._id}}">
+        <input type="radio" name="{{ skill.name }}" />
 
         <div class="pink darken-4 border-color"></div>
         <div class="bag-o-text">
             <p class="title"> {{ skill.label }}</p>
-            <p class="help flow-text"> {{skill.help }}</p>
+            <p class="help flow-text"> {{skill.description }}</p>
         </div>
 
-        <img src=" {{skill.image }} " />
+        <img src=" {{skill.imageUrl}}" alt="{{ skill.name }}" />
     </article>
     {{/if}}
 </template>

@@ -40,8 +40,8 @@
                 <div class="col s12">
                     <h3 class="parentOR">Parents OU <span class="btnParents add_group_parent" data-type="OR"><i class="material-icons left">plus_one</i></span></h3>
                     {{#each getIterations "OR"}} {{> parent_group currentIteration = @index type = "OR"}} {{/each}}
-                </div>
-                <div class="col s12">
+                </div>              
+                <div class="col s6">
                     <h3>Details</h3>
                     <label>Nom:</label><input type="text" name="name" value="{{skill.name}}" required/>
                     <label>Label :</label><input type="text" name="label" value="{{skill.label}}" required/>
@@ -54,16 +54,28 @@
                         </select>
                         <label>Level :</label>
                     </div>
-                    <label>Description:</label><textarea type="text" name="description">{{skill.description}}</textarea>
-                    <label>Phrase du log:</label><input type="text" name="saidWhenDone" value="{{skill.saidWhenDone}}" />
-                    <label>Image URL:</label>                         
-                    <input class="form-control icons-search" name="icons" type="text"/>
+                </div>
+                <div class="col s6">
+                    {{#if getCurrentIconUrl}}      
+                    <div class="right-align">                            
+                        <img class="currentSkillIcon" src="{{getCurrentIconUrl}}" />
+                        <input id="iconPath" name="imageUrl" type="hidden" value="{{getCurrentIconUrl}}"/>
+                    </div>        
+                    {{/if}}
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">search</i>
+                        <input class="icons-search" id="icon_prefix" name="icons" type="text">
+                        <label for="icon_prefix">Rechercher icone</label>
+                    </div>
                     <div class="col s12 icons-list">
                         {{#each getIcons}}
-                        <img class="col s3" src="{{url}}" alt="{{label}}" />
+                        <img class="col s6 skillIcon" src="{{url}}" alt="{{label}}" />
                         {{/each}}
-                    </div> 
-
+                    </div>   
+                </div>
+                <div class="col s12">
+                    <label>Description:</label><textarea type="text" name="description">{{skill.description}}</textarea>
+                    <label>Phrase du log:</label><input type="text" name="saidWhenDone" value="{{skill.saidWhenDone}}" />
                 </div>
             </div>
             <div class="col s6">

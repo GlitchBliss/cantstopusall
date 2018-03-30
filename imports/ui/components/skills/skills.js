@@ -95,7 +95,7 @@ Template.skills.helpers({
         return {
             skillReady: instance.subscriptionsReady(),
             skill() {
-                const skill = Skills.findOne(skillId);                
+                const skill = Skills.findOne(skillId);
                 return skill;
             },
         };
@@ -106,13 +106,14 @@ Template.skills.helpers({
 Template.skills.events({
 
     'click .skill_tag'(event, template) {
-
         let skillsTaken = template.skillsTaken.get();
         let skillId = $(event.currentTarget).data("id");
         let level = $(event.currentTarget).data("level") + 1;
         level = level < 4 ? level : 4;
 
         $(event.currentTarget).toggleClass('darken-' + level);
+        $(event.currentTarget).toggleClass('active');
+        $('input', event.currentTarget).prop("checked", !$('input', event.currentTarget).prop("checked"));
 
         if (skillsTaken.indexOf(skillId) > -1) {
             skillsTaken.splice(skillsTaken.indexOf(skillId), 1);
