@@ -18,7 +18,17 @@ Meteor.methods({
                 creaPoints: characterObject.creaPoints,
                 xpPoints: characterObject.xpPoints ? characterObject.xpPoints : 0,
                 userId: Meteor.userId(),
-                createdAt: new Date()
+                updatedAt: new Date()
+            }
+        });
+    },
+    'characters.skills.upsert' (id, skills) {
+
+        check(id, String);
+
+        return Characters.upsert({ _id: id }, {
+            $set: {
+                characteristics: skills,                
             }
         });
     },

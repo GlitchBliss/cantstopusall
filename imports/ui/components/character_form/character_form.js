@@ -1,20 +1,21 @@
 import { Characters, CharacterObject } from '/imports/api/characters/characters.js';
 import { Characteristics } from '/imports/api/characteristics/characteristics.js';
+import { Skills, SkillsTaken, SkillsObject } from '/imports/api/skills/skills.js';
 import { Meteor } from 'meteor/meteor';
 import '/imports/ui/components/inputs/characteristic/characteristic.js';
 import '/imports/ui/components/skills/skills.js';
 import './character_form.html';
 import './character_form.scss';
 
-Template.character_form.onCreated(function() {
+Template.character_form.onCreated(function () {
 
     Session.set("CreationPointsUsed", 0);
     Session.set("Characteristics", new Array());
     Session.set("CreationPointsGiven", "89");
     Session.set("CreationPointsLeft", Session.get("CreationPointsGiven"));
-
     this.characterId = FlowRouter.getParam('_id');
 
+    Meteor.subscribe('skillsTaken.all');
     Meteor.subscribe('characters.all', () => {
         Tracker.afterFlush(() => {
 
@@ -22,6 +23,7 @@ Template.character_form.onCreated(function() {
                 this.character = Characters.findOne(this.characterId);
 
                 if (this.character) {
+                    Session.set('Characteristics', this.character.characteristics);
                     Session.set("CreationPointsLeft", this.character.creaPoints);
                 }
             }
@@ -55,7 +57,7 @@ Template.character_form.helpers({
         if (Template.instance().characterId) {
             //Actually IT'S FUNCTIONNAL BUT UGLY AF !
             // Problem is  : material need to be updated after function return
-            setTimeout(function() {
+            setTimeout(function () {
                 Materialize.updateTextFields();
                 $('select').material_select();
             }, 1000);
@@ -91,7 +93,7 @@ Template.character_form.helpers({
     }
 });
 
-var getCharacterFromForm = function(characterForm) {
+var getCharacterFromForm = function (characterForm) {
 
     let characterObj = new CharacterObject();
     characterObj.id = characterForm.id ? characterForm.id.value : '';
@@ -102,7 +104,7 @@ var getCharacterFromForm = function(characterForm) {
     characterObj.characteristics = Session.get('Characteristics');
 
     //Signes values
-    $('input[name^="ethos"]', characterForm).each(function() {
+    $('input[name^="ethos"]', characterForm).each(function () {
         if ($(this).is(':checked')) {
             characterObj.ethos.push({ 'name': $(this).attr('name'), 'value': $(this).val() });
         }
@@ -113,18 +115,18 @@ var getCharacterFromForm = function(characterForm) {
 
 Template.character_form.events({
 
-    'change #avatar' (event, template) {
+    'change #avatar'(event, template) {
         const value = $(event.currentTarget).val();
         $('.avatar_image').attr('src', value);
     },
-    'click .avatar_element' (event, template) {
+    'click .avatar_element'(event, template) {
         event.preventDefault();
         const element = event.currentTarget;
 
         $("#avatar").val($(element).attr('src'));
         $("#avatar").change();
     },
-    'click #finalize_character' (event, template) {
+    'click #finalize_character'(event, template) {
         let characterObj = getCharacterFromForm(document.getElementById('character_editor'));
 
         if (Session.get("CreationPointsLeft") > 0) {
@@ -132,7 +134,7 @@ Template.character_form.events({
             vex.defaultOptions.className = 'vex-theme-flat-attack';
             vex.dialog.confirm({
                 message: 'Il vous reste ' + Session.get("CreationPointsLeft") + ' points de création, êtes-vous sur de vouloir finaliser le personnage ?',
-                callback: function(value) {
+                callback: function (value) {
                     if (value) {
                         Meteor.call('characters.finalize', characterObj,
                             (error, result) => {
@@ -148,10 +150,50 @@ Template.character_form.events({
                 }
             });
         }
-
-
     },
-    'submit .character_editor' (event, template) {
+    'click .skill_tag'(event, template) {
+        let level = $(event.currentTarget).data("level");
+        let skillCost = getCostByLevel(level);
+        let totalCost = getSelectedSkillCosts();
+        let character = Characters.findOne(template.characterId);
+        let skills = Session.get('Characteristics');
+        let skillId = $(event.currentTarget).data("id");
+        let skillLevel = $(event.currentTarget).data("level");
+
+        if (skills.filter((skill) => skill.id == skillId).length > 0) {
+            skills = skills.filter((skill) => skill.id != skillId);
+
+            $('input', event.currentTarget).prop("checked", false);
+            $(event.currentTarget).removeClass("active");
+
+            totalCost -= skillCost;
+        } else {
+            //Check if available cost
+            //BUT anyway disable tags without enough points to buy
+
+            //Are there enough points left ?            
+            console.info("GrandTotal=>", parseInt(Session.get("CreationPointsGiven")) - totalCost + skillCost);
+            if (parseInt(Session.get("CreationPointsGiven")) - totalCost + skillCost >= 0) {
+                skills.push({ 'id': skillId, 'level': skillLevel });
+                $(event.currentTarget).addClass("active");
+                $('input', event.currentTarget).prop("checked", true);
+                totalCost += skillCost;
+            }
+        }
+
+        Session.set('Characteristics', skills);
+        // The previous set trigger a skill tree update (session is a reactive var) so
+        // we remove from skills in session child skills removed from cascade links
+        // Timeout is needed due to material effect latency 
+        setTimeout(() => {
+            skills = skills.filter((skill) => $("#" + skill.id).length > 0);            
+            //And we update
+            Session.set('Characteristics', skills);
+        }, 100);
+
+        Session.set("CreationPointsLeft", parseInt(Session.get("CreationPointsGiven")) - totalCost);
+    },
+    'submit .character_editor'(event, template) {
 
         event.preventDefault();
         const characterForm = event.target;
@@ -170,8 +212,7 @@ Template.character_form.events({
 
 });
 
-
-Template.character_form.onRendered(function() {
+Template.character_form.onRendered(function () {
     //Titles
     setTitles();
     $('select').material_select();
@@ -194,3 +235,4 @@ Template.character_form.onRendered(function() {
 
     });
 });
+

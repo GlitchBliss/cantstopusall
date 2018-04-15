@@ -7,16 +7,16 @@
         {{#each getSkillLevels}} 
             {{#let skillLevel= @index}} 
                 {{#if skills realLevel}}
-            <div class="col s2 cost">
-                {{getCostByLevel skillLevel}}
-            </div>
-            <div class="col s10 levels level{{cssLevel}}">
-                {{#each skills realLevel }} 
-                    <div class="col s12 m6">
-                        {{ > skill (skillArgs _id)}}
+                    <div class="col s2 cost">
+                        {{getCostByLevel skillLevel}}
                     </div>
-                {{/each}}
-            </div>
+                    <div class="col s10 levels level{{cssLevel}}">
+                        {{#each skills realLevel }} 
+                            <div class="col s12 m6">
+                                {{ > skill (skillArgs _id)}}
+                            </div>
+                        {{/each}}
+                    </div>
                 {{/if}} 
             {{/let}} 
         {{/each}}

@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 
-import { Skills, SkillsObject } from '/imports/api/skills/skills.js';
+import { Skills, SkillsObject, SkillsTaken } from '/imports/api/skills/skills.js';
 import { Characters } from '/imports/api/characters/characters.js';
 import './skills.html';
 import './skills.scss';
@@ -10,7 +10,6 @@ import '/imports/ui/components/inputs/skill/skill.js';
 
 Template.skills.onCreated(function () {
     this.subscribe('skills.all');
-    this.skillsTaken = new ReactiveVar([]);
 });
 
 Template.skills.helpers({
@@ -26,31 +25,16 @@ Template.skills.helpers({
         return levels;
     },
     getCostByLevel(level) {
-        let cost = 3;
-        switch (level) {
-            case 1:
-                cost = 5;
-                break;
-            case 2:
-                cost = 8;
-                break;
-            case 3:
-                cost = 13;
-                break;
-            case 4:
-                cost = 21;
-                break;
-        }
-
-        return cost;
+        return getCostByLevel(level);
     },
     getSkillClassNumer(skillIndex) {
         return 5 - skillIndex;
     },
     skills(level = 0) {
-        Meteor.setTimeout(() => $('select').material_select(), 1000);
+        //Meteor.setTimeout(() => $('select').material_select(), 500);
         let filteredSkills = [];
-        let skillsTaken = Template.instance().skillsTaken.get();
+        //Needed to trigger reactivity (and find matching skills) !
+        let skillsTaken = Session.get("Characteristics");
 
         skills = Skills.find({ level: level.toString() }).fetch();
 
@@ -65,7 +49,7 @@ Template.skills.helpers({
                     for (let indexPairs in skill.parentsOR[indexGroup]) {
                         let parentId = skill.parentsOR[indexGroup][indexPairs].id;
 
-                        if (skillsTaken.indexOf(parentId) > -1) {
+                        if (skillsTaken.filter((skill) => skill.id == parentId).length > 0) {
                             isEligible = true;
                         }
                     }
@@ -79,15 +63,15 @@ Template.skills.helpers({
                     let isEligibleForGroup = true;
                     for (let indexPairs in skill.parentsAND[indexGroup]) {
                         let parentId = skill.parentsAND[indexGroup][indexPairs].id;
-                        isEligibleForGroup &= skillsTaken.indexOf(parentId) > -1;
-
+                        isEligibleForGroup &= skillsTaken.filter((skill) => skill.id == parentId).length > 0;
                     }
                     isEligible &= isEligibleForGroup;
                 }
             }
+
             return isEligible;
         });
-
+        
         return filteredSkills;
     },
     skillArgs(skillId) {
@@ -105,25 +89,6 @@ Template.skills.helpers({
 
 Template.skills.events({
 
-    'click .skill_tag'(event, template) {
-        let skillsTaken = template.skillsTaken.get();
-        let skillId = $(event.currentTarget).data("id");
-        let level = $(event.currentTarget).data("level") + 1;
-        level = level < 4 ? level : 4;
-
-        $(event.currentTarget).toggleClass('darken-' + level);
-        $(event.currentTarget).toggleClass('active');
-        $('input', event.currentTarget).prop("checked", !$('input', event.currentTarget).prop("checked"));
-
-        if (skillsTaken.indexOf(skillId) > -1) {
-            skillsTaken.splice(skillsTaken.indexOf(skillId), 1);
-        } else {
-            skillsTaken.push(skillId);
-        }
-
-        template.skillsTaken.set(skillsTaken);
-
-    }
 });
 
 Template.skills.onRendered(function () { });

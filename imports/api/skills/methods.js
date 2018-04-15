@@ -1,9 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Skills } from './skills.js';
+import { Skills, SkillsTaken } from './skills.js';
 
 Meteor.methods({
-    'skills.upsert' (skillObject) {
+    'skills.upsert'(skillObject) {
 
         check(skillObject.name, String);
         check(skillObject.label, String);
@@ -23,7 +23,7 @@ Meteor.methods({
             }
         });
     },
-    'skills.delete' (id) {
+    'skills.delete'(id) {
         check(id, String);
         return Skills.remove(id);
     }

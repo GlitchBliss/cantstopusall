@@ -1,6 +1,6 @@
 <template name="skill">
     {{#if skillReady}}
-    <article id="{{ skill.id }}" class="{{ skill.name }} skill_tag option-button col s12 waves-effect waves-light skill-level-{{skill.level}}" data-level="{{skill.level}}"
+    <article id="{{skill._id}}" class="{{ skill.name }} skill_tag option-button col s12 waves-effect waves-light skill-level-{{skill.level}}" data-level="{{skill.level}}"
         data-id="{{skill._id}}">
         <input type="radio" name="{{ skill.name }}" />
 
