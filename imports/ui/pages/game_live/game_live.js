@@ -4,15 +4,26 @@ import { Games, CharactersInGames } from '/imports/api/games/games.js';
 import { Characters } from '/imports/api/characters/characters.js';
 import { LogEntry } from '/imports/classes/log_entry.class.js';
 import { Gamelogs } from '../../components/logbox/logbox.js';
+import { DMPanel } from '../../components/dm_pannel/dm_pannel.js'
 
 import './game_live.html';
 import './game_live.scss';
 import '../../components/skills_box/skills_box.js';
 
 
-Template.App_game_live.onCreated(function() {
+Template.App_game_live.onCreated(function () {
     this.getgame_Id = () => FlowRouter.getParam('_id');
     Session.set('currentGameId', this.getgame_Id());
+
+    this.getPlayers = () => {
+        const dataCharactersId = new Array();
+        const charactersInGames = CharactersInGames.find({ gameId: this.getgame_Id() }, { fields: { characterId: 1 } })
+            .map((item) => {
+                dataCharactersId.push(item.characterId);
+            });
+
+        return Characters.find({ _id: { $in: dataCharactersId } });
+    }
 
     this.autorun(() => {
         this.subscribe("games.all");
@@ -72,28 +83,36 @@ Template.App_game_live.helpers({
         const gameId = Template.instance().getgame_Id();
         const GamesForCurrentUser =
             Games.find({ userId: Meteor.userId() })
-            .map((item) => {
-                dataIds.push(item._id);
-            });
+                .map((item) => {
+                    dataIds.push(item._id);
+                });
 
         return dataIds.indexOf(gameId) > -1;
     },
     players() {
-        const dataCharactersId = new Array();
-        const charactersInGames = CharactersInGames.find({ gameId: Template.instance().getgame_Id() }, { fields: { characterId: 1 } })
-            .map((item) => {
-                dataCharactersId.push(item.characterId);
-            });
+        return Template.instance().getPlayers();
+    },
+    gmPannelArgs() {
+        const instance = Template.instance();
+        const gameId = instance.getgame_Id();
+        const players = instance.getPlayers().fetch();
+        return {
+            gameReady: instance.subscriptionsReady(),
+            gamePlaceHolder() {
+                const gamePlaceHolder = {};
+                gamePlaceHolder.game = Games.findOne(gameId);
 
-        return Characters.find({ _id: { $in: dataCharactersId } });
+                gamePlaceHolder.players = players;
+                return gamePlaceHolder;
+            },
+        };
     }
 });
 
 Template.App_game_live.events({
-    'click .send-notification' (event, instance) {
+    'click .send-notification'(event, instance) {
         const userId = $(event.currentTarget).data('id');
-
-        Meteor.call('notification.send', "Vous êtes PUNI ! ", "Vous avez reçu une punition", 'basic', false, userId,
+        Meteor.call('notification.send', "Vous êtes PUNI ! ", "Vous avez reçu une punition", 'basic', false, {}, userId,
             (error) => {
                 console.log("Error !");
                 console.log(error);
@@ -102,18 +121,18 @@ Template.App_game_live.events({
                 console.log('Success !');
             });
     },
-    'click .show_character' (event, instance) {
+    'click .show_character'(event, instance) {
         const charactedId = $(event.currentTarget).data('id');
         $(".sheet" + charactedId, "#folded_sheets").toggle();
     },
-    'click .test_skill' (event, instance) {
+    'click .test_skill'(event, instance) {
         const charactedId = $(event.currentTarget).data('id');
         $(".skills" + charactedId, "#folded_sheets").toggle();
     }
 });
 
-Template.App_game_live.onRendered(function() {
-    this.autorun(function() {
+Template.App_game_live.onRendered(function () {
+    this.autorun(function () {
         //Titles
         setTitles();
     });

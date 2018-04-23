@@ -64,8 +64,6 @@ Template.join_game.events({
             } else {
                 if (instance.selectedGame.get()) {
 
-                    console.log("phalbala");
-
                     // let character = Characters.findOne(characterId);
                     // let line = new LogEntry("{1} vient d'arriver dans la partie");
                     // line.add(character.name, "strong");

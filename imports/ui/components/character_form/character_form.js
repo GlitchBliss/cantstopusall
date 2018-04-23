@@ -149,6 +149,15 @@ Template.character_form.events({
                     }
                 }
             });
+        } else if(Session.get("CreationPointsLeft") == 0) {
+            Meteor.call('characters.finalize', characterObj,
+                (error, result) => {
+                    if (error) {
+                        console.log(error.error);
+                    } else {
+                        FlowRouter.go('App.characters.list');
+                    }
+                });
         }
     },
     'click .skill_tag'(event, template) {
@@ -172,7 +181,6 @@ Template.character_form.events({
             //BUT anyway disable tags without enough points to buy
 
             //Are there enough points left ?            
-            console.info("GrandTotal=>", parseInt(Session.get("CreationPointsGiven")) - totalCost + skillCost);
             if (parseInt(Session.get("CreationPointsGiven")) - totalCost + skillCost >= 0) {
                 skills.push({ 'id': skillId, 'level': skillLevel });
                 $(event.currentTarget).addClass("active");
@@ -186,7 +194,7 @@ Template.character_form.events({
         // we remove from skills in session child skills removed from cascade links
         // Timeout is needed due to material effect latency 
         setTimeout(() => {
-            skills = skills.filter((skill) => $("#" + skill.id).length > 0);            
+            skills = skills.filter((skill) => $("#" + skill.id).length > 0);
             //And we update
             Session.set('Characteristics', skills);
         }, 100);

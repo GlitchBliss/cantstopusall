@@ -1,0 +1,44 @@
+<template name="dm_pannel">
+
+    <div class="row">
+        <div class="col s8">
+            <input class="player_select form-control typeahead" name="players" type="text" placeholder="Sélectionner le joueur" autocomplete="off"
+                spellcheck="off" data-source="usersList" />
+        </div>
+        <div class="col s4">
+            {{#if hasPlayerSelected}}
+            <a class="select-player-btn btn waves-effect waves-light" type="submit">Sélectionner ce joueur
+                <i class="material-icons right">recent_actors</i>
+            </a>
+            {{/if}}
+        </div>
+    </div>
+    <div class="row">
+        {{#each getSelectableCharacters}}
+        <div class="col s4 character_tag">
+            <aside>
+                <img src="{{avatar}}" alt="{{name}}" />
+            </aside>
+            <p>{{name}}</p>
+
+            <!-- <div class="card horizontal">
+                <div class="card-image">
+                    <img src="{{avatar}}">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>{{name}}</p>
+                    </div>
+                    <div class="card-action">
+                        <a class="invite-character btn waves-effect waves-light" type="submit">Inviter
+                            <i class="material-icons right">person</i>
+                        </a>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+        {{/each}}
+    </div>
+
+</template>

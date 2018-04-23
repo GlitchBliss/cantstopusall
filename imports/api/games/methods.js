@@ -24,8 +24,8 @@ Meteor.methods({
             }
         });
     },
-    'games.join' (gameId, characterId) {
-        check(gameId, String);
+    'games.join' (gameId, characterId) {        
+        check(gameId, String);        
         check(characterId, String);
         let gameUserUnicity = gameId + Meteor.userId();
 
