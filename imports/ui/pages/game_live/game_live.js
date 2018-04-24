@@ -113,12 +113,13 @@ Template.App_game_live.events({
     'click .send-notification'(event, instance) {
         const userId = $(event.currentTarget).data('id');
         Meteor.call('notification.send', "Vous êtes PUNI ! ", "Vous avez reçu une punition", 'basic', false, {}, userId,
-            (error) => {
-                console.log("Error !");
-                console.log(error);
-            },
-            (success) => {
-                console.log('Success !');
+            (error, result) => {
+                if (error) {
+                    console.log("Error !");
+                    console.log(error);
+                } else {
+                    console.log('Success !');
+                }
             });
     },
     'click .show_character'(event, instance) {
@@ -128,6 +129,29 @@ Template.App_game_live.events({
     'click .test_skill'(event, instance) {
         const charactedId = $(event.currentTarget).data('id');
         $(".skills" + charactedId, "#folded_sheets").toggle();
+    },
+    'click .eject-character'(event, instance) {
+        const userId = $(event.currentTarget).data('id');
+        const charaName = $(event.currentTarget).data('name');
+        const gameId = instance.getgame_Id();
+        Meteor.call('characters_in_games.eject', gameId, userId, (error, result) => {
+            if (error) {
+                warning.log(error);
+            } else {
+                console.info("Success");
+
+                let line = new LogEntry("{1} a été banni comme la dignité du forum 18-25 ans de jeuxvideo.com .");
+                line.add(charaName, "strong");
+
+                Meteor.call('gamelogs.insert', line.render(), Session.get("currentGameId"), true, (error, id) => {
+                    if (error) {
+                        warning.log(error.error);
+                    } else {
+                        console.log("Success");
+                    }
+                });                
+            }
+        });
     }
 });
 

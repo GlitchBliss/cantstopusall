@@ -1,4 +1,4 @@
-<template name="notification">    
+<template name="notification">
 
     <ul class="col s12 notifications collapsible" data-collapsible="accordion">
 
@@ -6,19 +6,37 @@
         <li>
             <div class="collapsible-header">
 
-                <!-- TODO : Make a switch depending on notif type -->                
+                <!-- TODO : Make a switch depending on notif type -->
                 <i class="material-icons">announcement</i>
 
                 <div class="chip">
                     {{ formatDate createdAt }}
                 </div>
-                {{ title }}                
+                {{ title }}
             </div>
             <div class="collapsible-body">
-                <p class="col s11">{{text}} </p>                
-                <i class="close material-icons remove-notification" data-id="{{_id}}">close</i>                
+                <p class="col s11">{{text}} </p>
+                <i class="close material-icons remove-notification" data-id="{{_id}}">close</i>
             </div>
         </li>
-        {{/each}}    
+        {{/each}} {{#each notifications_invites}}
+        <li>
+            <div class="collapsible-header">
+
+                <!-- TODO : Make a switch depending on notif type -->
+                <i class="material-icons">local_post_office</i>
+
+                <div class="chip">
+                    {{ formatDate createdAt }}
+                </div>
+                {{ title }}
+            </div>
+            <div class="collapsible-body">
+                <p class="col s11">{{text}} </p>
+                <button class="accept-invite btn" data-gameid="{{datas.gameId}}" data-id="{{_id}}" data-characterid="{{datas.characterId}}">Accepter</button>
+                <i class="close material-icons remove-notification" data-id="{{_id}}">close</i>
+            </div>
+        </li>
+        {{/each}}
     </ul>
 </template>

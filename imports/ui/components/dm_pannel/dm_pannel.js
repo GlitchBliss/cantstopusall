@@ -1,4 +1,5 @@
 import { Characters, CharacterObject } from '/imports/api/characters/characters.js';
+import { Games } from '/imports/api/games/games.js';
 import { Meteor } from 'meteor/meteor';
 import './dm_pannel.html';
 import './dm_pannel.scss';
@@ -6,6 +7,7 @@ import './dm_pannel.scss';
 Template.dm_pannel.onCreated(function () {
     this.subscribe('characters.all');
     this.subscribe('users.all');
+    this.subscribe('games.all');
     this.playerSelectedId = new ReactiveVar(null);
     this.selectableCharacters = new ReactiveVar(null);
 });
@@ -46,8 +48,21 @@ Template.dm_pannel.events({
         $(".player_select").val('');
         instance.playerSelectedId.set('');
         instance.selectableCharacters.set('');
+        userId = $(event.currentTarget).data('userid');
 
-        
+        let gameId = Session.get("currentGameId");
+        let characterId = $(event.currentTarget).data('characterid');
+
+        if (gameId) {
+            let game = Games.find(gameId).fetch();
+            let datasPayload = { "gameId": Session.get("currentGameId"), "characterId": characterId };
+
+            Meteor.call('notification.send', "Vous êtes l'invité prestigieux de la partie : " + game[0].title, "Carton d'invitation", 'invite', false, datasPayload, userId, (error, result) => {
+                if (error) {
+                    console.log(error.error);
+                }
+            });
+        }
     }
 });
 

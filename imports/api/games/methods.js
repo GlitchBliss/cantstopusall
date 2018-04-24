@@ -74,5 +74,11 @@ Meteor.methods({
             //Then, mark provided as selected
             Games.remove(gameId);
         }
+    },
+    'characters_in_games.eject'(gameId, userId){
+        check(gameId, String);
+        check(userId, String);        
+
+        CharactersInGames.remove({ gameId: gameId,userId:userId });
     }
 });

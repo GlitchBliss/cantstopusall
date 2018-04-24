@@ -15,7 +15,7 @@
     </div>
     <div class="row">
         {{#each getSelectableCharacters}}
-        <div class="col s4 character_tag">
+        <div class="col s4 character_tag" data-userid="{{userId}}" data-characterid={{_id}}>
             <aside>
                 <img src="{{avatar}}" alt="{{name}}" />
             </aside>

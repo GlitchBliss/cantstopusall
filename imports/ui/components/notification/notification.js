@@ -1,11 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { Notifications } from '/imports/api/notifications/notifications.js';
 import { GameLogs } from '/imports/api/gamelogs/gamelogs.js';
+import { Games } from '/imports/api/games/games.js';
 import './notification.html';
 import './notification.scss';
 
 
-const countDown = function(countNumber, callback, fadesTime = {}) {
+const countDown = function (countNumber, callback, fadesTime = {}) {
 
     let timer = (fadesTime.in && fadesTime.out) ? fadesTime.in + fadesTime.out : 0;
     let long = 400;
@@ -32,12 +33,13 @@ const countDown = function(countNumber, callback, fadesTime = {}) {
     }, timer);
 }
 
-Template.notification.onCreated(function() {
+Template.notification.onCreated(function () {
     Meteor.subscribe('notifications.all');
     Meteor.subscribe('gamelogs.all');
+    Meteor.subscribe('games.all');
 
-    const cursor = Notifications.find({ $or: [{ userId: Meteor.userId(), type: "skilltest" }, { isGlobal: true, type: "skilltest" }] });
-    const handle = cursor.observeChanges({
+    const cursorSkilltest = Notifications.find({ $or: [{ userId: Meteor.userId(), type: "skilltest" }, { isGlobal: true, type: "skilltest" }] });
+    const handle = cursorSkilltest.observeChanges({
         added(id, fields) {
             let notification = fields;
             countDown(3, () => {
@@ -97,12 +99,22 @@ Template.notification.helpers({
             },
         });
         return cursor;
+    },
+    notifications_invites() {
+        const cursor = Notifications.find({ $or: [{ userId: Meteor.userId(), type: "invite" }, { isGlobal: true, type: "invite" }] });
+        const handle = cursor.observeChanges({
+            added() {
+                //Make mobile phone vibrate! 
+                navigator.vibrate(1000);
+            },
+        });
+        return cursor;
     }
 });
 
 Template.notification.events({
 
-    'click .remove-notification' (event, template) {
+    'click .remove-notification'(event, template) {
         const notifId = $(event.target).data('id');
 
         if (notifId) {
@@ -112,11 +124,31 @@ Template.notification.events({
                 }
             });
         }
+    },
+    'click .accept-invite'(event, template) {
+        const notifId = $(event.target).data('id');
+        const gameId = $(event.currentTarget).data('gameid');
+        const characterid = $(event.currentTarget).data('characterid');
+
+        Meteor.call('games.join', gameId, characterid, (error, result) => {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log("Success");
+                if (notifId) {
+                    Meteor.call('notification.remove', notifId, (error) => {
+                        if (error) {
+                            console.log(error.error);
+                        }
+                    });
+                }                
+            }
+        })
     }
 
 });
 
-Template.notification.onRendered(function() {
+Template.notification.onRendered(function () {
     $('.collapsible').collapsible();
 
 

@@ -26,7 +26,9 @@
         {{#if isCurrentPlayer userId }}
         <a class="waves-effect waves-light btn test_skill" data-id="{{_id}}">
           <i class="material-icons left">view_comfy</i>Tester</a>{{/if}} {{#if isMJ}}
-        <button class="send-notification btn" data-id="{{userId}}">Punir ce personnage</button>{{/if}}
+        <button class="send-notification btn" data-id="{{userId}}">Punir ce personnage</button>
+        <button class="eject-character btn" data-id="{{userId}}" data-name="{{name}}">Bannir ce personnage</button>
+        {{/if}}
       </div>
     </li>
     {{/each}}
