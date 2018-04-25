@@ -16,7 +16,7 @@ Meteor.methods({
             isGlobal: isGlobal,
             userId: userId,
             datas: datasPayload,
-            createdAt: new Date(),
+            createdAt:new Date(),
         });
     },
 

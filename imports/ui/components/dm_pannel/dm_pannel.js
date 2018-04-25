@@ -40,9 +40,23 @@ Template.dm_pannel.events({
     },
     'click .select-player-btn'(event, instance) {
         const userName = instance.playerSelectedId.get();
-        let id = Meteor.users.find({ username: userName }, { fields: { '_id': 1 } }).fetch();
-        let characters = Characters.find({ userId: id[0]._id }).fetch();
-        instance.selectableCharacters.set(characters);
+        let userId = Meteor.users.find({ username: userName }, { fields: { '_id': 1 } }).fetch();
+
+        $(".player_select").val('');
+        instance.playerSelectedId.set('');
+        instance.selectableCharacters.set('');
+
+        let gameId = Session.get("currentGameId");
+        if (gameId) {
+            let game = Games.find(gameId).fetch();
+            let datasPayload = { "gameId": Session.get("currentGameId") };
+
+            Meteor.call('notification.send', "Vous êtes l'invité prestigieux de la partie : " + game[0].title, "Carton d'invitation", 'invite', false, datasPayload, userId[0]._id, (error, result) => {
+                if (error) {
+                    console.log(error.error);
+                }
+            });
+        }
     },
     'click .character_tag'(event, instance) {
         $(".player_select").val('');

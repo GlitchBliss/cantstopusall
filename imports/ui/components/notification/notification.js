@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Notifications } from '/imports/api/notifications/notifications.js';
 import { GameLogs } from '/imports/api/gamelogs/gamelogs.js';
 import { Games } from '/imports/api/games/games.js';
+import { Characters } from '/imports/api/characters/characters.js';
 import './notification.html';
 import './notification.scss';
 
@@ -37,6 +38,7 @@ Template.notification.onCreated(function () {
     Meteor.subscribe('notifications.all');
     Meteor.subscribe('gamelogs.all');
     Meteor.subscribe('games.all');
+    Meteor.subscribe('characters.all');
 
     const cursorSkilltest = Notifications.find({ $or: [{ userId: Meteor.userId(), type: "skilltest" }, { isGlobal: true, type: "skilltest" }] });
     const handle = cursorSkilltest.observeChanges({
@@ -90,6 +92,9 @@ Template.notification.onCreated(function () {
 });
 
 Template.notification.helpers({
+    characters() {        
+        return Characters.find({ userId: Meteor.userId() });
+    },
     notifications_basic() {
         const cursor = Notifications.find({ $or: [{ userId: Meteor.userId(), type: "basic" }, { isGlobal: true, type: "basic" }] });
         const handle = cursor.observeChanges({
@@ -125,7 +130,7 @@ Template.notification.events({
             });
         }
     },
-    'click .accept-invite'(event, template) {
+    'click .character_tag'(event, template) {
         const notifId = $(event.target).data('id');
         const gameId = $(event.currentTarget).data('gameid');
         const characterid = $(event.currentTarget).data('characterid');
@@ -141,7 +146,7 @@ Template.notification.events({
                             console.log(error.error);
                         }
                     });
-                }                
+                }
             }
         })
     }

@@ -20,6 +20,8 @@
             </div>
         </li>
         {{/each}} {{#each notifications_invites}}
+        {{#let notification_id = _id}} 
+        {{#let datas = datas}} 
         <li>
             <div class="collapsible-header">
 
@@ -33,10 +35,22 @@
             </div>
             <div class="collapsible-body">
                 <p class="col s11">{{text}} </p>
-                <button class="accept-invite btn" data-gameid="{{datas.gameId}}" data-id="{{_id}}" data-characterid="{{datas.characterId}}">Accepter</button>
+                <p class="col s11">Choisissez le personnage à plonger dans le bain :</p>
+                <div class="row">
+                    {{#each characters}}
+                    <div class="col s4 character_tag" data-id="{{notification_id}}" data-gameid="{{datas.gameId}}" data-characterid={{_id}}>
+                        <aside>
+                            <img src="{{avatar}}" alt="{{name}}" />
+                        </aside>
+                        <p>{{name}}</p>
+                    </div>
+                    {{/each}}
+                </div>
                 <i class="close material-icons remove-notification" data-id="{{_id}}">close</i>
             </div>
         </li>
+        {{/let}} 
+        {{/let}} 
         {{/each}}
     </ul>
 </template>
