@@ -38,7 +38,7 @@ Template.App_game_live.onCreated(function () {
 
                 let charaInGame = CharactersInGames.findOne(id);
                 let character = Characters.findOne(charaInGame.characterId);
-                let line = "";
+                let line = null;
                 if (fields.isCurrentlyIn == false) {
                     line = new LogEntry("{1} vient de quitter la partie.");
                     line.add(character.name, "strong");
@@ -47,11 +47,13 @@ Template.App_game_live.onCreated(function () {
                     line.add(character.name, "strong");
                 }
 
-                Meteor.call('gamelogs.insert', line.render(), Session.get('currentGameId'), true, (error, id) => {
-                    if (error) {
-                        console.log(error.error);
-                    }
-                });
+                if (line) {
+                    Meteor.call('gamelogs.insert', line.render(), FlowRouter.getParam('_id'), true, (error, id) => {
+                        if (error) {
+                            console.log(error.error);
+                        }
+                    });
+                }
             }
         });
     });
@@ -149,7 +151,7 @@ Template.App_game_live.events({
                     } else {
                         console.log("Success");
                     }
-                });                
+                });
             }
         });
     }

@@ -3,6 +3,7 @@ import { Notifications } from '/imports/api/notifications/notifications.js';
 import { GameLogs } from '/imports/api/gamelogs/gamelogs.js';
 import { Games } from '/imports/api/games/games.js';
 import { Characters } from '/imports/api/characters/characters.js';
+import { LogEntry } from '/imports/classes/log_entry.class.js';
 import './notification.html';
 import './notification.scss';
 
@@ -92,7 +93,7 @@ Template.notification.onCreated(function () {
 });
 
 Template.notification.helpers({
-    characters() {        
+    characters() {
         return Characters.find({ userId: Meteor.userId() });
     },
     notifications_basic() {
@@ -131,9 +132,11 @@ Template.notification.events({
         }
     },
     'click .character_tag'(event, template) {
-        const notifId = $(event.target).data('id');
+        const notifId = $(event.currentTarget).data('id');
         const gameId = $(event.currentTarget).data('gameid');
         const characterid = $(event.currentTarget).data('characterid');
+        const character = Characters.findOne({ _id: characterid });
+
 
         Meteor.call('games.join', gameId, characterid, (error, result) => {
             if (error) {
@@ -141,9 +144,27 @@ Template.notification.events({
             } else {
                 console.log("Success");
                 if (notifId) {
-                    Meteor.call('notification.remove', notifId, (error) => {
+                    Meteor.call('notification.remove', notifId, (error, result) => {
                         if (error) {
                             console.log(error.error);
+                        } else {
+
+                            //We init character datas
+                            const datas = { "adrenaline": 0 };
+                            Meteor.call("characters_in_games.update.datas", gameId, characterid, datas, (error, result) => {
+                                if (error) {
+                                    console.info(error);
+                                } else {
+                                    line = new LogEntry("{1} vient de rentrer dans la partie.");
+                                    line.add(character.name, "strong");
+
+                                    Meteor.call('gamelogs.insert', line.render(), gameId, true, (error, id) => {
+                                        if (error) {
+                                            console.log(error.error);
+                                        }
+                                    });
+                                }
+                            });
                         }
                     });
                 }

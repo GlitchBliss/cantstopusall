@@ -1,22 +1,18 @@
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
-
 import { Characters } from '/imports/api/characters/characters.js';
 import { Notifications } from '/imports/api/notifications/notifications.js';
-import { Characteristics } from '/imports/api/characteristics/characteristics.js';
+import { Skills } from '/imports/api/skills/skills.js';
 import { LogEntry } from '/imports/classes/log_entry.class.js';
 import './skills_box.html';
 import './skills_box.scss';
 
-
-
 Template.skills_box.onCreated(function() {
     this.subscribe('characters.all');
-    this.subscribe('characteristics.all');
+    this.subscribe('skills.all');
     this.currentCharacter = {};
     this.characterId = this.data.characterId;
 });
-
 
 Template.skills_box.helpers({
     skills() {
@@ -25,7 +21,7 @@ Template.skills_box.helpers({
         let skills = [];
         if (character) {
             for (let skill of character.characteristics) {
-                let skillObject = Characteristics.findOne(skill.id);
+                let skillObject = Skills.findOne(skill.id);
 
                 if (skillObject) {
                     skillObject["value"] = skill.value;
@@ -54,7 +50,7 @@ Template.skills_box.events({
         }
 
         let character = Template.instance().currentCharacter;
-        let skill = Characteristics.findOne($(event.currentTarget).data("id"));
+        let skill = Skills.findOne($(event.currentTarget).data("id"));
 
         let line = new LogEntry("{1} tente une action de {2} avec un résultat de {3} sur {4}");
         line.add(character.name, "strong");
@@ -75,8 +71,6 @@ Template.skills_box.events({
                 });
             }
         });
-
-
     }
 });
 

@@ -22,7 +22,7 @@ Template.dm_pannel.helpers({
     usersList() {
         //First get all user id with a character
         let userIds = new Array();
-        Characters.find({}, { distinct: 'userId', fields: { 'userId': 1 } }).fetch().map((character) => userIds.push(character.userId));
+        Characters.find({}, { distinct: 'userId', fields: { 'userId': 1 } }).fetch().map((character) => userIds.push(character.userId));        
         const players = Template.instance().data.gamePlaceHolder().players;
         //Filter users to get only those not mj and not in the game already        
         userIds = userIds.filter((userId) => Meteor.userId() != userId && players.filter((player) => player.userId == userId).length == 0);
@@ -35,7 +35,7 @@ Template.dm_pannel.helpers({
 });
 
 Template.dm_pannel.events({
-    'typeahead:selected .player_select'(event, instance) {
+    'typeahead:selected .player_select'(event, instance) {        
         instance.playerSelectedId.set($(event.currentTarget).val());
     },
     'click .select-player-btn'(event, instance) {

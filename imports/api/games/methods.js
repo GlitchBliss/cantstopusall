@@ -4,7 +4,7 @@ import { Games, GameObject, CharactersInGames } from './games.js';
 import { Gamelogs } from '../gamelogs/gamelogs.js';
 
 Meteor.methods({
-    'games.upsert' (gameObject) {
+    'games.upsert'(gameObject) {
 
         const user = Meteor.users.findOne(Meteor.userId());
         check(user.username, String);
@@ -24,8 +24,8 @@ Meteor.methods({
             }
         });
     },
-    'games.join' (gameId, characterId) {        
-        check(gameId, String);        
+    'games.join'(gameId, characterId) {
+        check(gameId, String);
         check(characterId, String);
         let gameUserUnicity = gameId + Meteor.userId();
 
@@ -36,12 +36,13 @@ Meteor.methods({
                 gameUserUnicity: gameUserUnicity,
                 isCurrentlyIn: true,
                 isMJ: false,
+                datas: {},
                 userId: Meteor.userId(),
                 createdAt: new Date()
             }
         });
     },
-    'games.leave' (userId) {
+    'games.leave'(userId) {
         check(userId, String);
         return CharactersInGames.upsert({ userId: userId }, {
             $set: {
@@ -49,7 +50,7 @@ Meteor.methods({
             }
         });
     },
-    'games.open' (gameId) {
+    'games.open'(gameId) {
         check(gameId, String);
         let gameUserUnicity = gameId + Meteor.userId();
 
@@ -60,6 +61,7 @@ Meteor.methods({
                 gameUserUnicity: gameUserUnicity,
                 isCurrentlyIn: true,
                 isMJ: true,
+                datas: {},
                 userId: Meteor.userId(),
                 createdAt: new Date()
             }
@@ -67,7 +69,7 @@ Meteor.methods({
 
         return Games.update({ _id: gameId }, { $set: { isOpen: true } });
     },
-    'games.delete' (gameId) {
+    'games.delete'(gameId) {
         check(gameId, String);
 
         if (Games.findOne(gameId)) {
@@ -75,10 +77,21 @@ Meteor.methods({
             Games.remove(gameId);
         }
     },
-    'characters_in_games.eject'(gameId, userId){
+    'characters_in_games.eject'(gameId, userId) {
         check(gameId, String);
-        check(userId, String);        
+        check(userId, String);
 
-        CharactersInGames.remove({ gameId: gameId,userId:userId });
+        CharactersInGames.remove({ gameId: gameId, userId: userId });
+    },
+    'characters_in_games.update.datas'(gameId, characterid, datas) {
+        check(gameId, String);
+        check(characterid, String);
+        check(datas, Object);
+
+        CharactersInGames.upsert({ gameId: gameId, characterid: characterid }, {
+            $set: {
+                datas: datas,
+            }
+        });
     }
 });
