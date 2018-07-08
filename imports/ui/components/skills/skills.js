@@ -43,19 +43,6 @@ Template.skills.helpers({
             //If no parents constraints on skill
             let isEligible = (!skill.parentsOR || !skill.parentsOR['0']) && (!skill.parentsAND || !skill.parentsAND['0']);
 
-            //Parents OR
-            if (skill.parentsOR && skill.parentsOR['0']) {
-                for (let indexGroup in skill.parentsOR) {
-                    for (let indexPairs in skill.parentsOR[indexGroup]) {
-                        let parentId = skill.parentsOR[indexGroup][indexPairs].id;
-
-                        if (skillsTaken.filter((skill) => skill.id == parentId).length > 0) {
-                            isEligible = true;
-                        }
-                    }
-                }
-            }
-
             //Parents AND            
             if (skill.parentsAND && skill.parentsAND['0']) {
                 isEligible = true;
@@ -66,6 +53,19 @@ Template.skills.helpers({
                         isEligibleForGroup &= skillsTaken.filter((skill) => skill.id == parentId).length > 0;
                     }
                     isEligible &= isEligibleForGroup;
+                }
+            }
+
+            //Parents OR
+            if (skill.parentsOR && skill.parentsOR['0']) {
+                for (let indexGroup in skill.parentsOR) {
+                    for (let indexPairs in skill.parentsOR[indexGroup]) {
+                        let parentId = skill.parentsOR[indexGroup][indexPairs].id;
+
+                        if (skillsTaken.filter((skill) => skill.id == parentId).length > 0) {
+                            isEligible = true;
+                        }
+                    }
                 }
             }
 
